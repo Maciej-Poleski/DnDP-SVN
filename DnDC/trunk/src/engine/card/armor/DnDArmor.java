@@ -4,23 +4,25 @@ import engine.Character;
 
 /**
  * Klasa licząca Klasę pancerza dla postaci.
+ * 
  * @author bambucha
  */
 public class DnDArmor implements Armor
 {
 
     private final Integer BASE = 10;
-    private Integer plate; //ze zbroji
-    private Integer shield; //z tarczy
-    private Integer natural; //naturalny
-    private Integer deflection; //z odbicia
-    private Integer proficiency; //z biegłości
-    private Integer dodge; //unikowa
-    private Integer AC; //pełne AC
-    private Character main;
+    private Integer       plate;      // ze zbroji
+    private Integer       shield;     // z tarczy
+    private Integer       natural;    // naturalny
+    private Integer       deflection; // z odbicia
+    private Integer       proficiency; // z biegłości
+    private Integer       dodge;      // unikowa
+    private Integer       AC;         // pełne AC
+    private Character     main;
 
     /**
      * Tworzy pusztą część od KP.
+     * 
      * @param main
      */
     public DnDArmor(Character main)
@@ -52,6 +54,7 @@ public class DnDArmor implements Armor
 
     /**
      * Zwraca premię do pancerza zbroi
+     * 
      * @return premia do pancerza
      */
     @Override
@@ -62,6 +65,7 @@ public class DnDArmor implements Armor
 
     /**
      * Zwraca premię do pancerza tarczy
+     * 
      * @return premia do pancerza
      */
     @Override
@@ -72,19 +76,22 @@ public class DnDArmor implements Armor
 
     /**
      * Zwraca premię do pancerza od zręczności
+     * 
      * @return premia do pancerza
      */
     @Override
     public Integer getDextirityACBonus()
     {
-        if(main.getEq().getArmor() != null)
-            return Math.min(this.main.getDexterity().getModifier(),main.getEq().getArmor().getMaxDexBonus());
+        if (main.getEq().getArmor() != null)
+            return Math.min(this.main.getDexterity().getModifier(), main
+                    .getEq().getArmor().getMaxDexBonus());
         else
             return this.main.getDexterity().getModifier();
     }
 
     /**
      * Zwraca premię do pancerza wynikającą z rozmiaru
+     * 
      * @return premia do pancerza
      */
     @Override
@@ -95,6 +102,7 @@ public class DnDArmor implements Armor
 
     /**
      * Zwraca premię z odbicia do pancerza
+     * 
      * @return premia do pancerza
      */
     @Override
@@ -105,6 +113,7 @@ public class DnDArmor implements Armor
 
     /**
      * Zwraca premię z biegłości do pancerza
+     * 
      * @return premia do pancerza
      */
     @Override
@@ -115,6 +124,7 @@ public class DnDArmor implements Armor
 
     /**
      * Zwraca KP postacie, dla "normalnych ataków"
+     * 
      * @return Klasa Pancerza postaci
      */
     @Override
@@ -126,7 +136,9 @@ public class DnDArmor implements Armor
 
     /**
      * Ustawia premię z zbroi do Klasy Pancerza
-     * @param newValue Nowa wartość premii
+     * 
+     * @param newValue
+     *            Nowa wartość premii
      */
     @Override
     public void setArmorACBonus(Integer newValue)
@@ -138,7 +150,9 @@ public class DnDArmor implements Armor
 
     /**
      * Ustawia nową wartość premie od tarczy do Klasy Pancerza
-     * @param newValue Nowa wartość premii
+     * 
+     * @param newValue
+     *            Nowa wartość premii
      */
     @Override
     public void setShieldACBonus(Integer newValue)
@@ -150,7 +164,9 @@ public class DnDArmor implements Armor
 
     /**
      * Ustawawia nową wartość premii z odbicia do Klasy Pancerza
-     * @param newValue Nowa wartość premii
+     * 
+     * @param newValue
+     *            Nowa wartość premii
      */
     @Override
     public void setDeflectionACBonus(Integer newValue)
@@ -162,7 +178,9 @@ public class DnDArmor implements Armor
 
     /**
      * Ustawia nową wartość premii z biegłości do Klasy Pancerza.
-     * @param newValue Nowa wartość premii
+     * 
+     * @param newValue
+     *            Nowa wartość premii
      */
     @Override
     public void setProficiencyACBonus(Integer newValue)
@@ -174,26 +192,31 @@ public class DnDArmor implements Armor
 
     /**
      * Zwraca Klasę Pancerza postaci nieprzygotowane
+     * 
      * @return Klasa Pancerza Postaci
      */
     @Override
     public Integer getFlatFootetAC()
     {
-        return this.plate + this.shield + this.natural + this.deflection + this.proficiency;
+        return this.plate + this.shield + this.natural + this.deflection
+                + this.proficiency;
     }
 
     /**
      * Zwraca Klasę Pancerza postaci przeciwko ataką dodtykowym
+     * 
      * @return Klasa Pancerza
      */
     @Override
     public Integer getTouchAttaksAC()
     {
-        return this.getDextirityACBonus() + this.natural + this.dodge + this.deflection + this.proficiency;
+        return this.getDextirityACBonus() + this.natural + this.dodge
+                + this.deflection + this.proficiency;
     }
 
     /**
      * Zwraca warość premii unikowej do Klasy Pancerza
+     * 
      * @return Wartość premii
      */
     @Override
@@ -204,7 +227,9 @@ public class DnDArmor implements Armor
 
     /**
      * Ustawawia nową wartość premii unikowej do Klasy Pancerza
-     * @param newValue Nowa wartość premii
+     * 
+     * @param newValue
+     *            Nowa wartość premii
      */
     @Override
     public void setDodgeACBonus(Integer newValue)

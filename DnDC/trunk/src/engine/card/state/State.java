@@ -1,12 +1,11 @@
 package engine.card.state;
 
 /**
- * Enum z wszystkimi stanami 
+ * Enum z wszystkimi stanami
+ * 
  * @author bambucha
  */
 public enum State
 {
-    NIEPRZYGOTOWANE,
-    FLANKOWANY,
-    ZASKOCZONY;
+    NIEPRZYGOTOWANE, FLANKOWANY, ZASKOCZONY;
 }

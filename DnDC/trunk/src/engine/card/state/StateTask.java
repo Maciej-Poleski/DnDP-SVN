@@ -1,16 +1,15 @@
 package engine.card.state;
 
 /**
- *
+ * 
  * @author bambucha
  */
 public class StateTask implements Comparable<StateTask>
 {
-    private Integer time;
-    private State status;
-    private StateReactor mother;
+    private Integer      time;
+    private State        status;
 
-    public StateTask(Integer time, State status,StateReactor x)
+    public StateTask(Integer time, State status, StateReactor x)
     {
         this.time = time;
         this.status = status;
@@ -40,7 +39,7 @@ public class StateTask implements Comparable<StateTask>
     @Override
     public boolean equals(Object obj)
     {
-        if(obj instanceof State)
+        if (obj instanceof State)
             return this.status.equals(obj);
         return super.equals(obj);
     }
@@ -52,6 +51,5 @@ public class StateTask implements Comparable<StateTask>
         hash = 29 * hash + (this.status != null ? this.status.hashCode() : 0);
         return hash;
     }
-
 
 }

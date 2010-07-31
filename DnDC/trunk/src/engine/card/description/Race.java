@@ -1,15 +1,10 @@
 package engine.card.description;
 
-import client.FrontToDB;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- * Klasa opisująca rasę.
- * Dane pobiera z bazy danych w obsługiwaną przez FrontToDB.
+ * Klasa opisująca rasę. Dane pobiera z bazy danych w obsługiwaną przez
+ * FrontToDB.
+ * 
  * @author bambucha
  */
 public class Race
@@ -23,7 +18,7 @@ public class Race
     private String language;
     private String names;
 
-    //Konstruktor stworzony na potrzeby testów opisu
+    // Konstruktor stworzony na potrzeby testów opisu
     public Race()
     {
         name = "human";
@@ -37,8 +32,7 @@ public class Race
     }
 
     /**
-     * @par TODO
-     * Napisać wywołanie do bazy danych.
+     * @par TODO Napisać wywołanie do bazy danych.
      * @param name
      */
     public Race(String name)

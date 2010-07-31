@@ -1,24 +1,26 @@
 package engine.card.fleats;
 
-import engine.card.Benefit;
-import engine.card.Checkable;
 import java.util.ArrayList;
 import java.util.List;
 
+import engine.card.Benefit;
+import engine.card.Checkable;
+
 /**
- *
+ * 
  * @author evil, bambucha
  */
 public class Fleat
 {
 
     private List<Checkable> dependency;
-    private List<Benefit> benefits;
-    private String name;
+    private List<Benefit>   benefits;
+    private String          name;
 
     /**
-     *
-     * @param name Nazwa
+     * 
+     * @param name
+     *            Nazwa
      */
     public Fleat(String name)
     {
@@ -28,9 +30,11 @@ public class Fleat
     }
 
     /**
-     * @param e Zależność
+     * @param e
+     *            Zależność
      * @return this
-     * @note TODO Wyjątek w razie niepowodzenie add() */
+     * @note TODO Wyjątek w razie niepowodzenie add()
+     */
     public Fleat addDependency(Checkable e)
     {
         dependency.add(e);
@@ -39,7 +43,9 @@ public class Fleat
 
     /**
      * Dodaje korzyść wynikającą z tego atutu.
-     * @param b Korzyść.
+     * 
+     * @param b
+     *            Korzyść.
      * @return Ten atut.
      */
     public Fleat addBenefit(Benefit b)
@@ -68,11 +74,17 @@ public class Fleat
 
     /**
      * Zwraca listę zależności.
+     * 
      * @return Lista zeleżności.
      */
     public List<Checkable> getDependency()
     {
         return dependency;
+    }
+
+    public String getName()
+    {
+        return name;
     }
 
 }

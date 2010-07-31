@@ -1,37 +1,32 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 
 package engine.card.st;
 
-import gui.card.CardPanel;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import engine.card.abilities.AbilityType;
 
 /**
- *
+ * 
  * @author bambucha
  */
-public class FortitudeThrowTest {
+public class FortitudeThrowTest
+{
 
-    static CardPanel p = new CardPanel();
-    static engine.Character t = new engine.Character(new CardPanel());
-    static FortitudeThrow test = new FortitudeThrow(t,p.getSavingThrowsPanel().getFortitudeThrow());
-    public FortitudeThrowTest() {
-        t.getStrenght().setValue(12);
-    }
+    static FortitudeThrow test = new FortitudeThrow(null);
+
+    public FortitudeThrowTest()
+    {}
 
     @Test
     public void testCountModifier()
     {
-        System.out.println("countModifier");
-        FortitudeThrow instance = test;
-        Integer expResult = 1;
-        Integer result = instance.countModifier();
-        assertEquals(expResult, result);
+        assertEquals(AbilityType.STRENGHT, test.getAbilityName());
     }
 
 }

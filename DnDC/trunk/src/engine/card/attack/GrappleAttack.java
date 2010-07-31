@@ -1,11 +1,13 @@
 package engine.card.attack;
 
+import java.util.Arrays;
+
 import engine.Character;
 import engine.card.abilities.AbilityType;
-import java.util.Arrays;
 
 /**
  * Implementacja licząca premie do walk w zwarciu
+ * 
  * @author bambucha
  */
 public class GrappleAttack extends BaseAttack
@@ -13,6 +15,7 @@ public class GrappleAttack extends BaseAttack
 
     /**
      * Strandardowy konstruktor z użyciem postaci
+     * 
      * @param main
      */
     public GrappleAttack(Character main)
@@ -21,8 +24,8 @@ public class GrappleAttack extends BaseAttack
     }
 
     /**
-     * Metodal licząca premie(nie bazową) do ataków w zwarciu.
-     * Uwzględnia rozmiar i modyfikator z siły
+     * Metodal licząca premie(nie bazową) do ataków w zwarciu. Uwzględnia
+     * rozmiar i modyfikator z siły
      */
     @Override
     protected void countAttacksModifier()

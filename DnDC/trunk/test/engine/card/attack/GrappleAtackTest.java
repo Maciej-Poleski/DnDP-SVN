@@ -5,14 +5,13 @@
 
 package engine.card.attack;
 
-import engine.card.attack.TotalBonusToAttack;
-import engine.card.attack.BaseAttack;
-import engine.card.attack.GrappleAttack;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import gui.card.CardPanel;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *

@@ -5,13 +5,15 @@
 
 package engine.card.bonus;
 
+import static org.junit.Assert.assertEquals;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import engine.card.abilities.Abiliti;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import engine.Character;
+import engine.card.abilities.Abiliti;
 
 /**
  *
@@ -34,6 +36,9 @@ public class BonusManagerTest
         @Override
         public void stateChanged(ChangeEvent e){       }
     });
+    
+    static Character a = new Character(null);
+    static DnDBonusManager t = new DnDBonusManager(a);
 
     /**
      * Zwraca modyfilator jaki powinnien mieć atrybiut, przyz konkretynym bonusie.
@@ -51,22 +56,16 @@ public class BonusManagerTest
     }
 
     @Test
-    public void testGetInstance()
-    {
-        assertNotNull(DnDBonusManager.getInstance());
-    }
-
-    @Test
     public void testRegisterAndGetBonusBonus()
     {
         Integer bonus = 2;
-        DnDBonusManager.getInstance().registerBonus("strenght", s);
-        DnDBonusManager.getInstance().registerBonus("dexterity", d);
-        DnDBonusManager.getInstance().registerBonus("wisdom", w);
-        DnDBonusManager.getInstance().getBonusHandler("strenght").addBonus(BonusType.Luck, bonus);
-        DnDBonusManager.getInstance().getBonusHandler("strenght").addBonus(BonusType.Competence, bonus);
-        DnDBonusManager.getInstance().getBonusHandler("dexterity").addBonus(BonusType.Luck, bonus);;
-        DnDBonusManager.getInstance().getBonusHandler("wisdom").addBonus(BonusType.Luck, bonus);;
+        t.registerBonus("strenght", s);
+        t.registerBonus("dexterity", d);
+        t.registerBonus("wisdom", w);
+        t.getBonusHandler("strenght").addBonus(BonusType.Luck, bonus);
+        t.getBonusHandler("strenght").addBonus(BonusType.Competence, bonus);
+        t.getBonusHandler("dexterity").addBonus(BonusType.Luck, bonus);;
+        t.getBonusHandler("wisdom").addBonus(BonusType.Luck, bonus);;
         assertEquals(getModifier(2*bonus, s),s.getModifier());
         assertEquals(getModifier(bonus, d),d.getModifier());
         assertEquals(getModifier(bonus, w),w.getModifier());
@@ -75,15 +74,14 @@ public class BonusManagerTest
     @Test(expected=IllegalArgumentException.class)
     public void testSecondRegisterException()
     {
-        Integer bonus = 2;
-        DnDBonusManager.getInstance().registerBonus("strenght", s);
+        t.registerBonus("strenght", s);
     }
 
     @Test(expected=IllegalArgumentException.class)
     public void testGetBonsuException()
     {
         Integer bonus = 2;
-        DnDBonusManager.getInstance().getBonusHandler("stredfht").addBonus(BonusType.Luck, bonus);
+        t.getBonusHandler("stredfht").addBonus(BonusType.Luck, bonus);
     }
 
 }

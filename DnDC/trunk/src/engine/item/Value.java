@@ -5,8 +5,8 @@ package engine.item;
  * Zapewnia odpowiednie przedstawieni wartości. <br/>
  * Sestaw metod do konwersji.<br/>
  * Rozwojawa.
- *
- *
+ * 
+ * 
  * @author bambucha
  */
 public class Value implements Comparable<Value>
@@ -18,28 +18,34 @@ public class Value implements Comparable<Value>
 
     /**
      * Standardowy konstruktor.
-     * @param platinum Ilość platyny
-     * @param gold Ilość złota
-     * @param silver Ilość srebra
-     * @param copper Ilość miedziaków
+     * 
+     * @param platinum
+     *            Ilość platyny
+     * @param gold
+     *            Ilość złota
+     * @param silver
+     *            Ilość srebra
+     * @param copper
+     *            Ilość miedziaków
      */
     public Value(Integer platinum, Integer gold, Integer silver, Integer copper)
     {
-        if(platinum < 0 || gold < 0 || silver < 0 || copper < 0)
+        if (platinum < 0 || gold < 0 || silver < 0 || copper < 0)
             throw new IllegalArgumentException("Wartość nie może być ujemna");
-        this.platinum = platinum + (int)Math.floor(gold/10);
-        this.gold = gold%10 + (int)Math.floor(silver/10);
-        this.silver = silver%10 + (int)Math.floor(copper/10);
-        this.copper = copper%10;
+        this.platinum = platinum + (int)Math.floor(gold / 10);
+        this.gold = gold % 10 + (int)Math.floor(silver / 10);
+        this.silver = silver % 10 + (int)Math.floor(copper / 10);
+        this.copper = copper % 10;
     }
 
     /**
      * Zwraca wartość liczoną w sztukach miedzi.
+     * 
      * @return Wartość
      */
     private Integer abs()
     {
-        return copper + 10*silver + 100*gold + 1000*platinum;
+        return copper + 10 * silver + 100 * gold + 1000 * platinum;
     }
 
     /**
@@ -47,59 +53,66 @@ public class Value implements Comparable<Value>
      */
     private void clear()
     {
-        platinum = platinum + (int)Math.floor(gold/10);
-        gold = gold%10 + (int)Math.floor(silver/10);
-        silver = silver%10 + (int)Math.floor(copper/10);
-        copper = copper%10;
+        platinum = platinum + (int)Math.floor(gold / 10);
+        gold = gold % 10 + (int)Math.floor(silver / 10);
+        silver = silver % 10 + (int)Math.floor(copper / 10);
+        copper = copper % 10;
     }
 
     /**
      * Odejmuje wartości od sibie, i zwraca wartość bezwzlendną
-     * @param a Pierwsza wartość
-     * @param b Druga wartość
+     * 
+     * @param a
+     *            Pierwsza wartość
+     * @param b
+     *            Druga wartość
      * @return Wartość bezwzględna różnicy wartości
      */
-    public static Value subtract(Value a,Value b)
+    public static Value subtract(Value a, Value b)
     {
-        if(a.abs() < b.abs())
+        if (a.abs() < b.abs())
             return subtract(b, a);
-        Value c = new Value(0,0,0,0);
-            if(a.copper < b.copper)
-            {
-                --a.silver;
-                a.copper+=10;
-            }
-            c.copper = a.copper - b.copper;
-            if(a.silver < b.silver)
-            {
-                --a.gold;
-                a.silver+=10;
-            }
-            c.silver = a.silver - b.silver;
-            if(a.gold < b.gold)
-            {
-                --a.platinum;
-                a.gold+=10;
-            }
-            c.gold = a.gold - b.gold;
-            c.platinum = a.platinum - a.platinum;
-            return c;
+        Value c = new Value(0, 0, 0, 0);
+        if (a.copper < b.copper)
+        {
+            --a.silver;
+            a.copper += 10;
+        }
+        c.copper = a.copper - b.copper;
+        if (a.silver < b.silver)
+        {
+            --a.gold;
+            a.silver += 10;
+        }
+        c.silver = a.silver - b.silver;
+        if (a.gold < b.gold)
+        {
+            --a.platinum;
+            a.gold += 10;
+        }
+        c.gold = a.gold - b.gold;
+        c.platinum = a.platinum - a.platinum;
+        return c;
     }
-
 
     /**
      * Sumuje wartości
-     * @param a Pierwsza wartosć
-     * @param b Druga wartość
+     * 
+     * @param a
+     *            Pierwsza wartosć
+     * @param b
+     *            Druga wartość
      * @return Suma wartości
      */
-    public static Value add(Value a,Value b)
+    public static Value add(Value a, Value b)
     {
-        return new Value(a.platinum + b.platinum, a.gold + b.gold, a.silver + b.silver, a.copper + b.copper);
+        return new Value(a.platinum + b.platinum, a.gold + b.gold, a.silver
+                + b.silver, a.copper + b.copper);
     }
 
     /**
      * Wartość miedzi
+     * 
      * @return Wartość
      */
     public Integer getCopper()
@@ -109,7 +122,9 @@ public class Value implements Comparable<Value>
 
     /**
      * Ustawia nową warotść ilości miedziaków
-     * @param copper Nowa wartość \
+     * 
+     * @param copper
+     *            Nowa wartość \
      */
     public void setCopper(Integer copper)
     {
@@ -119,6 +134,7 @@ public class Value implements Comparable<Value>
 
     /**
      * Wartość złota
+     * 
      * @return Wartość
      */
     public Integer getGold()
@@ -128,7 +144,9 @@ public class Value implements Comparable<Value>
 
     /**
      * Ustawia wartość złota
-     * @param gold Nowa wartość
+     * 
+     * @param gold
+     *            Nowa wartość
      */
     public void setGold(Integer gold)
     {
@@ -138,6 +156,7 @@ public class Value implements Comparable<Value>
 
     /**
      * Zwraca wartość platyny
+     * 
      * @return Wartość
      */
     public Integer getPlatinum()
@@ -147,7 +166,9 @@ public class Value implements Comparable<Value>
 
     /**
      * Ustawia nową wartość platyny
-     * @param platinum Nowa wartość
+     * 
+     * @param platinum
+     *            Nowa wartość
      */
     public void setPlatinum(Integer platinum)
     {
@@ -157,6 +178,7 @@ public class Value implements Comparable<Value>
 
     /**
      * Podaje wartość srebra
+     * 
      * @return Wartość
      */
     public Integer getSilver()
@@ -166,7 +188,9 @@ public class Value implements Comparable<Value>
 
     /**
      * Ustawia nową wartość srebra
-     * @param silver Nowa wartość
+     * 
+     * @param silver
+     *            Nowa wartość
      */
     public void setSilver(Integer silver)
     {
@@ -175,7 +199,9 @@ public class Value implements Comparable<Value>
     }
 
     /**
-     * Zmienia obiekt zgodnie ze schematem "xx pp xx gp xx sp xx cp", gdzie xx to liczba całkowita z przedziału [0,1000)
+     * Zmienia obiekt zgodnie ze schematem "xx pp xx gp xx sp xx cp", gdzie xx
+     * to liczba całkowita z przedziału [0,1000)
+     * 
      * @return
      * @see Object
      */
@@ -183,13 +209,13 @@ public class Value implements Comparable<Value>
     public String toString()
     {
         String t = new String();
-        if(platinum != 0)
+        if (platinum != 0)
             t += platinum + " pp ";
-        if(gold != 0)
+        if (gold != 0)
             t += gold + " gp ";
-        if(silver != 0)
+        if (silver != 0)
             t += silver + " sp ";
-        if(copper != 0)
+        if (copper != 0)
             t += copper + " cp";
         return t;
     }

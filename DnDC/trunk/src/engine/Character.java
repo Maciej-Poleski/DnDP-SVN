@@ -1,20 +1,19 @@
 package engine;
 
-import engine.card.bonus.BonusHandler;
-import engine.card.bonus.Bonusable;
-import engine.card.fleats.CharacterFleat;
-import engine.card.hp.DnDHitPoints;
-import engine.card.hp.HitPoints;
+import java.util.Collection;
+
+import engine.card.abilities.Abiliti;
+import engine.card.abilities.Abilities;
+import engine.card.abilities.DnDAbilities;
 import engine.card.armor.Armor;
 import engine.card.armor.DnDArmor;
-import engine.card.abilities.Abiliti;
-import engine.card.abilities.DnDAbilities;
-import engine.card.abilities.Abilities;
 import engine.card.attack.Attack;
 import engine.card.attack.BaseAttack;
 import engine.card.attack.BaseBonusToAttack;
 import engine.card.attack.DnDAttack;
+import engine.card.bonus.BonusHandler;
 import engine.card.bonus.BonusManager;
+import engine.card.bonus.Bonusable;
 import engine.card.bonus.DnDBonusManager;
 import engine.card.description.Description;
 import engine.card.description.DnDDescription;
@@ -22,51 +21,55 @@ import engine.card.description.God;
 import engine.card.description.Race;
 import engine.card.description.Sex;
 import engine.card.description.Size;
+import engine.card.fleats.CharacterFleat;
 import engine.card.fleats.CharacterFleatManager;
 import engine.card.fleats.DnDCharacterFleatManager;
+import engine.card.hp.DnDHitPoints;
+import engine.card.hp.HitPoints;
 import engine.card.st.DnDSavingThrows;
 import engine.card.st.SavingThrow;
 import engine.card.st.SavingThrows;
 import engine.item.CharacterInventory;
 import engine.item.Inventory;
 import gui.card.CardPanel;
-import java.util.Collection;
 
 /**
- * Reprezentacja jednej postaci
- * Wzorzec projektowy mediator + fasada
+ * Reprezentacja jednej postaci Wzorzec projektowy mediator + fasada
+ * 
  * @author evil , bambucha
  */
-public class Character implements Abilities, Attack, Armor, Description, HitPoints, SavingThrows, BonusManager, CharacterFleatManager
+public class Character implements Abilities, Attack, Armor, Description,
+        HitPoints, SavingThrows, BonusManager, CharacterFleatManager
 {
-    private Abilities abilities;
-    private Armor armor;
-    private Description description;
-    private Attack attack;
-    private CharacterInventory equipment;
-    private Inventory backpack;
-    private HitPoints HP;
-    private SavingThrows savingThrows;
-    private BonusManager bonusManager;
+    private Abilities                abilities;
+    private Armor                    armor;
+    private Description              description;
+    private Attack                   attack;
+    private CharacterInventory       equipment;
+    private Inventory                backpack;
+    private HitPoints                HP;
+    private SavingThrows             savingThrows;
+    private BonusManager             bonusManager;
     private DnDCharacterFleatManager characterFleatManager;
 
     /**
      * Konstruktor postaci<br/>
-     * @param view Widok karty postaci.
-     * @par TODO
-     * kolejność inicjowania poszególnych rzeczy.
+     * 
+     * @param view
+     *            Widok karty postaci.
+     * @par TODO kolejność inicjowania poszególnych rzeczy.
      */
     public Character(CardPanel view)
     {
-        bonusManager=new DnDBonusManager(this);
-        abilities = new DnDAbilities(view.getAbilitiesPanel(),this);
+        bonusManager = new DnDBonusManager(this);
+        abilities = new DnDAbilities(view.getAbilitiesPanel(), this);
         description = new DnDDescription();
         HP = new DnDHitPoints(view.getHPPanel());
-        savingThrows = new DnDSavingThrows(this,view.getSavingThrowsPanel());
+        savingThrows = new DnDSavingThrows(this, view.getSavingThrowsPanel());
         armor = new DnDArmor(this);
         attack = new DnDAttack(this);
         equipment = new CharacterInventory(this);
-        characterFleatManager=new DnDCharacterFleatManager(this);
+        characterFleatManager = new DnDCharacterFleatManager(this);
     }
 
     @Override
@@ -105,7 +108,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         return abilities.getCharisma();
     }
 
-    //Konice atrybutów
+    // Konice atrybutów
 
     @Override
     public Integer getArmorACBonus()
@@ -197,7 +200,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         armor.setDodgeACBonus(newValue);
     }
 
-    //Konice Pancerza
+    // Konice Pancerza
 
     @Override
     public String getName()
@@ -355,7 +358,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         description.setAge(newValeu);
     }
 
-    //Koniec opisu
+    // Koniec opisu
 
     @Override
     public void setSpeed(Double newValue)
@@ -411,7 +414,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         return attack.getBaseAttack();
     }
 
-    //Koniec ataku
+    // Koniec ataku
 
     @Override
     public void setMaxHP(Integer maxHP)
@@ -437,10 +440,11 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         return HP.getHP();
     }
 
-    //Koniec punktów życia
+    // Koniec punktów życia
 
     /**
      * Zwraca obiekt zajmujący sie obecnym ekwipunkiem postaci.
+     * 
      * @return
      */
     public CharacterInventory getEq()
@@ -450,6 +454,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
 
     /**
      * Zwraca plecak postaci.
+     * 
      * @return
      */
     public Inventory getBackpack()
@@ -457,7 +462,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         return backpack;
     }
 
-    //Koniec ekwipunku
+    // Koniec ekwipunku
 
     @Override
     public void setSpellResistance(Double newValue)
@@ -488,8 +493,8 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     {
         return savingThrows.getForttiude();
     }
-    //Konice rzutów obronnych
 
+    // Konice rzutów obronnych
 
     @Override
     public void registerBonus(String name, Bonusable newBonus)
@@ -502,10 +507,10 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     {
         return bonusManager.getBonusHandler(name);
     }
-    
+
     // Koniec menadżera bonusów.
-    
-        public CharacterFleat getCharacterFleat(Object key)
+
+    public CharacterFleat getCharacterFleat(Object key)
     {
         return characterFleatManager.getCharacterFleat(key);
     }

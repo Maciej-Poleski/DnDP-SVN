@@ -1,38 +1,32 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 
 package engine.card.st;
 
-import gui.card.CardPanel;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import engine.card.abilities.AbilityType;
 
 /**
- *
+ * 
  * @author bambucha
  */
-public class WillThrowTest {
+public class WillThrowTest
+{
 
-    static CardPanel p = new CardPanel();
-    static engine.Character t = new engine.Character(new CardPanel());
-    static WillThrow test = new WillThrow(t,p.getSavingThrowsPanel().getWillThrow());
-    public WillThrowTest() 
-    {
-        t.getWisdom().setValue(16);
-    }
+    static WillThrow test = new WillThrow(null);
+
+    public WillThrowTest()
+    {}
 
     @Test
     public void testCountModifier()
     {
-        System.out.println("countModifier");
-        WillThrow instance = test;
-        Integer expResult = 3;
-        Integer result = instance.countModifier();
-        assertEquals(expResult, result);
+        assertEquals(AbilityType.WISDOM, test.getAbilityName());
     }
 
 }

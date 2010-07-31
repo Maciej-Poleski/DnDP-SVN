@@ -2,21 +2,16 @@ package engine;
 
 /**
  * Enum z typami osobowości tworzonymi przez mechanikę.
- * @par TODO
- * Tłumacznie
+ * 
+ * @par TODO Tłumacznie
  * @author bambucha
  */
 public enum PersonalityTypes
 {
-    PD("Praworządny Dobry"),
-    ND("Neutrany Dobry"),
-    CD("Chaotyczny Dobry"),
-    PN("Praworządny Neutrany"),
-    NN("Prawdziwie Neutrany"),
-    CN("Chaotyczny Neutrany"),
-    PZ("Praworządny Zły"),
-    NZ("Neutrany Zły"),
-    CZ("Chaotyczny Zły");
+    PD("Praworządny Dobry"), ND("Neutrany Dobry"), CD("Chaotyczny Dobry"), PN(
+            "Praworządny Neutrany"), NN("Prawdziwie Neutrany"), CN(
+            "Chaotyczny Neutrany"), PZ("Praworządny Zły"), NZ("Neutrany Zły"), CZ(
+            "Chaotyczny Zły");
 
     private PersonalityTypes(String name)
     {
@@ -35,6 +30,5 @@ public enum PersonalityTypes
     {
         return name;
     }
-
 
 }

@@ -1,21 +1,21 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 
 package engine.card.state;
 
 /**
- *
+ * 
  * @author bambucha
  */
 public class BasicStatus implements Comparable<BasicStatus>
 {
-    Boolean state;
+    Boolean   state;
     Character whom;
-    State name;
+    State     name;
 
-    public BasicStatus(Character whom,State name)
+    public BasicStatus(Character whom, State name)
     {
         this.whom = whom;
     }

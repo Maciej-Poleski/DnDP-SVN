@@ -5,6 +5,7 @@ import engine.card.abilities.AbilityType;
 
 /**
  * Klasa obsługująca atak wręcz
+ * 
  * @author bambucha
  */
 public class MeleeAttack extends BaseAttack
@@ -12,6 +13,7 @@ public class MeleeAttack extends BaseAttack
 
     /**
      * Standardowy konstruktor z postacią
+     * 
      * @param main
      */
     public MeleeAttack(Character main)
@@ -20,8 +22,7 @@ public class MeleeAttack extends BaseAttack
     }
 
     /**
-     * Liczy premie(nie bazową) do ataku wręcz.
-     * Uwzględnia rozmiar i Siłę
+     * Liczy premie(nie bazową) do ataku wręcz. Uwzględnia rozmiar i Siłę
      */
     @Override
     protected void countAttacksModifier()

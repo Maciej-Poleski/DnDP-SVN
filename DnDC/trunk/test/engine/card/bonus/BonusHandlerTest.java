@@ -5,11 +5,15 @@
 
 package engine.card.bonus;
 
-import engine.card.abilities.Abiliti;
+import static org.junit.Assert.assertEquals;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import engine.card.abilities.Abiliti;
+import engine.card.abilities.DnDAbilities;
 
 /**
  * Z racji że w zorze określającym modyfikator jest użuta podłoga( nie formalnie)
@@ -18,15 +22,14 @@ import static org.junit.Assert.*;
  */
 public class BonusHandlerTest
 {
-    Abiliti t = new Abiliti(new ChangeListener() {
-
+    DnDAbilities x = new DnDAbilities(null, null);
+    Abiliti t = new Abiliti(new ChangeListener()
+    { 
         @Override
         public void stateChanged(ChangeEvent e)
-        {
-            
-        }
+        {   }
     });
-    BonusHandler test = new BonusHandler(t);
+    BonusHandler test = new BonusHandler(t,x);
 
     public BonusHandlerTest()
     {

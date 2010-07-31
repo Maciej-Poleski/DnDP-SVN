@@ -1,39 +1,42 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 
 package engine.card.abilities;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import engine.card.bonus.DnDBonusManager;
 import gui.card.AbilitiesPanel;
-import gui.card.AbilitiPanel;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
- *
+ * 
  * @author bambucha
  */
-public class DnDAbilitiesTest {
+public class DnDAbilitiesTest
+{
 
+    public DnDAbilitiesTest()
+    {}
 
-    public DnDAbilitiesTest() {
-    }
+    AbilitiesPanel t    = new AbilitiesPanel();
 
-    static AbilitiesPanel t = new AbilitiesPanel();
-    static DnDAbilities dupa = new DnDAbilities(t);
+    DnDAbilities   dupa = new DnDAbilities(t, new DnDBonusManager(null));
 
     @BeforeClass
     public static void setUpClass() throws Exception
     {
+
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception
-    {
-    }
+    {}
 
     /**
      * Test of getStrenght method, of class DnDAbilities.
@@ -81,7 +84,7 @@ public class DnDAbilitiesTest {
     public void testGetInteligence()
     {
         System.out.println("getInteligence");
-        DnDAbilities instance =dupa;
+        DnDAbilities instance = dupa;
         Abiliti result = instance.getInteligence();
         assertNotNull(result);
         assertTrue(result instanceof Abiliti);

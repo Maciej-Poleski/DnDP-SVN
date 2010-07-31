@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.xml.sax.ContentHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -19,23 +20,20 @@ import org.xml.sax.helpers.XMLReaderFactory;
 /**
  * @author bambucha
  * 
- * Klasa Fasada do serwera
- * Jej zadaniem jest hermetyzacja protokołu
- * Parser SAX
- * Odwołania do każdego elemntu
+ *         Klasa Fasada do serwera Jej zadaniem jest hermetyzacja protokołu
+ *         Parser SAX Odwołania do każdego elemntu
  */
 public class FrontToServer extends Thread
 {
 
-    private Socket connectionToServer;
+    private Socket         connectionToServer;
     private BufferedWriter output;
-    private Reader input;
-    private XMLReader parser;
+    private Reader         input;
+    private XMLReader      parser;
 
     /**
-     * Tworzy połączenie do serwera wbitego na sztywno do kodu.
-     * Przygotowuje strumienie
-     * Nie zaczyna parsować
+     * Tworzy połączenie do serwera wbitego na sztywno do kodu. Przygotowuje
+     * strumienie Nie zaczyna parsować
      */
     public FrontToServer(Properties prop)
     {
@@ -43,21 +41,27 @@ public class FrontToServer extends Thread
         try
         {
             parser = XMLReaderFactory.createXMLReader();
-            connectionToServer = new Socket(prop.getProperty("SERVER URL"), Integer.parseInt(prop.getProperty("SERVER PORT")));
-            output = new BufferedWriter(new OutputStreamWriter(connectionToServer.getOutputStream(), "UTF-8"));
-            input = new InputStreamReader(connectionToServer.getInputStream(), "UTF-8");
+            connectionToServer = new Socket(prop.getProperty("SERVER URL"),
+                    Integer.parseInt(prop.getProperty("SERVER PORT")));
+            output = new BufferedWriter(new OutputStreamWriter(
+                    connectionToServer.getOutputStream(), "UTF-8"));
+            input = new InputStreamReader(connectionToServer.getInputStream(),
+                    "UTF-8");
         }
-        catch (SAXException ex)
+        catch(SAXException ex)
         {
-            Logger.getLogger(FrontToServer.class.getName()).log(Level.SEVERE, "Błąd parsera", ex);
+            Logger.getLogger(FrontToServer.class.getName()).log(Level.SEVERE,
+                    "Błąd parsera", ex);
         }
-        catch (UnknownHostException ex)
+        catch(UnknownHostException ex)
         {
-            Logger.getLogger(FrontToServer.class.getName()).log(Level.SEVERE, "Serwer nie odnaleziony", ex);
+            Logger.getLogger(FrontToServer.class.getName()).log(Level.SEVERE,
+                    "Serwer nie odnaleziony", ex);
         }
-        catch (IOException ex)
+        catch(IOException ex)
         {
-            Logger.getLogger(FrontToServer.class.getName()).log(Level.SEVERE, "Błąd strumieni w init", ex);
+            Logger.getLogger(FrontToServer.class.getName()).log(Level.SEVERE,
+                    "Błąd strumieni w init", ex);
         }
     }
 
@@ -69,21 +73,24 @@ public class FrontToServer extends Thread
     {
         try
         {
-            //System.out.println(input.readUTF());
+            // System.out.println(input.readUTF());
             parser.parse(new InputSource(input));
         }
-        catch (IOException ex)
+        catch(IOException ex)
         {
-            Logger.getLogger(FrontToServer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrontToServer.class.getName()).log(Level.SEVERE,
+                    null, ex);
         }
-        catch (SAXException ex)
+        catch(SAXException ex)
         {
-            Logger.getLogger(FrontToServer.class.getName()).log(Level.SEVERE, "Wyleciał wyjątek parsera", ex);
+            Logger.getLogger(FrontToServer.class.getName()).log(Level.SEVERE,
+                    "Wyleciał wyjątek parsera", ex);
         }
     }
 
     /**
      * Zwraca status połączenia
+     * 
      * @return true jeśli jest połączenie
      */
     public Boolean isConnected()
@@ -93,6 +100,7 @@ public class FrontToServer extends Thread
 
     /**
      * Zamyka połączenie
+     * 
      * @throws IOException
      */
     public void closeConnection() throws IOException
@@ -102,9 +110,13 @@ public class FrontToServer extends Thread
 
     /**
      * Implemetacja wysyłania wiadomości
-     * @param nick - nick użytkowniak chatu
-     * @param message - wiadomość od użytkownika chatu
-     * @throws IOException - Błąd przy wysyłaniu wiadomości
+     * 
+     * @param nick
+     *            - nick użytkowniak chatu
+     * @param message
+     *            - wiadomość od użytkownika chatu
+     * @throws IOException
+     *             - Błąd przy wysyłaniu wiadomości
      */
     public void sendMessage(String nick, String message) throws IOException
     {

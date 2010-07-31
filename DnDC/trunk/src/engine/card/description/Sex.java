@@ -2,12 +2,12 @@ package engine.card.description;
 
 /**
  * Klasa reprezentującą płeś
+ * 
  * @author bambucha
  */
 public enum Sex
 {
-    MALE("Mężczyzna"),
-    FEMALE("Kobieta");
+    MALE("Mężczyzna"), FEMALE("Kobieta");
 
     private String name;
 

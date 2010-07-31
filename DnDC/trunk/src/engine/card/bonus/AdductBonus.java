@@ -2,13 +2,13 @@ package engine.card.bonus;
 
 /**
  * Klasa zajmująca się premiami kumulującymi się.
+ * 
  * @author bambucha
  */
 public class AdductBonus implements Bonus
 {
     private Integer currentBonus;
     private Integer currentPenalty;
-
 
     /**
      * Konstruktor tworzy premię na poziomie 0.
@@ -21,12 +21,13 @@ public class AdductBonus implements Bonus
 
     /**
      * Dodaje wartość do premii.
+     * 
      * @param bonus
      */
     @Override
-    public synchronized void  addBonus(Integer bonus)
+    public synchronized void addBonus(Integer bonus)
     {
-        if(bonus >= 0)
+        if (bonus >= 0)
             currentBonus += bonus;
         else
             currentPenalty += bonus;
@@ -34,12 +35,13 @@ public class AdductBonus implements Bonus
 
     /**
      * Obniża premię.
+     * 
      * @param bonus
      */
     @Override
     public synchronized void removeBonus(Integer bonus)
     {
-        if(bonus >= 0)
+        if (bonus >= 0)
             currentBonus -= bonus;
         else
             currentPenalty -= bonus;
@@ -47,6 +49,7 @@ public class AdductBonus implements Bonus
 
     /**
      * Zwraca aktualną premię.
+     * 
      * @return Premia.
      */
     @Override

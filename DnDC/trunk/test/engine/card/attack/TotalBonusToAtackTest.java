@@ -5,11 +5,11 @@
 
 package engine.card.attack;
 
-import engine.card.attack.TotalBonusToAttack;
+import static org.junit.Assert.assertArrayEquals;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -41,14 +41,14 @@ public class TotalBonusToAtackTest
     public void testInitExceptrionSizeMain()
     {
         System.out.println("init for array out of range in mainheand");
-        TotalBonusToAttack instance = new TotalBonusToAttack(OutOfRange);
+        new TotalBonusToAttack(OutOfRange);
     }
 
     @Test (expected=NullPointerException.class)
     public void testInitExceptrionNullMain()
     {
         System.out.println("init for null pointer in mainheand");
-        TotalBonusToAttack instance = new TotalBonusToAttack(null);
+        new TotalBonusToAttack(null);
     }
 
     @Test

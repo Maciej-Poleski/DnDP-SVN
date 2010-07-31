@@ -1,36 +1,38 @@
 package engine.card.attack;
 
-import engine.Character;
-import engine.card.bonus.Bonusable;
 import java.util.Arrays;
 
+import engine.Character;
+import engine.card.bonus.Bonusable;
+
 /**
- * Klasa abstrakcyjna definiująca interfejs i cześć zachowań
- * Wzorzec projektowy "Medtoda szablonowa"
+ * Klasa abstrakcyjna definiująca interfejs i cześć zachowań Wzorzec projektowy
+ * "Medtoda szablonowa"
+ * 
  * @author bambucha
  */
 public abstract class BaseAttack implements Bonusable
 {
     private BaseBonusToAttack baseAtack;
-    private Integer bonus;
-    protected Character main;
-    protected Integer atackModifier;
-
+    private Integer           bonus;
+    protected Character       main;
+    protected Integer         atackModifier;
 
     /**
-     * Standardowy konstruktor
-     * Ustawia bazową premię do ataku na 0
+     * Standardowy konstruktor Ustawia bazową premię do ataku na 0
+     * 
      * @param main
      */
     public BaseAttack(Character main)
     {
         this.main = main;
-        baseAtack = new BaseBonusToAttack(new Integer[]{0});
+        baseAtack = new BaseBonusToAttack(new Integer[] { 0 });
         bonus = 0;
     }
 
     /**
      * Zwraca bazową premię do ataku
+     * 
      * @return Bazowa premia do ataku
      */
     public BaseBonusToAttack getBaseAttack()
@@ -40,18 +42,20 @@ public abstract class BaseAttack implements Bonusable
 
     /**
      * Ustawia bazową premię do ataku
-     * @param baseAtack Premia do ustawienia
+     * 
+     * @param baseAtack
+     *            Premia do ustawienia
      */
     public void setBaseAttack(BaseBonusToAttack baseAtack)
     {
-        if(baseAtack == null)
+        if (baseAtack == null)
             throw new NullPointerException();
         this.baseAtack = baseAtack;
     }
 
     /**
-     * Funkcja licząca modyfikator ataku, niezależny od bazowego.
-     * Jest to uwzględnienie rozmiaru, siły, zręczności. W zalezności od ataku.
+     * Funkcja licząca modyfikator ataku, niezależny od bazowego. Jest to
+     * uwzględnienie rozmiaru, siły, zręczności. W zalezności od ataku.
      */
     protected abstract void countAttacksModifier();
 
@@ -61,8 +65,9 @@ public abstract class BaseAttack implements Bonusable
     public TotalBonusToAttack getAttacks()
     {
         countAttacksModifier();
-        Integer[] temp = Arrays.copyOf(baseAtack.getBonus(),baseAtack.getNumberOfAttacks());
-        for(int q = 0 ; q < temp.length ; ++q)
+        Integer[] temp = Arrays.copyOf(baseAtack.getBonus(),
+                baseAtack.getNumberOfAttacks());
+        for (int q = 0; q < temp.length; ++q)
             temp[q] += (atackModifier + bonus);
         return new TotalBonusToAttack(temp);
     }
@@ -72,6 +77,5 @@ public abstract class BaseAttack implements Bonusable
     {
         this.bonus = bonus;
     }
-
 
 }

@@ -5,11 +5,11 @@
 
 package engine.card.attack;
 
-import engine.card.attack.BaseBonusToAttack;
+import static org.junit.Assert.assertArrayEquals;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *

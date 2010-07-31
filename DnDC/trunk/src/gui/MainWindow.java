@@ -1,18 +1,18 @@
 package gui;
 
-import gui.chat.ChatStartDialog;
-import gui.chat.ChatPanel;
-import java.awt.BorderLayout;
-import java.awt.HeadlessException;
-import javax.swing.JFrame;
-import client.FrontToServer;
 import engine.chat.Chat;
+import gui.chat.ChatPanel;
+import gui.chat.ChatStartDialog;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
 
 public class MainWindow extends JFrame
 {
 
     private static final long serialVersionUID = 1L;
-    private ChatPanel chat;
+    private ChatPanel         chat;
 
     public MainWindow(Chat chatHandler)
     {
@@ -21,7 +21,7 @@ public class MainWindow extends JFrame
 
         new ChatStartDialog(this, chatHandler);
         this.getContentPane().setLayout(new BorderLayout());
-        this.getContentPane().add(chat,BorderLayout.LINE_END);
+        this.getContentPane().add(chat, BorderLayout.LINE_END);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
@@ -31,6 +31,5 @@ public class MainWindow extends JFrame
     {
         return chat;
     }
-
 
 }

@@ -6,26 +6,35 @@ import engine.item.Wearable;
 
 /**
  * Klasa implemetująca część wspólną pancerzy, tarcz i innych
+ * 
  * @author bambucha
  */
 public abstract class Armor extends Item implements Wearable
 {
     private Integer ACBonus;
     private Integer armorPenalty;
-    private Double arcaneSpellFail;
+    private Double  arcaneSpellFail;
 
     /**
      * Konstruktro dla klas dzieci
-     * @param name Nazwa
-     * @param weight Waga
-     * @param value Wartość
-     * @param ACBonus Premia do pancerza
-     * @param armorPenalty Kara do testów
-     * @param arcaneSpellFail Szansa Niepowodzenia Czarów
+     * 
+     * @param name
+     *            Nazwa
+     * @param weight
+     *            Waga
+     * @param value
+     *            Wartość
+     * @param ACBonus
+     *            Premia do pancerza
+     * @param armorPenalty
+     *            Kara do testów
+     * @param arcaneSpellFail
+     *            Szansa Niepowodzenia Czarów
      */
-    public Armor(String name, Double weight, Value value, Integer ACBonus, Integer armorPenalty, Double arcaneSpellFail)
+    public Armor(String name, Double weight, Value value, Integer ACBonus,
+            Integer armorPenalty, Double arcaneSpellFail)
     {
-        super(name,weight,value);
+        super(name, weight, value);
         this.ACBonus = ACBonus;
         this.armorPenalty = armorPenalty;
         this.arcaneSpellFail = arcaneSpellFail;
@@ -33,6 +42,7 @@ public abstract class Armor extends Item implements Wearable
 
     /**
      * Zwraca premię do AC pancerza
+     * 
      * @return
      */
     public Integer getACBonus()
@@ -42,7 +52,9 @@ public abstract class Armor extends Item implements Wearable
 
     /**
      * Ustawia nową premię do pancerza
-     * @param ACBonus Premia
+     * 
+     * @param ACBonus
+     *            Premia
      */
     public void setACBonus(Integer ACBonus)
     {
@@ -51,6 +63,7 @@ public abstract class Armor extends Item implements Wearable
 
     /**
      * Zwraca karę do testów umiejętności z pancerza
+     * 
      * @return Kara
      */
     public Integer getArmorPenalty()
@@ -60,7 +73,9 @@ public abstract class Armor extends Item implements Wearable
 
     /**
      * Ustawia karę do testów umiejętności z pancerza
-     * @param ArmorPenalty  Kara do testów umiejętności
+     * 
+     * @param ArmorPenalty
+     *            Kara do testów umiejętności
      */
     public void setArmorPenalty(Integer ArmorPenalty)
     {
@@ -69,6 +84,7 @@ public abstract class Armor extends Item implements Wearable
 
     /**
      * Zwraca nie
+     * 
      * @return
      */
     public Double getArcaneSpellFail()
@@ -77,16 +93,12 @@ public abstract class Armor extends Item implements Wearable
     }
 
     /**
-     *
+     * 
      * @param arcaneSpellFail
      */
     public void setArcaneSpellFail(Double arcaneSpellFail)
     {
         this.arcaneSpellFail = arcaneSpellFail;
     }
-
-    
-
-
 
 }

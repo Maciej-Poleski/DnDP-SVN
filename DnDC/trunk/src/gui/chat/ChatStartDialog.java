@@ -1,10 +1,9 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 package gui.chat;
 
-import engine.chat.Chat;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -12,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -19,17 +19,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import engine.chat.Chat;
+
 /**
- *
+ * 
  * @author bambucha
  */
-public class ChatStartDialog extends JDialog implements ActionListener, KeyListener
+public class ChatStartDialog extends JDialog implements ActionListener,
+        KeyListener
 {
 
     private JTextField nickField;
-    private JLabel nickLabel;
-    private JButton goButton;
-    private Chat chatHandle;
+    private JLabel     nickLabel;
+    private JButton    goButton;
+    private Chat       chatHandle;
 
     public ChatStartDialog(Frame owner, Chat chatHandle)
     {
@@ -54,7 +57,6 @@ public class ChatStartDialog extends JDialog implements ActionListener, KeyListe
         goButton.addActionListener(this);
         this.add(goButton, BorderLayout.AFTER_LAST_LINE);
 
-
         this.pack();
         this.setVisible(true);
 
@@ -68,8 +70,7 @@ public class ChatStartDialog extends JDialog implements ActionListener, KeyListe
 
     @Override
     public void keyTyped(KeyEvent e)
-    {
-    }
+    {}
 
     @Override
     public void keyPressed(KeyEvent e)
@@ -82,8 +83,7 @@ public class ChatStartDialog extends JDialog implements ActionListener, KeyListe
 
     @Override
     public void keyReleased(KeyEvent e)
-    {
-    }
+    {}
 
     private void action()
     {

@@ -1,9 +1,10 @@
 package engine.card.fleats;
 
-import engine.card.Checkable;
 import engine.Character;
+import engine.card.Checkable;
+
 /**
- *
+ * 
  * @author evil, bambucha
  */
 public class FleatDependency implements Checkable
@@ -12,7 +13,9 @@ public class FleatDependency implements Checkable
 
     /**
      * Konstruktor.
-     * @param fleat Atut.
+     * 
+     * @param fleat
+     *            Atut.
      */
     public FleatDependency(Fleat fleat)
     {
@@ -21,13 +24,14 @@ public class FleatDependency implements Checkable
 
     /**
      * Sprawdza czy atut jest dostępny.
+     * 
      * @param character
      * @return
      */
     @Override
     public boolean check(Character character)
     {
-        return character.getCharacterFleat(fleat).getState()==CharacterFleat.State.ENABLED;
+        return character.getCharacterFleat(fleat).getState() == CharacterFleat.State.ENABLED;
     }
 
 }

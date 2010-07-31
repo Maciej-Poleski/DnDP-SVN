@@ -4,22 +4,24 @@ import engine.item.Value;
 
 /**
  * Klasa na zbroje i inne "ubierane" na klatkę piersiową pancerze.
- * @par TODO
- * Dodanie konstruktora całej zbroji
+ * 
+ * @par TODO Dodanie konstruktora całej zbroji
  * @author bambucha
  */
 public class Plate extends Armor
 {
     private Integer maxDexBonus;
 
-    public Plate(String name, Double weight, Value value, Integer ACBonus, Integer armorPenalty, Double arcaneSpellFail, Integer maxDexBonus)
+    public Plate(String name, Double weight, Value value, Integer ACBonus,
+            Integer armorPenalty, Double arcaneSpellFail, Integer maxDexBonus)
     {
-        super(name,weight,value,ACBonus,armorPenalty,arcaneSpellFail);
+        super(name, weight, value, ACBonus, armorPenalty, arcaneSpellFail);
         this.maxDexBonus = maxDexBonus;
     }
 
     /**
      * Zwraca maksymalną premię ze zręczności do pancerza wynikającą ze zbroji
+     * 
      * @return Wartość maksymalna
      */
     public Integer getMaxDexBonus()
@@ -29,6 +31,7 @@ public class Plate extends Armor
 
     /**
      * Ustawia maksymalną premię ze zręczności do pancerza wynikającą ze zbroji.
+     * 
      * @param MaxDexBonus
      */
     public void setMaxDexBonus(Integer MaxDexBonus)
@@ -39,7 +42,7 @@ public class Plate extends Armor
     @Override
     public Boolean putOn()
     {
-        if(getOwner().getEq().getArmor() == null)
+        if (getOwner().getEq().getArmor() == null)
         {
             getOwner().getEq().setArmor(this);
             getOwner().setArmorACBonus(getACBonus());
@@ -52,7 +55,7 @@ public class Plate extends Armor
     @Override
     public Boolean takeOff()
     {
-        getOwner().setArmorACBonus(getOwner().getArmorACBonus()-getACBonus());
+        getOwner().setArmorACBonus(getOwner().getArmorACBonus() - getACBonus());
         getOwner().getEq().setArmor(null);
         return getOwner().getBackpack().add(this);
     }

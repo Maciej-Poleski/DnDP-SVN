@@ -5,12 +5,11 @@
 
 package engine.card.armor;
 
-import org.junit.Before;
+import static org.junit.Assert.assertEquals;
 import gui.card.CardPanel;
-import org.junit.AfterClass;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *

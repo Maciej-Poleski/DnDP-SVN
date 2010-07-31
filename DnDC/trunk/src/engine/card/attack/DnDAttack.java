@@ -3,21 +3,24 @@ package engine.card.attack;
 import engine.Character;
 
 /**
- * Klasa przechowująca informacje co do możliwych ataków wykonywanych przez postać.
+ * Klasa przechowująca informacje co do możliwych ataków wykonywanych przez
+ * postać.
+ * 
  * @author bambucha
  */
 public class DnDAttack implements Attack
 {
-    private Character mother;
-    private Double speed;
-    private Integer initiative;
+    private Character         mother;
+    private Double            speed;
+    private Integer           initiative;
     private BaseBonusToAttack baseAtack;
-    private BaseAttack melee;
-    private BaseAttack range;
-    private BaseAttack grapple;
+    private BaseAttack        melee;
+    private BaseAttack        range;
+    private BaseAttack        grapple;
 
     /**
      * Standardowy konstrutor tworzący postać na 0 wym poziomie.
+     * 
      * @param mother
      */
     public DnDAttack(Character mother)
@@ -25,14 +28,15 @@ public class DnDAttack implements Attack
         this.mother = mother;
         speed = 9D;
         initiative = 0;
-        baseAtack = new BaseBonusToAttack(new Integer[]{0});
+        baseAtack = new BaseBonusToAttack(new Integer[] { 0 });
         melee = new MeleeAttack(mother);
         range = new RangeAttack(mother);
         grapple = new GrappleAttack(mother);
     }
-    
+
     /**
      * Zwaraca bazową premię do atku
+     * 
      * @return Bazowa premia do ataku postaci
      */
     @Override
@@ -43,6 +47,7 @@ public class DnDAttack implements Attack
 
     /**
      * Zwraca część odpowiedzialną za ataki dystansowe.
+     * 
      * @return Moduł odpowiedzialny za ataki dystansowe.
      */
     @Override
@@ -53,6 +58,7 @@ public class DnDAttack implements Attack
 
     /**
      * Zwraca część odpowiedzianą za ataki w zwarciu
+     * 
      * @return Moduł odpowiedziany za zwarcie.
      */
     @Override
@@ -63,6 +69,7 @@ public class DnDAttack implements Attack
 
     /**
      * Zwraca wartość incjatywy z uwzględnieniem modufikatora od zręczności
+     * 
      * @return Końcowa wartość modyfikatora
      */
     @Override
@@ -72,20 +79,23 @@ public class DnDAttack implements Attack
     }
 
     /**
-     * Ustawia nową wartość modyfikatora incjatywy.
-     * <b>Premia ze zeręczności jest doliczana on-line, podczas pobierania wartości końcowej</b>
-     * @param newValue Wartość bez premi ze zręczności
+     * Ustawia nową wartość modyfikatora incjatywy. <b>Premia ze zeręczności
+     * jest doliczana on-line, podczas pobierania wartości końcowej</b>
+     * 
+     * @param newValue
+     *            Wartość bez premi ze zręczności
      */
     @Override
     public void setInitiativeModifier(Integer newValue)
     {
-        if(newValue == null)
+        if (newValue == null)
             throw new NullPointerException();
         initiative = newValue;
     }
 
     /**
      * Zwraca szybkość postaci
+     * 
      * @return Szybkość
      */
     @Override
@@ -96,18 +106,20 @@ public class DnDAttack implements Attack
 
     /**
      * Ustawia prętkość
+     * 
      * @param newValue
      */
     @Override
     public void setSpeed(Double newValue)
     {
-        if(newValue % 1.5 != 0)
+        if (newValue % 1.5 != 0)
             throw new IllegalArgumentException("Wielokrotoność 1.5");
         this.speed = newValue;
     }
 
     /**
      * Zwraca aktualną bazową premię do ataku
+     * 
      * @return Bazowa premia do ataku
      */
     @Override
@@ -118,6 +130,7 @@ public class DnDAttack implements Attack
 
     /**
      * Ustawia bazową premię do ataku;
+     * 
      * @param baseAtack
      */
     @Override

@@ -1,15 +1,19 @@
 package engine.chat;
 
-import client.FrontToServer;
-import client.ParserHandler;
 import gui.chat.ChatPanel;
+
 import java.io.IOException;
+
 import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
+import client.FrontToServer;
+import client.ParserHandler;
+
 /**
  * Klasa parsująca i przygotowująca wiadomość do wyświetlenia oraz wysłania
+ * 
  * @author bambucha
  */
 public class Chat extends Thread
@@ -18,9 +22,9 @@ public class Chat extends Thread
     private MutableAttributeSet timeFormat;
     private MutableAttributeSet nickFormat;
     private MutableAttributeSet messageFormat;
-    private ChatPanel gui;
-    private String nick;
-    private FrontToServer handle;
+    private ChatPanel           gui;
+    private String              nick;
+    private FrontToServer       handle;
 
     /**
      * Standarody konstruktor tworzy czas dla bezimiennego.
@@ -39,12 +43,13 @@ public class Chat extends Thread
     }
 
     /**
-     * Wyświetla tekst z odpowienim formatem
-     * 1 - format czasu
-     * 2 - format nick'u
+     * Wyświetla tekst z odpowienim formatem 1 - format czasu 2 - format nick'u
      * 3 - format wiadomości
-     * @param text teskt do wyświetlenia
-     * @param state jaki format
+     * 
+     * @param text
+     *            teskt do wyświetlenia
+     * @param state
+     *            jaki format
      */
     public void showText(String text, int state)
     {
@@ -68,9 +73,8 @@ public class Chat extends Thread
         {
             handle.sendMessage(nick, prepare(message));
         }
-        catch (IOException ex)
-        {
-        }
+        catch(IOException ex)
+        {}
     }
 
     public void setGui(ChatPanel gui)
@@ -90,7 +94,9 @@ public class Chat extends Thread
 
     /**
      * Zamienia tekst na taki który łyka parser
-     * @param what Tekst do przygotowania
+     * 
+     * @param what
+     *            Tekst do przygotowania
      * @return Obrobiony tekst
      */
     private String prepare(String what)
@@ -114,4 +120,4 @@ public class Chat extends Thread
             }
         return output.toString();
     }
-}   
+}

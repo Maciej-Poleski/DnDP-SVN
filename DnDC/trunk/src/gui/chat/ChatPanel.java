@@ -3,19 +3,19 @@ package gui.chat;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import engine.chat.Chat;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -23,29 +23,35 @@ import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.StyledDocument;
 import javax.swing.text.rtf.RTFEditorKit;
 
+import engine.chat.Chat;
+
 /**
  * Panel z chatem. Przyjmuje informacje, nie zajmuje się jej obróbką.
+ * 
  * @author bambucha
  */
-public class ChatPanel extends JPanel implements KeyListener, ActionListener, MouseListener
+public class ChatPanel extends JPanel implements KeyListener, ActionListener,
+        MouseListener
 {
 
     private static final long serialVersionUID = 1L;
-    private JTextField fieldToTyped;
-    private JTextPane conversation;
-    private JScrollPane t;
-    private Chat handle;
-    private StyledDocument doc;
-    private RTFEditorKit kit;
+    private JTextField        fieldToTyped;
+    private JTextPane         conversation;
+    private JScrollPane       t;
+    private Chat              handle;
+    private StyledDocument    doc;
+    private RTFEditorKit      kit;
 
     /**
      * Buduje całość
-     * @param handle Referencja do fasady od serwera
+     * 
+     * @param handle
+     *            Referencja do fasady od serwera
      */
     public ChatPanel(Chat handle)
     {
         super();
-        //this.setPreferredSize(new Dimension(300, 400));
+        // this.setPreferredSize(new Dimension(300, 400));
         this.handle = handle;
 
         kit = new RTFEditorKit();
@@ -80,8 +86,11 @@ public class ChatPanel extends JPanel implements KeyListener, ActionListener, Mo
 
     /**
      * Wyświetla zadany tekst z uwzględnienim formatu
-     * @param message Tekst do wyświetlenia
-     * @param aset Format wiadomość
+     * 
+     * @param message
+     *            Tekst do wyświetlenia
+     * @param aset
+     *            Format wiadomość
      */
     public void showMessage(String message, AttributeSet aset)
     {
@@ -91,17 +100,17 @@ public class ChatPanel extends JPanel implements KeyListener, ActionListener, Mo
             conversation.setDocument(doc);
             conversation.setCaretPosition(conversation.getText().length());
         }
-        catch (BadLocationException ex)
+        catch(BadLocationException ex)
         {
-            Logger.getLogger(ChatPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ChatPanel.class.getName()).log(Level.SEVERE, null,
+                    ex);
         }
 
     }
 
     @Override
     public void keyTyped(KeyEvent e)
-    {
-    }
+    {}
 
     @Override
     public void keyPressed(KeyEvent e)
@@ -115,8 +124,7 @@ public class ChatPanel extends JPanel implements KeyListener, ActionListener, Mo
 
     @Override
     public void keyReleased(KeyEvent e)
-    {
-    }
+    {}
 
     @Override
     public void actionPerformed(ActionEvent e)
@@ -133,21 +141,17 @@ public class ChatPanel extends JPanel implements KeyListener, ActionListener, Mo
 
     @Override
     public void mousePressed(MouseEvent e)
-    {
-    }
+    {}
 
     @Override
     public void mouseReleased(MouseEvent e)
-    {
-    }
+    {}
 
     @Override
     public void mouseEntered(MouseEvent e)
-    {
-    }
+    {}
 
     @Override
     public void mouseExited(MouseEvent e)
-    {
-    }
+    {}
 }

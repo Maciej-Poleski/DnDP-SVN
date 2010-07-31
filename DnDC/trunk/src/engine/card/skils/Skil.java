@@ -3,29 +3,36 @@ package engine.card.skils;
 import engine.card.abilities.AbilityType;
 
 /**
- * Klasa na umiejętność.
- * Przechowuje informacje potrzebne do wykonania testów.
- * Służy do przechowywania danych w bazie, na jej podstawie budowany jest CharacterSkill.
- * @par TODO
- * Zastanowić się nad synergią, wielokrotnym testami, przeszkadzaniem i innymi.
- * @see engine.card.skils.Skils
+ * Klasa na umiejętność. Przechowuje informacje potrzebne do wykonania testów.
+ * Służy do przechowywania danych w bazie, na jej podstawie budowany jest
+ * CharacterSkill.
+ * 
+ * @par TODO Zastanowić się nad synergią, wielokrotnym testami, przeszkadzaniem
+ *      i innymi.
+ * @see engine.card.skils.SkilManager
  * @author bambucha
  */
 public class Skil
 {
-    private String name;
+    private String      name;
     private AbilityType abilitiModifier;
-    private Boolean train;
-    private Boolean armorInterrupt;
+    private Boolean     train;
+    private Boolean     armorInterrupt;
 
     /**
      * Konstruktor do budowania umiejętności.
-     * @param name Nazwa umiejętności.
-     * @param abilitiModifier Atrybut modyfikatora.
-     * @param train Czy wytenowana.
-     * @param armorInterrupt Czy używa się kar za zbroje.
+     * 
+     * @param name
+     *            Nazwa umiejętności.
+     * @param abilitiModifier
+     *            Atrybut modyfikatora.
+     * @param train
+     *            Czy wytenowana.
+     * @param armorInterrupt
+     *            Czy używa się kar za zbroje.
      */
-    public Skil(String name, AbilityType abilitiModifier, Boolean train, Boolean armorInterrupt)
+    public Skil(String name, AbilityType abilitiModifier, Boolean train,
+            Boolean armorInterrupt)
     {
         this.name = name;
         this.abilitiModifier = abilitiModifier;
@@ -35,6 +42,7 @@ public class Skil
 
     /**
      * Zwraca atrybut będący modyfikatorem umiejętności.
+     * 
      * @return Atrybut
      */
     public AbilityType getAbilitiModifier()
@@ -44,6 +52,7 @@ public class Skil
 
     /**
      * Zwraca czy stosuję się karę od zbroji.<br/>
+     * 
      * @return
      */
     public Boolean isArmorInterrupt()
@@ -53,6 +62,7 @@ public class Skil
 
     /**
      * Zwraca nazwę umiejętności
+     * 
      * @return
      */
     public String getName()
@@ -62,6 +72,7 @@ public class Skil
 
     /**
      * Odpowiada na pytanie czy umiejętność musi być wytrenowana
+     * 
      * @return [Tak|Nie]
      */
     public Boolean isTrain()

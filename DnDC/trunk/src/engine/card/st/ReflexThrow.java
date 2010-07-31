@@ -1,21 +1,24 @@
 package engine.card.st;
 
-import engine.Character;
-import engine.card.abilities.AbilityType;
 import javax.swing.event.ChangeListener;
+
+import engine.card.abilities.AbilityType;
 
 /**
  * Klasa rzutu obronego na refleks
+ * 
  * @author bambucha
  */
 public class ReflexThrow extends SavingThrow
 {
 
-
     /**
      * Standardowy konstruktor
-     * @param who Właściciel rzutu
-     * @param view Widok rzutu
+     * 
+     * @param who
+     *            Właściciel rzutu
+     * @param view
+     *            Widok rzutu
      */
     public ReflexThrow(ChangeListener view)
     {

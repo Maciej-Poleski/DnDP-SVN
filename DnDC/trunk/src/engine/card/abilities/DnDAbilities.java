@@ -1,13 +1,11 @@
 package engine.card.abilities;
 
 import engine.card.bonus.BonusManager;
-import engine.card.bonus.DnDBonusManager;
-import gui.card.AbilitiPanel;
 import gui.card.AbilitiesPanel;
-import javax.swing.event.ChangeListener;
 
 /**
  * Implementacja i obsługa atybutów.
+ * 
  * @author bambucha
  * @see engine.card.abilities.Abilities
  */

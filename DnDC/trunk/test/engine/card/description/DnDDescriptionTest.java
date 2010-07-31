@@ -5,11 +5,14 @@
 
 package engine.card.description;
 
-import engine.PersonalityTypes;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import engine.PersonalityTypes;
 
 /**
  *
@@ -58,7 +61,6 @@ public class DnDDescriptionTest {
     {
         System.out.println("getRase");
         DnDDescription instance = new DnDDescription();
-        Race expResult = null;
         Race result = instance.getRase();
         assertNotNull(result);
         //assertEquals(expResult, result);
@@ -69,7 +71,6 @@ public class DnDDescriptionTest {
     {
         System.out.println("getPersonality");
         DnDDescription instance = new DnDDescription();
-        PersonalityTypes expResult = null;
         PersonalityTypes result = instance.getPersonality();
         assertNotNull(result);
        // assertEquals(expResult, result);
@@ -81,7 +82,6 @@ public class DnDDescriptionTest {
     {
         System.out.println("getGod");
         DnDDescription instance = new DnDDescription();
-        God expResult = null;
         God result = instance.getGod();
         assertNotNull(result);
         //assertEquals(expResult, result);
@@ -153,7 +153,6 @@ public class DnDDescriptionTest {
     {
         System.out.println("getEye");
         DnDDescription instance = new DnDDescription();
-        String expResult = "";
         String result = instance.getEye();
         assertNotNull(result);
         //assertEquals(expResult, result);
@@ -165,7 +164,6 @@ public class DnDDescriptionTest {
     {
         System.out.println("getHair");
         DnDDescription instance = new DnDDescription();
-        String expResult = "";
         String result = instance.getHair();
         assertNotNull(result);
         //assertEquals(expResult, result);
@@ -177,7 +175,6 @@ public class DnDDescriptionTest {
     {
         System.out.println("getSkin");
         DnDDescription instance = new DnDDescription();
-        String expResult = "";
         String result = instance.getSkin();
         assertNotNull(result);
         //assertEquals(expResult, result);

@@ -5,10 +5,12 @@
 
 package engine.card.abilities;
 
+import static org.junit.Assert.assertEquals;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  * Test klasy przechowującej umiejętności.

@@ -5,8 +5,9 @@
 
 package engine.item;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -15,6 +16,7 @@ import static org.junit.Assert.*;
 public class ValueTest {
 
     Value x;
+    
     public ValueTest() 
     {
         x = new Value(4, 132, 22, 33);
@@ -109,7 +111,7 @@ public class ValueTest {
         System.out.println("setSilver");
         Integer silver = 30;
         Value instance = x;
-        instance.setSilver(20);
+        instance.setSilver(silver);
         assertEquals(0, instance.getSilver().intValue());
     }
 

@@ -4,23 +4,24 @@ import engine.PersonalityTypes;
 
 /**
  * Implementacja opisu postaci
+ * 
  * @author bambucha
  */
 public class DnDDescription implements Description
 {
-    private String name;
-    private String player;
-    private Race race;
-    private PersonalityTypes personality ;
-    private God god;
-    private Size size;
-    private Integer age;
-    private Sex sex;
-    private Integer height;
-    private Integer weight;
-    private String eye;
-    private String hair;
-    private String skin;
+    private String           name;
+    private String           player;
+    private Race             race;
+    private PersonalityTypes personality;
+    private God              god;
+    private Size             size;
+    private Integer          age;
+    private Sex              sex;
+    private Integer          height;
+    private Integer          weight;
+    private String           eye;
+    private String           hair;
+    private String           skin;
 
     public DnDDescription()
     {
@@ -120,7 +121,7 @@ public class DnDDescription implements Description
     @Override
     public void setAge(Integer age)
     {
-        if(age == null)
+        if (age == null)
             throw new NullPointerException();
         this.age = age;
     }
@@ -128,7 +129,7 @@ public class DnDDescription implements Description
     @Override
     public void setPersonality(PersonalityTypes personality)
     {
-        if(personality == null)
+        if (personality == null)
             throw new NullPointerException();
         this.personality = personality;
     }
@@ -136,7 +137,7 @@ public class DnDDescription implements Description
     @Override
     public void setEye(String eye)
     {
-        if(eye == null)
+        if (eye == null)
             throw new NullPointerException();
         this.eye = eye;
     }
@@ -144,7 +145,7 @@ public class DnDDescription implements Description
     @Override
     public void setGod(God god)
     {
-        if(god == null)
+        if (god == null)
             throw new NullPointerException();
         this.god = god;
     }
@@ -152,7 +153,7 @@ public class DnDDescription implements Description
     @Override
     public void setHair(String hair)
     {
-        if(hair == null)
+        if (hair == null)
             throw new NullPointerException();
         this.hair = hair;
     }
@@ -160,7 +161,7 @@ public class DnDDescription implements Description
     @Override
     public void setHeight(Integer height)
     {
-        if(height == null)
+        if (height == null)
             throw new NullPointerException();
         this.height = height;
     }
@@ -168,7 +169,7 @@ public class DnDDescription implements Description
     @Override
     public void setName(String name)
     {
-        if(name == null)
+        if (name == null)
             throw new NullPointerException();
         this.name = name;
     }
@@ -176,7 +177,7 @@ public class DnDDescription implements Description
     @Override
     public void setPlayer(String player)
     {
-        if(player == null)
+        if (player == null)
             throw new NullPointerException();
         this.player = player;
     }
@@ -184,7 +185,7 @@ public class DnDDescription implements Description
     @Override
     public void setSex(Sex sex)
     {
-        if(sex == null)
+        if (sex == null)
             throw new NullPointerException();
         this.sex = sex;
     }
@@ -192,7 +193,7 @@ public class DnDDescription implements Description
     @Override
     public void setSize(Size size)
     {
-        if(size == null)
+        if (size == null)
             throw new NullPointerException();
         this.size = size;
     }
@@ -200,7 +201,7 @@ public class DnDDescription implements Description
     @Override
     public void setSkin(String skin)
     {
-        if(skin == null)
+        if (skin == null)
             throw new NullPointerException();
         this.skin = skin;
     }
@@ -208,7 +209,7 @@ public class DnDDescription implements Description
     @Override
     public void setWeight(Integer weight)
     {
-        if(weight == null)
+        if (weight == null)
             throw new NullPointerException();
         this.weight = weight;
     }
@@ -216,7 +217,7 @@ public class DnDDescription implements Description
     @Override
     public void setRase(Race raceOfPlayer)
     {
-        if(raceOfPlayer == null)
+        if (raceOfPlayer == null)
             throw new NullPointerException();
         this.race = raceOfPlayer;
     }

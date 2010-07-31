@@ -1,15 +1,15 @@
 package engine.item;
 
-import engine.Character;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-
 /**
- * Ekwipunek. Dla pełnego hardcoru implementuje Iterable dla foreach i Collection dla wygodnego dostępu.<br/>
- * Oddelegowanie metod <code>listOfItems</code> w celu wytworzenia kontenerowego API.
- *
+ * Ekwipunek. Dla pełnego hardcoru implementuje Iterable dla foreach i
+ * Collection dla wygodnego dostępu.<br/>
+ * Oddelegowanie metod <code>listOfItems</code> w celu wytworzenia kontenerowego
+ * API.
+ * 
  * @author evil, bambucha
  */
 public class Inventory extends Item implements Iterable<Item>
@@ -21,9 +21,8 @@ public class Inventory extends Item implements Iterable<Item>
      */
     public Inventory(String name, Double weight, Value value)
     {
-        super(name,weight,value);
+        super(name, weight, value);
     }
-    
 
     /**
      * @see java.util.List
@@ -46,7 +45,7 @@ public class Inventory extends Item implements Iterable<Item>
      */
     public boolean remove(Item o)
     {
-        if(listOfItems.remove(o))
+        if (listOfItems.remove(o))
         {
             setWeight(getWeight() - o.getWeight());
             setValue(Value.subtract(getValue(), o.getValue()));
@@ -86,7 +85,7 @@ public class Inventory extends Item implements Iterable<Item>
      */
     public boolean add(Item e)
     {
-        if(listOfItems.add(e))
+        if (listOfItems.add(e))
         {
             setWeight(getWeight() + e.getWeight());
             setValue(Value.add(e.getValue(), getValue()));
@@ -95,6 +94,5 @@ public class Inventory extends Item implements Iterable<Item>
         else
             return false;
     }
-
 
 }

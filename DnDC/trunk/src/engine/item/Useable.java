@@ -6,9 +6,10 @@ package engine.item;
  */
 public interface Useable
 {
-	/**
-	 * Funkcja zwraca to co się dzieje podczas użycia obiektu
-	 * @return Nie wiadomo jeszcze co
-	 */
-	public Object useIt();
+    /**
+     * Funkcja zwraca to co się dzieje podczas użycia obiektu
+     * 
+     * @return Nie wiadomo jeszcze co
+     */
+    public Object useIt();
 }

@@ -1,21 +1,24 @@
 package client;
 
-import engine.chat.Chat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import engine.chat.Chat;
+
 /**
  * Klasa obsługująca wydarzenia na parserze :)
+ * 
  * @author bambucha
  */
 public class ParserHandler extends DefaultHandler
 {
 
-    private Chat toChat;
+    private Chat    toChat;
     private Integer state;
 
     public ParserHandler(Chat toChat)
@@ -32,7 +35,8 @@ public class ParserHandler extends DefaultHandler
     }
 
     @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException
+    public void endElement(String uri, String localName, String qName)
+            throws SAXException
     {
         if (localName.equals("message"))
             toChat.showText("\n", 3);
@@ -46,7 +50,8 @@ public class ParserHandler extends DefaultHandler
     }
 
     @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException
+    public void startElement(String uri, String localName, String qName,
+            Attributes attributes) throws SAXException
     {
         if (localName.equals("time"))
             state = 1;
@@ -58,7 +63,8 @@ public class ParserHandler extends DefaultHandler
     }
 
     @Override
-    public void characters(char[] ch, int start, int length) throws SAXException
+    public void characters(char[] ch, int start, int length)
+            throws SAXException
     {
         StringBuilder output = new StringBuilder();
         for (int i = start; i < start + length; i++)
@@ -71,6 +77,7 @@ public class ParserHandler extends DefaultHandler
     public void error(SAXParseException saxpe) throws SAXException
     {
         super.error(saxpe);
-        Logger.getLogger("parser").log(Level.WARNING, "Błąd parsowania ", saxpe);
+        Logger.getLogger("parser")
+                .log(Level.WARNING, "Błąd parsowania ", saxpe);
     }
 }

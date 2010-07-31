@@ -3,30 +3,34 @@ package engine.card.fleats;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
 import engine.Character;
 
 /**
- *
+ * 
  * @author evil, bambucha
  */
 public class DnDCharacterFleatManager implements CharacterFleatManager
 {
-    private Map<Fleat,CharacterFleat> characterFleatsMapping;
-    private Character character;
+    private Map<Fleat, CharacterFleat> characterFleatsMapping;
+    private Character                  character;
 
     /**
      * Konstruktor.
-     * @param character Postać
+     * 
+     * @param character
+     *            Postać
      */
     public DnDCharacterFleatManager(Character character)
     {
         this.character = character;
-        characterFleatsMapping=new HashMap<Fleat, CharacterFleat>();
-        
+        characterFleatsMapping = new HashMap<Fleat, CharacterFleat>();
+
     }
 
     /**
      * Pobiera listę atutów.
+     * 
      * @return
      */
     @Override
@@ -37,6 +41,7 @@ public class DnDCharacterFleatManager implements CharacterFleatManager
 
     /**
      * Zwraca CharacterFleat dla danego Fleat
+     * 
      * @param key
      * @return
      */
@@ -48,6 +53,7 @@ public class DnDCharacterFleatManager implements CharacterFleatManager
 
     /**
      * Zwraca postać zarejestrowaną w tym menadżerze.
+     * 
      * @return
      */
     @Override
@@ -61,7 +67,7 @@ public class DnDCharacterFleatManager implements CharacterFleatManager
      */
     public void update()
     {
-        for(CharacterFleat characterFleat:characterFleatsMapping.values())
+        for (CharacterFleat characterFleat : characterFleatsMapping.values())
             characterFleat.isPossible();
     }
 
