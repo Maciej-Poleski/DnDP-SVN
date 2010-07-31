@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="default" name="DnDC build file">
+
+	<target name="init">
+		<property name="src.dir" value="src" />
+		<property name="src.encoding" value="UTF-8" />
+		<property name="test.dir" value="test" />
+		<property name="test.encoding" value="UTF-8" />
+		
+		<property name="build.dir" value="build" />
+		<property name="build.src.dir" value="build/class" />
+		<property name="build.test.dir" value="build/tests/" />
+		
+		<property name="dist.dir" value="dist/" />
+		<property name="dist.javadoc.dir" value="dist/javadoc" />
+		<property name="dist.doxygen.dir" value="dist/doxygen" />
+		<property name="dist.jar" value="dist/DnDC.jar" />
+		
+		<property name="lib.dir" value="lib" />
+		
+		<property name="javadoc.dest.dir" value="${dist.javadoc.dir}" />
+		<property name="javadoc.docencoding" value="UTF-8" />
+		<property name="javadoc.author" value="true" />
+		<property name="javadoc.version" value="true" />
+		<property name="javadoc.use" value="true" />
+		<property name="javadoc.windowtitle" value="DnDC API" />
+		
+		<property name="junit.reports.dir" value="build/results" />
+	</target>
+	
+	<target name="clean" depends="init">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+		<delete dir="${junit.reports.dir}" />
+	</target>
+	
+	<target name="compile" depends="init">
+		<mkdir dir="${build.src.dir}" />
+		<javac destdir="${build.src.dir}">
+			<src path="${src.dir}" />
+			<classpath>
+				<fileset dir="${lib.dir}" />
+				<fileset dir="${build.src.dir}" />
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="compile-test" depends="init">
+        <mkdir dir="${build.test.dir}" />
+        <javac destdir="${build.test.dir}">
+            <src path="${test.dir}" />
+            <classpath>
+                <fileset dir="${lib.dir}" />
+                <path path="${build.src.dir}" />
+            	<path path="${build.test.dir}" />
+            </classpath>
+        </javac>
+    </target>
+	
+    <target name="jar" depends="init, compile" >
+        <mkdir dir="${dist.dir}" />
+        <jar destfile="${dist.jar}">
+            <fileset dir="${build.src.dir}" />
+            <zipfileset includes="**/*.class">
+                <fileset dir="${lib.dir}">
+                    <exclude name="**/dev/*"/>
+                </fileset> 
+                <exclude name="**/EDU/**" />
+            </zipfileset>
+            <manifest>
+                <attribute name="Manifest-Version" value="1.0" />
+                <attribute name="Ant-Version" value="${ant.version}" />
+                <attribute name="Main-Class" value="client.Main" />
+            </manifest>
+        </jar>
+    </target>
+	
+	<target name="run" depends="jar, init" >
+		<java fork="true" jar="dist/DnDC.jar" />
+	</target>
+	
+	
+	
+	<target name="javadoc" depends="init">
+		<mkdir dir="dist/javadoc" />
+		<javadoc Encoding="${src.encoding}" docencoding="${javadoc.docencoding}" destdir="${javadoc.dest.dir}" author="${javadoc.author}" version="${javadoc.version}" use="${javadoc.use}" windowtitle="${javadoc.windowtitle}" >
+			<packageset dir="${src.dir}" />
+			<tag name="par" scope="all" description=""/>
+		</javadoc>
+	</target>
+	
+	<target name="doxygen">
+		   <mkdir dir="dist/doxygen" />
+		   <exec dir="." executable="doxygen">
+		   	<arg value="nbproject/doxygen.cfg"/>
+		   </exec>
+	</target>
+
+	
+	<target name="default" depends="compile" />
+</project>
