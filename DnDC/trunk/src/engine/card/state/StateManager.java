@@ -18,18 +18,13 @@ import java.util.logging.Logger;
  * 
  * @author bambucha
  */
-public class StateReactor extends Thread
+public class StateManager
 {
-    private Integer          time;
-    private Queue<StateTask> queue     = new PriorityBlockingQueue<StateTask>();
-    private Set<State>       statusSet = Collections
-                                               .synchronizedSet(new HashSet<State>(
-                                                       25));
-    private Queue<Integer>   timeQueue = new LinkedList<Integer>();
+    private Set<State> statusSet = Collections.synchronizedSet(new HashSet<State>(25));
 
-    public StateReactor()
+    public StateManager()
     {
-        this.time = 0;
+        
     }
 
     /**
@@ -63,38 +58,7 @@ public class StateReactor extends Thread
      */
     public void remove(State x)
     {
-        if (statusSet.contains(x))
-        {
-            statusSet.remove(x);
-            queue.remove(x);
-        }
-        else
-            throw new IllegalArgumentException("Postać nie ma takiego statusu");
-    }
-
-    @Override
-    public void run()
-    {
-        try
-        {
-            while (true)
-            {
-                if (timeQueue.isEmpty())
-                {
-                    sleep(100);
-                    continue;
-                }
-                if (timeQueue.poll().compareTo(time) > 1)
-                {
-
-                }
-            }
-        }
-        catch(InterruptedException ex)
-        {
-            Logger.getLogger(StateReactor.class.getName()).log(Level.SEVERE,
-                    null, ex);
-        }
+        throw new UnsupportedOperationException("Brak implemetacji");
     }
 
 }

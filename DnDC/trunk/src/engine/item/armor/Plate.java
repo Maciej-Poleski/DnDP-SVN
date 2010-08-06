@@ -5,15 +5,26 @@ import engine.item.Value;
 /**
  * Klasa na zbroje i inne "ubierane" na klatkę piersiową pancerze.
  * 
- * @par TODO Dodanie konstruktora całej zbroji
+ * @par TODO Funkcje zakładanie i zdejmowania.
  * @author bambucha
  */
 public class Plate extends Armor
 {
     private Integer maxDexBonus;
 
-    public Plate(String name, Double weight, Value value, Integer ACBonus,
-            Integer armorPenalty, Double arcaneSpellFail, Integer maxDexBonus)
+    /**
+     * Kosntruktor budujący całą zbroje od zera.
+     * @param name
+     * @param weight
+     * @param value
+     * @param ACBonus
+     * @param armorPenalty
+     * @param arcaneSpellFail
+     * @param maxDexBonus
+     * @see engine.item.Item
+     * @see engine.item.Armor
+     */
+    public Plate(String name, Double weight, Value value, Integer ACBonus, Integer armorPenalty, Double arcaneSpellFail, Integer maxDexBonus)
     {
         super(name, weight, value, ACBonus, armorPenalty, arcaneSpellFail);
         this.maxDexBonus = maxDexBonus;
@@ -42,22 +53,13 @@ public class Plate extends Armor
     @Override
     public Boolean putOn()
     {
-        if (getOwner().getEq().getArmor() == null)
-        {
-            getOwner().getEq().setArmor(this);
-            getOwner().setArmorACBonus(getACBonus());
-            return true;
-        }
-        getOwner().getEq().getArmor().takeOff();
-        return this.putOn();
+        throw new UnsupportedOperationException("Brak implementacji");
     }
 
     @Override
     public Boolean takeOff()
     {
-        getOwner().setArmorACBonus(getOwner().getArmorACBonus() - getACBonus());
-        getOwner().getEq().setArmor(null);
-        return getOwner().getBackpack().add(this);
+        throw new UnsupportedOperationException("Brak implementacji");
     }
 
 }

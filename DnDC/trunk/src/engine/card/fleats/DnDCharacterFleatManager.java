@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import engine.Character;
+import engine.benefit.Benefit;
+import engine.card.Checkable;
 
 /**
- * 
+ * Klasa zajmująca się zarządzaniem atutami.
+ * Również wszystkimi obowiązkami wynikającymi z piastującej funkcji. 
  * @author evil, bambucha
  */
 public class DnDCharacterFleatManager implements CharacterFleatManager
@@ -50,16 +53,25 @@ public class DnDCharacterFleatManager implements CharacterFleatManager
     {
         return characterFleatsMapping.get(key);
     }
-
-    /**
-     * Zwraca postać zarejestrowaną w tym menadżerze.
-     * 
-     * @return
-     */
-    @Override
-    public Character getCharacter()
+    
+    public boolean checkFleat(Fleat fleat)
     {
-        return character;
+        boolean result = true;
+        for (Checkable c : fleat.getDependency())
+            result = result && c.check(character);
+        return result;
+    }
+    
+    public void setFleatBenefit(Fleat fleat)
+    {
+        for(Benefit b : fleat.getBenefits())
+            b.apply(character);
+    }
+    
+    public void unsetFleatBenefit(Fleat fleat)
+    {
+        for(Benefit b : fleat.getBenefits())
+            b.abandon(character);
     }
 
     /**

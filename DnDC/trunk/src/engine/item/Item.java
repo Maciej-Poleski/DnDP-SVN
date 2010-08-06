@@ -1,22 +1,17 @@
 package engine.item;
 
-import engine.Character;
-
 /**
- * Klasae bazowa, dla wszystkich przedmiotów, które można umieścić w ekwipunku.<br/>
+ * Klasae bazowa, dla wszystkich przedmiotów, które można umieścić w ekwipunku.
  * 
- * @par TODO Do każdego komponentu dodatkowy konstruktor służący do budowania z
- *      parametrów. Prawdopodobnie skończy się tym że będzie miał >10
- *      argumentów.
  * @author evil, bambucha
  */
-public abstract class Item implements Carryable
+public abstract class Item implements Carryable, Wearable
 {
-    private String    name;     // Na razie bez niczego
-    private Double    weight;   // Waga przedmiotu
-    private Character owner;    // właściciel przedmiotu
-    private Inventory inventory; // Umiejscownie przedmiotu w ekwipunku
-    private Value     value;    // wartość przedmiotu
+    private String           name;     // Na razie bez niczego
+    private Double           weight;   // Waga przedmiotu
+    private EquipmentManager menager;
+    private Inventory        inventory; // Umiejscownie przedmiotu w ekwipunku
+    private Value            value;    // wartość przedmiotu
 
     /**
      * Konstruktor dla klas potomnych. buduje przedmiot z klas potomnych.
@@ -67,27 +62,26 @@ public abstract class Item implements Carryable
     }
 
     /**
-     * Zwraca właściela przedmiotu, lub osobę dzierżącą.<br/>
-     * <code>null</code> w przypadku gdy przedmiot do nikogo nie należy.
+     * Zwraca menagera ekwipunku postaci posiadającej przedmiot.
      * 
-     * @return [Właściciel przedmiotu | lub sobę dzierżącą przedmiot | null]
+     * @return Menadżer ekwipunku
      */
-    public Character getOwner()
+    public EquipmentManager getMenager()
     {
-        return owner;
+        if (menager == null && inventory != null)
+            menager = inventory.getMenager();
+        return menager;
     }
 
     /**
-     * Ustawia właścieniela przedmiotu, lub osobę dzierżącą.<br/>
-     * <code>null</code> jeżeli przedmiot do nikogo nie należy i nikt go nie
-     * dzierży
+     * Ustawia menadżera ekwipunku.
      * 
-     * @param owner
-     *            Właćiciel, lub użytkownik
+     * @param menager
+     *            Menadżer ekwipunku.
      */
-    public void setOwner(Character owner)
+    public void setMenager(EquipmentManager menager)
     {
-        this.owner = owner;
+        this.menager = menager;
     }
 
     /**
@@ -152,19 +146,14 @@ public abstract class Item implements Carryable
     @Override
     public void leaveBehind()
     {
-        owner = null;
+        menager = null;
         inventory = null;
     }
-
-    /**
-     * 
-     * @param picker
-     */
+    
     @Override
-    public void pickUp(Character picker)
+    public void pickUp(EquipmentManager picker)
     {
-        owner = picker;
-        inventory = picker.getBackpack();
+        menager = picker;
     }
 
 }

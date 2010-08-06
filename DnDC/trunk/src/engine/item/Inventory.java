@@ -95,4 +95,18 @@ public class Inventory extends Item implements Iterable<Item>
             return false;
     }
 
+    @Override
+    public Boolean putOn()
+    {
+        return true;
+    }
+
+    @Override
+    public Boolean takeOff()
+    {
+        return true;
+    }
+    
+    
+
 }

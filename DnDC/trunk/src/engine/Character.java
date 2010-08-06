@@ -29,8 +29,9 @@ import engine.card.hp.HitPoints;
 import engine.card.st.DnDSavingThrows;
 import engine.card.st.SavingThrow;
 import engine.card.st.SavingThrows;
-import engine.item.CharacterInventory;
-import engine.item.Inventory;
+import engine.item.DnDEquipmentManager;
+import engine.item.BasicEquipmentManager;
+import engine.item.Item;
 import gui.card.CardPanel;
 
 /**
@@ -38,15 +39,13 @@ import gui.card.CardPanel;
  * 
  * @author evil , bambucha
  */
-public class Character implements Abilities, Attack, Armor, Description,
-        HitPoints, SavingThrows, BonusManager, CharacterFleatManager
+public class Character implements Abilities, Attack, Armor, Description, HitPoints, SavingThrows, BonusManager, CharacterFleatManager, BasicEquipmentManager
 {
     private Abilities                abilities;
     private Armor                    armor;
     private Description              description;
     private Attack                   attack;
-    private CharacterInventory       equipment;
-    private Inventory                backpack;
+    private BasicEquipmentManager         equipment;
     private HitPoints                HP;
     private SavingThrows             savingThrows;
     private BonusManager             bonusManager;
@@ -68,7 +67,7 @@ public class Character implements Abilities, Attack, Armor, Description,
         savingThrows = new DnDSavingThrows(this, view.getSavingThrowsPanel());
         armor = new DnDArmor(this);
         attack = new DnDAttack(this);
-        equipment = new CharacterInventory(this);
+        equipment = new DnDEquipmentManager(this);
         characterFleatManager = new DnDCharacterFleatManager(this);
     }
 
@@ -442,27 +441,32 @@ public class Character implements Abilities, Attack, Armor, Description,
 
     // Koniec punktów życia
 
-    /**
-     * Zwraca obiekt zajmujący sie obecnym ekwipunkiem postaci.
-     * 
-     * @return
-     */
-    public CharacterInventory getEq()
+    @Override
+    public void putOn(Item what)
     {
-        return equipment;
+        equipment.putOn(what);
     }
 
-    /**
-     * Zwraca plecak postaci.
-     * 
-     * @return
-     */
-    public Inventory getBackpack()
+    @Override
+    public Integer getCurrentArmorPently()
     {
-        return backpack;
+        return equipment.getCurrentArmorPently();
     }
+    
+    @Override
+    public Integer getMaximumDexterityACBonus()
+    {
+        return equipment.getMaximumDexterityACBonus();
+    }
+    
+    
 
     // Koniec ekwipunku
+
+    public void store(Item what)
+    {
+        equipment.store(what);
+    }
 
     @Override
     public void setSpellResistance(Double newValue)
@@ -513,11 +517,6 @@ public class Character implements Abilities, Attack, Armor, Description,
     public CharacterFleat getCharacterFleat(Object key)
     {
         return characterFleatManager.getCharacterFleat(key);
-    }
-
-    public Character getCharacter()
-    {
-        return characterFleatManager.getCharacter();
     }
 
     public Collection<CharacterFleat> getAllCharacterFleats()

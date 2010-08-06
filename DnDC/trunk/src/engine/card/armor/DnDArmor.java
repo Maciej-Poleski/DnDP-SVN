@@ -82,11 +82,7 @@ public class DnDArmor implements Armor
     @Override
     public Integer getDextirityACBonus()
     {
-        if (main.getEq().getArmor() != null)
-            return Math.min(this.main.getDexterity().getModifier(), main
-                    .getEq().getArmor().getMaxDexBonus());
-        else
-            return this.main.getDexterity().getModifier();
+        return Math.min(this.main.getDexterity().getModifier(), main.getMaximumDexterityACBonus());
     }
 
     /**

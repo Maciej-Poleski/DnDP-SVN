@@ -10,9 +10,12 @@ public interface Wearable
 {
     /**
      * Określa zmianny postaci oraz wydarzenia generowane podczas ubierania
-     * przedmiotu Np zwiększenie siły podczas ubrania pasu siły olbrzyma.
+     * przedmiotu.
+     * Np zwiększenie siły podczas ubrania pasu siły olbrzyma.
+     * Item implementuje ten interfejs tylko na potrzeby polimorfizmu.
+     * @note Jeżli przedmiot jest nie ubieralny należu pozostawić tą funkcję pustą, albo rzucić z niej wyjątek typu checked.
      * 
-     * @return Czy się udało
+     * @return true, jeżeli się udało.
      */
     public Boolean putOn();
 
@@ -20,7 +23,7 @@ public interface Wearable
      * Aalogicznie do <code>putOn</code> tylko podczas ściągania zbroi,
      * cudownych przedmiotów.
      * 
-     * @return Czy się udało.
+     * @return true, jeżeli się udało.
      */
     public Boolean takeOff();
 }

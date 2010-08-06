@@ -24,13 +24,6 @@ public interface CharacterFleatManager
     Collection<CharacterFleat> getAllCharacterFleats();
 
     /**
-     * Zwraca postać zarejestrowaną w tym menadżerze.
-     * 
-     * @return
-     */
-    Character getCharacter();
-
-    /**
      * Zwraca CharacterFleat dla danego Fleat
      * 
      * @param key

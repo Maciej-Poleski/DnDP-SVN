@@ -1,75 +1,49 @@
 package engine.card.fleats;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import engine.card.Benefit;
+import engine.Character;
+import engine.benefit.Benefit;
 import engine.card.Checkable;
 
 /**
+ * Klasa opisująca atut w bazie danych.
  * 
  * @author evil, bambucha
  */
 public class Fleat
 {
 
-    private List<Checkable> dependency;
-    private List<Benefit>   benefits;
-    private String          name;
+    private final Checkable[] dependency;
+    private final Benefit[]   benefits;
+    private String            name;
 
     /**
      * 
      * @param name
      *            Nazwa
      */
-    public Fleat(String name)
+    public Fleat(String name,Checkable[] dependens, Benefit[] benefits)
     {
         this.name = name;
-        dependency = new ArrayList<Checkable>();
-        benefits = new ArrayList<Benefit>();
-    }
-
-    /**
-     * @param e
-     *            Zależność
-     * @return this
-     * @note TODO Wyjątek w razie niepowodzenie add()
-     */
-    public Fleat addDependency(Checkable e)
-    {
-        dependency.add(e);
-        return this;
-    }
-
-    /**
-     * Dodaje korzyść wynikającą z tego atutu.
-     * 
-     * @param b
-     *            Korzyść.
-     * @return Ten atut.
-     */
-    public Fleat addBenefit(Benefit b)
-    {
-        benefits.add(b);
-        return this;
+        this.dependency = dependens;
+        this.benefits = benefits;
     }
 
     /**
      * Zastosuj atut.
      */
-    public void apply()
+    public void apply(Character character)
     {
         for (Benefit b : benefits)
-            b.apply();
+            b.apply(character);
     }
 
     /**
      * Rezygnuj z atutu.
      */
-    public void abandon()
+    public void abandon(Character character)
     {
         for (Benefit b : benefits)
-            b.abandon();
+            b.abandon(character);
     }
 
     /**
@@ -77,9 +51,14 @@ public class Fleat
      * 
      * @return Lista zeleżności.
      */
-    public List<Checkable> getDependency()
+    public Checkable[] getDependency()
     {
         return dependency;
+    }
+    
+    public Benefit[] getBenefits()
+    {
+        return benefits;
     }
 
     public String getName()

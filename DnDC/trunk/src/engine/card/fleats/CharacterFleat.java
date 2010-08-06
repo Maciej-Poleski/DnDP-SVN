@@ -3,7 +3,7 @@ package engine.card.fleats;
 import engine.card.Checkable;
 
 /**
- * 
+ * Klasa opisująca atut u postaci.
  * @author evil, bambucha
  */
 public class CharacterFleat
@@ -52,18 +52,12 @@ public class CharacterFleat
      * 
      * @return
      */
-    public boolean isPossible()
+    public void isPossible()
     {
-        if (state != State.DISABLED)
-            return true;
-        boolean result = true;
-        for (Checkable c : fleat.getDependency())
-            result = result && c.check(characterFleatManager.getCharacter());
-
-        if (result)
+        if(state != State.DISABLED)
+            return;
+        if(characterFleatManager.checkFleat(fleat))
             state = State.ABLE;
-
-        return result;
     }
 
     /**
@@ -75,5 +69,28 @@ public class CharacterFleat
     {
         return state;
     }
+    
+    /**
+     * Funkcja aktuwuje atut oraz płynące z niego korzyści.
+     */
+    public void active()
+    {
+        if(state == State.ABLE)
+        {
+            characterFleatManager.setFleatBenefit(fleat);
+            state = State.ENABLED;
+        }
+    }
+    
+    public void deactive()
+    {
+        if(state == State.ENABLED)
+        {
+            characterFleatManager.unsetFleatBenefit(fleat);
+            state = State.ABLE;
+        }
+    }
+    
+    
 
 }

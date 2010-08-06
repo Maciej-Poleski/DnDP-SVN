@@ -36,23 +36,13 @@ public class Shield extends Armor
     @Override
     public Boolean putOn()
     {
-        if (getOwner().getEq().getShield() == null)
-        {
-            getOwner().getEq().setShield(this);
-            getOwner().setShieldACBonus(getACBonus());
-            return true;
-        }
-        getOwner().getEq().getShield().takeOff();
-        return this.putOn();
+        throw new UnsupportedOperationException("Brak implementacji");
     }
 
     @Override
     public Boolean takeOff()
     {
-        getOwner().setShieldACBonus(
-                getOwner().getShieldACBonus() - getACBonus());
-        getOwner().getEq().setArmor(null);
-        return getOwner().getBackpack().add(this);
+        throw new UnsupportedOperationException("Brak implementacji");
     }
 
 }

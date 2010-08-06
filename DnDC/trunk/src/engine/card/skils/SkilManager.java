@@ -6,7 +6,6 @@ import java.util.Set;
 
 import engine.Character;
 import engine.Dice;
-import engine.card.abilities.AbilityType;
 
 /**
  * Klasa opiekująca się umiejetnoscieami bohaterów
@@ -14,12 +13,13 @@ import engine.card.abilities.AbilityType;
  * @par TODO Dodanie wyjątku informującą że test jest niemożliwy. Miejsca w
  *      kodzie oznaczone FIXME.<br/>
  *      Pobieranie umiejętności z bazy danych w konstruktorze.<br/>
+ *      
  * @author bambucha
  */
 public class SkilManager
 {
     private Character                  main;
-    private Map<String, CharacterSkil> skilSet = new HashMap<String, CharacterSkil>();
+    private Map<String, CharacterSkil> skilSet;
 
     // Przyśpieszenie zapytania po nazwie umiejętności. Dodanie klucza powinno
     // wyglądać put(CharacterSkil.getSkil.getName,CharacterSkill)
@@ -27,34 +27,7 @@ public class SkilManager
     public SkilManager(Character main)
     {
         this.main = main;
-    }
-
-    /**
-     * Funkcja zwraca modyfikatr od atrybutu do umijętności.
-     * 
-     * @param arg
-     *            Nazwa atrybutu
-     * @return Wartość modyfikatora
-     */
-    private int getAbilitiModifier(AbilityType arg)
-    {
-        switch (arg)
-        {
-            case STRENGHT:
-                return main.getStrenght().getModifier();
-            case DEXTERITY:
-                return main.getDexterity().getModifier();
-            case CONSTRUCTION:
-                return main.getConstitution().getModifier();
-            case INTELLIGENCE:
-                return main.getInteligence().getModifier();
-            case WISDOM:
-                return main.getWisdom().getModifier();
-            case CHARISMA:
-                return main.getCharisma().getModifier();
-            default:
-                return 0;
-        }
+        this.skilSet = new HashMap<String, CharacterSkil>();
     }
 
     /**
@@ -69,15 +42,8 @@ public class SkilManager
         if (skilToTest.getSkil().isTrain() && skilToTest.getRank() == 0)
             throw new UnsupportedOperationException(); // FIXME
         if (skilToTest.getSkil().isArmorInterrupt())
-            return Dice.D20.throwTheDice()
-                    + skilToTest.getRank()
-                    + skilToTest.getBonus()
-                    + getAbilitiModifier(skilToTest.getSkil()
-                            .getAbilitiModifier())
-                    - main.getEq().getArmor().getArmorPenalty();
-        return Dice.D20.throwTheDice() + skilToTest.getRank()
-                + skilToTest.getBonus()
-                + getAbilitiModifier(skilToTest.getSkil().getAbilitiModifier());
+            return Dice.D20.throwTheDice() + skilToTest.getRank() + skilToTest.getBonus() - main.getCurrentArmorPently();
+        return Dice.D20.throwTheDice() + skilToTest.getRank() + skilToTest.getBonus();
     }
 
     /**

@@ -31,8 +31,7 @@ public class Skil
      * @param armorInterrupt
      *            Czy używa się kar za zbroje.
      */
-    public Skil(String name, AbilityType abilitiModifier, Boolean train,
-            Boolean armorInterrupt)
+    public Skil(String name, AbilityType abilitiModifier, Boolean train, Boolean armorInterrupt)
     {
         this.name = name;
         this.abilitiModifier = abilitiModifier;

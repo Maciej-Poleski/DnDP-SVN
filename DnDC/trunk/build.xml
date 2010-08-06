@@ -25,8 +25,6 @@
 		<property name="javadoc.version" value="true" />
 		<property name="javadoc.use" value="true" />
 		<property name="javadoc.windowtitle" value="DnDC API" />
-		
-		<property name="junit.reports.dir" value="build/results" />
 	</target>
 	
 	<target name="clean" depends="init">
@@ -87,16 +85,19 @@
 		<javadoc Encoding="${src.encoding}" docencoding="${javadoc.docencoding}" destdir="${javadoc.dest.dir}" author="${javadoc.author}" version="${javadoc.version}" use="${javadoc.use}" windowtitle="${javadoc.windowtitle}" >
 			<packageset dir="${src.dir}" />
 			<tag name="par" scope="all" description=""/>
+			<tag name="code" scope="all" description="&quot;code&quot;"/>
+			<tag name="endcode" scope="all" description="&quot;/code&quot;" />
 		</javadoc>
 	</target>
 	
 	<target name="doxygen">
 		   <mkdir dir="dist/doxygen" />
 		   <exec dir="." executable="doxygen">
-		   	<arg value="nbproject/doxygen.cfg"/>
+		   	<arg value="doxygen.cfg"/>
 		   </exec>
 	</target>
 
 	
 	<target name="default" depends="compile" />
+	<target name="all" depends="jar, javadoc" />
 </project>

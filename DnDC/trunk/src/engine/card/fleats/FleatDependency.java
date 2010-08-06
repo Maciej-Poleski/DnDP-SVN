@@ -4,7 +4,7 @@ import engine.Character;
 import engine.card.Checkable;
 
 /**
- * 
+ * Klasa opisująca zależność między atutami.
  * @author evil, bambucha
  */
 public class FleatDependency implements Checkable

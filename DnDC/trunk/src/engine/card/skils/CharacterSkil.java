@@ -17,6 +17,7 @@ import engine.card.bonus.Bonusable;
 public class CharacterSkil implements Bonusable
 {
     private Skil    skil;
+    private Boolean isClasses;
     private Integer rank;
     private Integer bonus;
 
@@ -32,6 +33,7 @@ public class CharacterSkil implements Bonusable
     {
         this.skil = skil;
         this.rank = new Integer(0);
+        this.isClasses = false;
         bonusManager.registerBonus(skil.getName(), this);
     }
 
@@ -96,5 +98,25 @@ public class CharacterSkil implements Bonusable
     {
         return getSkil().getAbilitiModifier();
     }
+
+    /**
+     * Zwraca iformację czy umiejętność jest umiejętnością klasową postaci.
+     * @return true, jeśli klasowa
+     */
+    public Boolean getIsClasses()
+    {
+        return isClasses;
+    }
+
+    /**
+     * Ustwia czy umiejętność jest klasowa dla postaci.
+     * @param isClasses Status umiejętności.
+     */
+    public void setIsClasses(Boolean isClasses)
+    {
+        this.isClasses = isClasses;
+    }
+    
+    
 
 }

@@ -1,7 +1,5 @@
 package engine.item;
 
-import engine.Character;
-
 /**
  * Modeluje zachowanie związane z podnoszeniem, i zostawianiem przez postać
  * przedmiotów.
@@ -18,7 +16,7 @@ public interface Carryable
      * @param picker
      *            Postać podnosząca
      */
-    public void pickUp(Character picker);
+    public void pickUp(EquipmentManager picker);
 
     /**
      * Zostawia przedmiot, czyli wyrzuca z ekwipunku. Odejmuje wagę i czyści
