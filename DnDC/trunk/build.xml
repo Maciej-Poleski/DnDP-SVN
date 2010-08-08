@@ -99,5 +99,5 @@
 
 	
 	<target name="default" depends="compile" />
-	<target name="all" depends="jar, javadoc" />
+	<target name="all" depends="clean, jar, javadoc, doxygen" />
 </project>

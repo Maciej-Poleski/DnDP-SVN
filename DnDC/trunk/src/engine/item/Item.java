@@ -1,5 +1,7 @@
 package engine.item;
 
+import engine.benefit.Benefit;
+
 /**
  * Klasae bazowa, dla wszystkich przedmiotów, które można umieścić w ekwipunku.
  * 
@@ -7,11 +9,13 @@ package engine.item;
  */
 public abstract class Item implements Carryable, Wearable
 {
-    private String           name;     // Na razie bez niczego
+    private final String     name;     // Na razie bez niczego
+    private final Benefit[]  benefits; // Premie zapewniane przez postać.
     private Double           weight;   // Waga przedmiotu
-    private EquipmentManager menager;
-    private Inventory        inventory; // Umiejscownie przedmiotu w ekwipunku
     private Value            value;    // wartość przedmiotu
+    
+    private Inventory        inventory; // Umiejscownie przedmiotu w ekwipunku
+    private EquipmentManager manager;  // Menadżer przedmiotów postaci która wykorezystuje przedmiot.
 
     /**
      * Konstruktor dla klas potomnych. buduje przedmiot z klas potomnych.
@@ -22,17 +26,18 @@ public abstract class Item implements Carryable, Wearable
      *            Waga przedmiotu
      * @param value
      *            Wartość rynkowa przedmiotu
+     * @param benefits Tablica z premiami wynikającymi z używania przedmiotów.
      */
-    public Item(String name, Double weight, Value value)
+    public Item(String name, Double weight, Value value,Benefit[] benefits)
     {
         this.name = name;
         this.weight = weight;
         this.value = value;
+        this.benefits = benefits;
     }
 
     /**
-     * Zwraca referencję do ekwipunku w którym jest trzymany przdmiot, lub null
-     * przeciwnym przypadku.
+     * Zwraca referencję do ekwipunku w którym jest trzymany przdmiot, lub null przeciwnym przypadku.
      * 
      * @return [ekwiputnek|null]
      */
@@ -66,11 +71,11 @@ public abstract class Item implements Carryable, Wearable
      * 
      * @return Menadżer ekwipunku
      */
-    public EquipmentManager getMenager()
+    public EquipmentManager getManager()
     {
-        if (menager == null && inventory != null)
-            menager = inventory.getMenager();
-        return menager;
+        if (manager == null && inventory != null)
+            manager = inventory.getManager();
+        return manager;
     }
 
     /**
@@ -79,9 +84,9 @@ public abstract class Item implements Carryable, Wearable
      * @param menager
      *            Menadżer ekwipunku.
      */
-    public void setMenager(EquipmentManager menager)
+    public void setManager(EquipmentManager menager)
     {
-        this.menager = menager;
+        this.manager = menager;
     }
 
     /**
@@ -130,6 +135,14 @@ public abstract class Item implements Carryable, Wearable
             throw new NullPointerException("Nie może być null");
         this.value = value;
     }
+    
+    /**
+     * Zwraca listę premi wynijącą z założenia przedmiotu
+     */
+    public Benefit[] getBenefits()
+    {
+        return benefits;
+    }
 
     /**
      * Zwraca nazwę przedmiotu.<br/>
@@ -146,14 +159,14 @@ public abstract class Item implements Carryable, Wearable
     @Override
     public void leaveBehind()
     {
-        menager = null;
+        manager = null;
         inventory = null;
     }
-    
+
     @Override
     public void pickUp(EquipmentManager picker)
     {
-        menager = picker;
+        manager = picker;
     }
 
 }

@@ -1,9 +1,8 @@
 package engine.card.fleats;
 
-import engine.card.Checkable;
-
 /**
  * Klasa opisująca atut u postaci.
+ * 
  * @author evil, bambucha
  */
 public class CharacterFleat
@@ -39,8 +38,7 @@ public class CharacterFleat
      * @param characterFleatManager
      *            Menadżer atutów danej postaci.
      */
-    public CharacterFleat(Fleat fleat,
-            DnDCharacterFleatManager characterFleatManager)
+    public CharacterFleat(Fleat fleat, DnDCharacterFleatManager characterFleatManager)
     {
         this.fleat = fleat;
         this.state = State.DISABLED;
@@ -52,11 +50,11 @@ public class CharacterFleat
      * 
      * @return
      */
-    public void isPossible()
+    public synchronized void isPossible()
     {
-        if(state != State.DISABLED)
+        if (state != State.DISABLED)
             return;
-        if(characterFleatManager.checkFleat(fleat))
+        if (characterFleatManager.checkFleat(fleat))
             state = State.ABLE;
     }
 
@@ -69,28 +67,26 @@ public class CharacterFleat
     {
         return state;
     }
-    
+
     /**
      * Funkcja aktuwuje atut oraz płynące z niego korzyści.
      */
-    public void active()
+    public synchronized void active()
     {
-        if(state == State.ABLE)
+        if (state == State.ABLE)
         {
             characterFleatManager.setFleatBenefit(fleat);
             state = State.ENABLED;
         }
     }
-    
-    public void deactive()
+
+    public synchronized void deactive()
     {
-        if(state == State.ENABLED)
+        if (state == State.ENABLED)
         {
             characterFleatManager.unsetFleatBenefit(fleat);
             state = State.ABLE;
         }
     }
-    
-    
 
 }

@@ -45,15 +45,20 @@ public class DnDCharacterFleatManager implements CharacterFleatManager
     /**
      * Zwraca CharacterFleat dla danego Fleat
      * 
-     * @param key
-     * @return
+     * @param key Atut
+     * @return Atut postaci odpowiadający atutowi
      */
     @Override
-    public CharacterFleat getCharacterFleat(Object key)
+    public CharacterFleat getCharacterFleat(Fleat key)
     {
         return characterFleatsMapping.get(key);
     }
     
+    /**
+     * Sprawdza czy atut jest możliwy do wzięcia.
+     * @param fleat Atut do sprawdzenia.
+     * @return true, jeśli można wziąć.
+     */
     public boolean checkFleat(Fleat fleat)
     {
         boolean result = true;
@@ -62,12 +67,20 @@ public class DnDCharacterFleatManager implements CharacterFleatManager
         return result;
     }
     
+    /**
+     * Ustawia wszystkie premię atutu na postaci.
+     * @param fleat Atut do ustawienia premi.
+     */
     public void setFleatBenefit(Fleat fleat)
     {
         for(Benefit b : fleat.getBenefits())
             b.apply(character);
     }
     
+    /**
+     * Zabiera wszystkie premię wynikające z atutu.
+     * @param fleat Atut do wzięcia premi.
+     */
     public void unsetFleatBenefit(Fleat fleat)
     {
         for(Benefit b : fleat.getBenefits())

@@ -1,5 +1,6 @@
 package engine.item.armor;
 
+import engine.benefit.Benefit;
 import engine.item.Value;
 
 /**
@@ -27,22 +28,27 @@ public class Shield extends Armor
      * @param arcaneSpellFail
      *            Szansa na niepowodzenie zaklęć
      */
-    public Shield(String name, Double weight, Value value, Integer ACBonus,
-            Integer armorPenalty, Double arcaneSpellFail)
+    public Shield(String name, Double weight, Value value, Benefit[] benefits, Integer armorPenalty, Double arcaneSpellFail)
     {
-        super(name, weight, value, ACBonus, armorPenalty, arcaneSpellFail);
+        super(name, weight, value, benefits, armorPenalty, arcaneSpellFail);
     }
 
     @Override
-    public Boolean putOn()
+    public void putOn()
     {
-        throw new UnsupportedOperationException("Brak implementacji");
+        if (getManager().getShield() != null)
+            getManager().getShield().takeOff();
+        getManager().applyItemBenefits(this);
+        getManager().setShield(this);
+
     }
 
     @Override
-    public Boolean takeOff()
+    public void takeOff()
     {
-        throw new UnsupportedOperationException("Brak implementacji");
+        getManager().store(getManager().getShield());
+        getManager().applyItemBenefits(this);
+        getManager().setShield(null);
     }
 
 }

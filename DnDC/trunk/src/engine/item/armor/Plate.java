@@ -1,65 +1,65 @@
 package engine.item.armor;
 
+import engine.benefit.Benefit;
 import engine.item.Value;
 
 /**
  * Klasa na zbroje i inne "ubierane" na klatkę piersiową pancerze.
  * 
- * @par TODO Funkcje zakładanie i zdejmowania.
  * @author bambucha
  */
 public class Plate extends Armor
 {
-    private Integer maxDexBonus;
+    private final Integer maxDexBonus;
 
     /**
      * Kosntruktor budujący całą zbroje od zera.
-     * @param name
-     * @param weight
-     * @param value
-     * @param ACBonus
-     * @param armorPenalty
-     * @param arcaneSpellFail
+     * 
+     * @param name Nazwa
+     * @param weight Waga
+     * @param value Wartość rynkowa
+     * @param benefits Premie przedmiotu
+     * @param armorPenalty Kara do testów
+     * @param arcaneSpellFail Niepowodzenie czarów
      * @param maxDexBonus
      * @see engine.item.Item
      * @see engine.item.Armor
      */
-    public Plate(String name, Double weight, Value value, Integer ACBonus, Integer armorPenalty, Double arcaneSpellFail, Integer maxDexBonus)
+    public Plate(String name, Double weight, Value value, Benefit[] benefits, Integer armorPenalty, Double arcaneSpellFail,
+            Integer maxDexBonus)
     {
-        super(name, weight, value, ACBonus, armorPenalty, arcaneSpellFail);
+        super(name, weight, value, benefits, armorPenalty, arcaneSpellFail);
         this.maxDexBonus = maxDexBonus;
     }
 
     /**
      * Zwraca maksymalną premię ze zręczności do pancerza wynikającą ze zbroji
      * 
-     * @return Wartość maksymalna
+     * @return Wartość maksymalna premi
      */
     public Integer getMaxDexBonus()
     {
         return maxDexBonus;
     }
 
-    /**
-     * Ustawia maksymalną premię ze zręczności do pancerza wynikającą ze zbroji.
-     * 
-     * @param MaxDexBonus
-     */
-    public void setMaxDexBonus(Integer MaxDexBonus)
+
+    @Override
+    public void putOn()
     {
-        this.maxDexBonus = MaxDexBonus;
+        if (getManager().getArmor() != null)
+            getManager().getArmor().takeOff();
+        getManager().applyItemBenefits(this);
+        getManager().setArmor(this);
     }
 
     @Override
-    public Boolean putOn()
+    public void takeOff()
     {
-        throw new UnsupportedOperationException("Brak implementacji");
-    }
-
-    @Override
-    public Boolean takeOff()
-    {
-        throw new UnsupportedOperationException("Brak implementacji");
+        if (getManager().getArmor() != this)
+            return;
+        getManager().store(this);
+        getManager().abbandoItemBenefits(this);
+        getManager().setArmor(null);
     }
 
 }

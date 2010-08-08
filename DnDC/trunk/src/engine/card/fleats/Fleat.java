@@ -1,6 +1,5 @@
 package engine.card.fleats;
 
-import engine.Character;
 import engine.benefit.Benefit;
 import engine.card.Checkable;
 
@@ -21,7 +20,7 @@ public class Fleat
      * @param name
      *            Nazwa
      */
-    public Fleat(String name,Checkable[] dependens, Benefit[] benefits)
+    public Fleat(String name, Checkable[] dependens, Benefit[] benefits)
     {
         this.name = name;
         this.dependency = dependens;
@@ -29,38 +28,29 @@ public class Fleat
     }
 
     /**
-     * Zastosuj atut.
-     */
-    public void apply(Character character)
-    {
-        for (Benefit b : benefits)
-            b.apply(character);
-    }
-
-    /**
-     * Rezygnuj z atutu.
-     */
-    public void abandon(Character character)
-    {
-        for (Benefit b : benefits)
-            b.abandon(character);
-    }
-
-    /**
      * Zwraca listę zależności.
      * 
-     * @return Lista zeleżności.
+     * @return Tablica zeleżności.
      */
     public Checkable[] getDependency()
     {
         return dependency;
     }
-    
+
+    /**
+     * Zwraca tablicę premi zapewnianych przez atut.
+     * 
+     * @return Tablica premi.
+     */
     public Benefit[] getBenefits()
     {
         return benefits;
     }
 
+    /**
+     * Zwraca nazwę atutu.
+     * @return Nazwa.
+     */
     public String getName()
     {
         return name;

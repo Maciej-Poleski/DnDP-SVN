@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import engine.benefit.Benefit;
+
 /**
- * Ekwipunek. Dla pełnego hardcoru implementuje Iterable dla foreach i
- * Collection dla wygodnego dostępu.<br/>
- * Oddelegowanie metod <code>listOfItems</code> w celu wytworzenia kontenerowego
- * API.
+ * Ekwipunek. Dla pełnego hardcoru implementuje Iterable dla foreach<br/>
+ * Oddelegowanie metod <code>listOfItems</code> w celu wytworzenia kontenerowego API.
  * 
  * @author evil, bambucha
  */
@@ -19,9 +19,9 @@ public class Inventory extends Item implements Iterable<Item>
     /**
      * @see engine.item.Item
      */
-    public Inventory(String name, Double weight, Value value)
+    public Inventory(String name, Double weight, Value value, Benefit[] benefits)
     {
-        super(name, weight, value);
+        super(name, weight, value, benefits);
     }
 
     /**
@@ -96,17 +96,15 @@ public class Inventory extends Item implements Iterable<Item>
     }
 
     @Override
-    public Boolean putOn()
+    public void putOn()
     {
-        return true;
+
     }
 
     @Override
-    public Boolean takeOff()
+    public void takeOff()
     {
-        return true;
+
     }
-    
-    
 
 }

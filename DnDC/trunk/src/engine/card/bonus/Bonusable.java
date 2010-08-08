@@ -7,11 +7,11 @@ import engine.card.abilities.AbilityType;
  * bonus.<br/>
  * 
  * @note By interfejs działał poprawnie, atrybut, umiejętność czy rzut obronny
- *       musi być zarejestrowan w BonusManager.<br/>
- *       Najlepiej zrobić to w kontruktorze
+ *       musi być zarejestrowan w BonusManager danej postaci.
  * 
- *       Interfejs ten powinien byś implementowany przez wsyztkie klasy
+ * @note Interfejs ten powinien byś implementowany przez wsyztkie klasy
  *       zajmujące się liczeniem rzutów.
+ * 
  * @author bambucha
  */
 public interface Bonusable

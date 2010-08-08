@@ -24,13 +24,14 @@ import engine.card.description.Size;
 import engine.card.fleats.CharacterFleat;
 import engine.card.fleats.CharacterFleatManager;
 import engine.card.fleats.DnDCharacterFleatManager;
+import engine.card.fleats.Fleat;
 import engine.card.hp.DnDHitPoints;
 import engine.card.hp.HitPoints;
 import engine.card.st.DnDSavingThrows;
 import engine.card.st.SavingThrow;
 import engine.card.st.SavingThrows;
-import engine.item.DnDEquipmentManager;
 import engine.item.BasicEquipmentManager;
+import engine.item.DnDEquipmentManager;
 import engine.item.Item;
 import gui.card.CardPanel;
 
@@ -39,13 +40,14 @@ import gui.card.CardPanel;
  * 
  * @author evil , bambucha
  */
-public class Character implements Abilities, Attack, Armor, Description, HitPoints, SavingThrows, BonusManager, CharacterFleatManager, BasicEquipmentManager
+public class Character implements Abilities, Attack, Armor, Description, HitPoints, SavingThrows, BonusManager, CharacterFleatManager,
+        BasicEquipmentManager
 {
     private Abilities                abilities;
     private Armor                    armor;
     private Description              description;
     private Attack                   attack;
-    private BasicEquipmentManager         equipment;
+    private BasicEquipmentManager    equipment;
     private HitPoints                HP;
     private SavingThrows             savingThrows;
     private BonusManager             bonusManager;
@@ -452,14 +454,12 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     {
         return equipment.getCurrentArmorPently();
     }
-    
+
     @Override
     public Integer getMaximumDexterityACBonus()
     {
         return equipment.getMaximumDexterityACBonus();
     }
-    
-    
 
     // Koniec ekwipunku
 
@@ -514,7 +514,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
 
     // Koniec menadżera bonusów.
 
-    public CharacterFleat getCharacterFleat(Object key)
+    public CharacterFleat getCharacterFleat(Fleat key)
     {
         return characterFleatManager.getCharacterFleat(key);
     }

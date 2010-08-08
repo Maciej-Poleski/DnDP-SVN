@@ -17,7 +17,7 @@ public interface Wearable
      * 
      * @return true, jeżeli się udało.
      */
-    public Boolean putOn();
+    public void putOn();
 
     /**
      * Aalogicznie do <code>putOn</code> tylko podczas ściągania zbroi,
@@ -25,5 +25,5 @@ public interface Wearable
      * 
      * @return true, jeżeli się udało.
      */
-    public Boolean takeOff();
+    public void takeOff();
 }

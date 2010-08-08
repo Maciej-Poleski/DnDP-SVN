@@ -1,5 +1,10 @@
 package engine.item;
 
+/**
+ * Zapewnia interfejs przedmiotów dla postaci.
+ * 
+ * @author bambucha
+ */
 public interface BasicEquipmentManager
 {
 

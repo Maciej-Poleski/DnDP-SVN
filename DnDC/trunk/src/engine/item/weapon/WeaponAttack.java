@@ -9,9 +9,9 @@ import engine.Dice;
  */
 public abstract class WeaponAttack
 {
-    private Integer    timesDice;
-    private Dice       diceType;
-    private DamageType damageType;
+    private final Integer    timesDice;
+    private final Dice       diceType;
+    private final DamageType damageType;
 
     /**
      * Standardowy konstruktor towrzy atak danego typu z odpowidnim rzutem
@@ -29,4 +29,33 @@ public abstract class WeaponAttack
         this.diceType = diceType;
         this.damageType = damageType;
     }
+
+    /**
+     * Zwraca ilość rzutów wykonywanych podczas testu obrażeń.
+     * @return Ilość rzutów.
+     */
+    public Integer getTimesDice()
+    {
+        return timesDice;
+    }
+
+    /**
+     * Zwraca kość użytą do rzutów.
+     * @return Typ kości.
+     */
+    public Dice getDiceType()
+    {
+        return diceType;
+    }
+
+    /**
+     * Zwraca typ zadawanych obrażeń.
+     * @return Typ obrażeń.
+     */
+    public DamageType getDamageType()
+    {
+        return damageType;
+    }
+    
+    
 }

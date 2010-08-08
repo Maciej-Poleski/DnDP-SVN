@@ -7,10 +7,9 @@ package engine.card.fleats;
 
 import java.util.Collection;
 
-import engine.Character;
-
 /**
- * 
+ * Interfejs zapewniający operacje na atutach postaci.
+ * Zapewnia wyszukiwanie oraz wylistowanie atutów.
  * @author evil, bambucha
  */
 public interface CharacterFleatManager
@@ -29,6 +28,6 @@ public interface CharacterFleatManager
      * @param key
      * @return
      */
-    CharacterFleat getCharacterFleat(Object key);
+    CharacterFleat getCharacterFleat(Fleat key);
 
 }

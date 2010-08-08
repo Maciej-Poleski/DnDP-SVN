@@ -2,11 +2,22 @@ package engine.item;
 
 import engine.item.armor.Plate;
 import engine.item.armor.Shield;
+import engine.item.things.Belt;
+import engine.item.things.Bracer;
+import engine.item.things.Coat;
+import engine.item.things.Glasses;
+import engine.item.things.Gloves;
+import engine.item.things.Helmet;
+import engine.item.things.Necklace;
+import engine.item.things.Ring;
+import engine.item.things.Shirt;
+import engine.item.things.Shoes;
+import engine.item.weapon.Weapon;
 
 /**
- * Interfejs powiększony na potrzeby ekwipunku.
- * Rozszerza {@link BasicEquipmentManager} o funkcje potrzebne itemom podczas montowania się w {@link DnDEquipmentManager}.
- *
+ * Interfejs powiększony na potrzeby ekwipunku. Rozszerza {@link BasicEquipmentManager} o funkcje potrzebne itemom podczas montowania się w
+ * {@link DnDEquipmentManager}.
+ * 
  * 
  * @author bambucha
  */
@@ -29,152 +40,233 @@ public interface EquipmentManager extends BasicEquipmentManager
 
     /**
      * Zwraca przedmiot będący na głowie postaci.
+     * 
      * @return Przedmiot na głowie.
      */
-    public abstract Item getHelmet();
+    public abstract Helmet getHelmet();
 
     /**
      * Ustawia przedmiot na głowie postaci.
-     * @param helmet Nowy "hełm" postaci.
+     * 
+     * @param helmet
+     *            Nowy "hełm" postaci.
      */
-    public abstract void setHelmet(Item helmet);
+    public abstract void setHelmet(Helmet helmet);
 
     /**
-     * Zwraca przedmiot, który jest obecnie okularami postaci. 
+     * Zwraca przedmiot, który jest obecnie okularami postaci.
+     * 
      * @return Okulary
      */
-    public abstract Item getGlasses();
+    public abstract Glasses getGlasses();
 
     /**
      * Ustawia nowe okulary postaci
-     * @param glasses Nowe okulary postaci.
+     * 
+     * @param glasses
+     *            Nowe okulary postaci.
      */
-    public abstract void setGlasses(Item glasses);
+    public abstract void setGlasses(Glasses glasses);
 
     /**
      * Zwraca przedmiot będący na szyji postaci.
+     * 
      * @return Przedmiot na szyji.
      */
-    public abstract Item getNecklace();
+    public abstract Necklace getNecklace();
 
     /**
      * Ustawia nowy przedmiot na szyji postaci.
-     * @param necklace Nowy przedmiot na szyję.
+     * 
+     * @param necklace
+     *            Nowy przedmiot na szyję.
      */
-    public abstract void setNecklace(Item necklace);
+    public abstract void setNecklace(Necklace necklace);
 
     /**
      * Zwraca przedmiot będący koszulą postaci.
+     * 
      * @return Koszula postaci.
      */
-    public abstract Item getShirt();
+    public abstract Shirt getShirt();
 
     /**
      * Ustawia nową koszulę postaci.
-     * @param shirt Nowa koszula.
+     * 
+     * @param shirt
+     *            Nowa koszula.
      */
-    public abstract void setShirt(Item shirt);
+    public abstract void setShirt(Shirt shirt);
 
     /**
      * Zwraca przedmiot będący pasem postaci.
+     * 
      * @return Pas postaci.
      */
-    public abstract Item getBelt();
+    public abstract Belt getBelt();
 
     /**
      * Ustwawia przedmiot jako nowy pas postaci.
+     * 
      * @param belt
      */
-    public abstract void setBelt(Item belt);
+    public abstract void setBelt(Belt belt);
 
     /**
      * Zwraca przedmiot będący płaszczem postaci.
+     * 
      * @return Płasz postaci.
      */
-    public abstract Item getCoat();
+    public abstract Coat getCoat();
 
     /**
      * Ustwia przedmiot jako nowu płaszcz postaci.
-     * @param coat Nowy płasz postaci.
+     * 
+     * @param coat
+     *            Nowy płasz postaci.
      */
-    public abstract void setCoat(Item coat);
+    public abstract void setCoat(Coat coat);
 
     /**
      * Zwraca przedmiot będący karwaszami postaci.
+     * 
      * @return Karwasz postaci.
      */
-    public abstract Item getBracer();
+    public abstract Bracer getBracer();
 
     /**
-     * Ustawia przedmiot będący nowym karwaszem postaci. 
-     * @param bracer Nowe karwasze postaci.
+     * Ustawia przedmiot będący nowym karwaszem postaci.
+     * 
+     * @param bracer
+     *            Nowe karwasze postaci.
      */
-    public abstract void setBracer(Item bracer);
+    public abstract void setBracer(Bracer bracer);
 
     /**
      * Zwraca rękawiczki postaci.
+     * 
      * @return Rekawiczki.
      */
-    public abstract Item getGloves();
+    public abstract Gloves getGloves();
 
     /**
      * Ustawia nowe rękawiczki postaci.
-     * @param gloves Nowe rękawiczki.
+     * 
+     * @param gloves
+     *            Nowe rękawiczki.
      */
-    public abstract void setGloves(Item gloves);
+    public abstract void setGloves(Gloves gloves);
 
     /**
      * Zwraca pierwszy pierścień noszony przez postać.
+     * 
      * @return Pierścień.
      */
-    public abstract Item getFirstRing();
+    public abstract Ring getFirstRing();
 
     /**
      * Ustwia pierwszy pierścień noszony przez postać.
-     * @param ring Postać.
+     * 
+     * @param ring
+     *            Postać.
      */
-    public abstract void setFirstRing(Item ring);
+    public abstract void setFirstRing(Ring ring);
 
     /**
      * Zwrtaca drugi pierścień noszony przez postać.
+     * 
      * @return Pierścień.
      */
-    public abstract Item getSecondRing();
+    public abstract Ring getSecondRing();
 
     /**
      * Ustawia nowy drugi pierścień noszony przez postać.
-     * @param secondRing Nowy pierścień
+     * 
+     * @param secondRing
+     *            Nowy pierścień
      */
-    public abstract void setSecondRing(Item secondRing);
+    public abstract void setSecondRing(Ring secondRing);
 
     /**
      * Zwraca przedmiot będący butami postaci.
+     * 
      * @return Buty postaci.
      */
-    public abstract Item getShoes();
+    public abstract Shoes getShoes();
 
     /**
      * Ustawia nowe buty dla postaci.
-     * @param shoes Nowe buty.
+     * 
+     * @param shoes
+     *            Nowe buty.
      */
-    public abstract void setShoes(Item shoes);
+    public abstract void setShoes(Shoes shoes);
 
     /**
      * Zwraca tarczę aktualnie dzierżoną przez postać.
+     * 
      * @return Tarcza
      */
     public abstract Shield getShield();
 
     /**
      * Ustawia tarczę postaci.
-     * @param shield Nowa tarcza.
+     * 
+     * @param shield
+     *            Nowa tarcza.
      */
     public abstract void setShield(Shield shield);
 
     /**
-     * Zwraca ekwipunek postaci.
-     * Tu zawierają się plecaki, pasy na eliksyry i inne.
+     * Zwraca ekwipunek postaci. Tu zawierają się plecaki, pasy na eliksyry i inne.
+     * 
      * @return Cały ekwipunke postaci.
      */
     public abstract Inventory getInventory();
+
+    /**
+     * Zwraca broń dzierżoną w głównej ręce.
+     * 
+     * @return Główna broń.
+     */
+    public abstract Weapon getMainHand();
+
+    /**
+     * Ustawia broń będącą na głównej ręce.
+     * 
+     * @param mainHand
+     *            Nowa główna broń.
+     */
+    public abstract void setMainHand(Weapon mainHand);
+
+    /**
+     * Zwraca broń w drugorzędnej ręce.
+     * 
+     * @return Drugorzędna broń.
+     */
+    public abstract Weapon getSecondHand();
+
+    /**
+     * Ustawia nową drugorzędną broń.
+     * 
+     * @param secondHand
+     *            Nowa durgorzędna broń.
+     */
+    public abstract void setSecondHand(Weapon secondHand);
+    
+    /**
+     * Aplikuje na postaci wszytkie premię wynikające z noszenia przedmiotu.
+     * Używane w implemenctacjach item.putOn.
+     * @param item Przedmiot którego premię mają być na postaci ustawione.
+     */
+    public abstract void applyItemBenefits(Item item);
+    
+    /**
+     * Usuwa z postaci wszysztkie premię wynikające z przedmiotu.
+     * Używane w item.takeOff.
+     * @param item Przedmiot którego premię mają być usunięte z postaci.
+     */
+    public abstract void abbandoItemBenefits(Item item);
+    
+    
 }
