@@ -28,6 +28,8 @@ public class Belt extends Item
             getManager().getBelt().takeOff();
         getManager().applyItemBenefits(this);
         getManager().setBelt(this);
+        if(getParent() != null)
+            getParent().remove(this);
     }
 
     /*

@@ -40,6 +40,8 @@ public class Shield extends Armor
             getManager().getShield().takeOff();
         getManager().applyItemBenefits(this);
         getManager().setShield(this);
+        if(getParent() != null)
+            getParent().remove(this);
 
     }
 

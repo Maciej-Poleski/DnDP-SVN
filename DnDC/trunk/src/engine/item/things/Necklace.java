@@ -28,6 +28,8 @@ public class Necklace extends Item
             getManager().getNecklace().takeOff();
         getManager().applyItemBenefits(this);
         getManager().setNecklace(this);
+        if(getParent() != null)
+            getParent().remove(this);
     }
 
     /*

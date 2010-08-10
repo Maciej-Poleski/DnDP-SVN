@@ -1,8 +1,10 @@
 package engine.item;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.TreeSet;
 
 import engine.benefit.Benefit;
 
@@ -14,7 +16,8 @@ import engine.benefit.Benefit;
  */
 public class Inventory extends Item implements Iterable<Item>
 {
-    private Collection<Item> listOfItems = new ArrayList<Item>();
+    private Set<Item>             listOfItems = new TreeSet<Item>();
+    private Collection<Inventory> listOfBag   = new LinkedList<Inventory>();
 
     /**
      * @see engine.item.Item
@@ -22,14 +25,6 @@ public class Inventory extends Item implements Iterable<Item>
     public Inventory(String name, Double weight, Value value, Benefit[] benefits)
     {
         super(name, weight, value, benefits);
-    }
-
-    /**
-     * @see java.util.List
-     */
-    public Object[] toArray()
-    {
-        return listOfItems.toArray();
     }
 
     /**
@@ -45,14 +40,19 @@ public class Inventory extends Item implements Iterable<Item>
      */
     public boolean remove(Item o)
     {
-        if (listOfItems.remove(o))
+        if(listOfBag.remove(o))
         {
             setWeight(getWeight() - o.getWeight());
             setValue(Value.subtract(getValue(), o.getValue()));
             return true;
         }
-        else
-            return false;
+        if(listOfItems.remove(o))
+        {
+            setWeight(getWeight() - o.getWeight());
+            setValue(Value.subtract(getValue(), o.getValue()));
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -75,9 +75,69 @@ public class Inventory extends Item implements Iterable<Item>
     /**
      * @see java.util.List
      */
-    public boolean contains(Item o)
+    public boolean containsByExample(Item o)
     {
-        return listOfItems.contains(o);
+        boolean v = listOfItems.contains(o);
+        if(!v)
+            for (Inventory i : listOfBag)
+                v = v || i.containsByExample(o);
+        return v;
+    }
+
+    /**
+     * @see java.util.List
+     */
+    public Item getByExample(Item o)
+    {
+        for (Item item : listOfItems)
+            if(item.equals(o))
+                return item;
+        for (Inventory inventory : listOfBag)
+        {
+            Item temp = inventory.getByExample(o);
+            if(temp != null)
+                return temp;
+        }
+        return null;
+    }
+
+    /**
+     * Dużo wolniejsze niż przez przykład.
+     * 
+     * @param o
+     *            Nazwa przedmiotu
+     * @return
+     */
+    public boolean containsByName(String name)
+    {
+        for (Item item : listOfItems)
+            if(item.getName().equals(name))
+                return true;
+        for (Inventory inventory : listOfBag)
+            if(inventory.containsByName(name))
+                return true;
+        return false;
+    }
+
+    /**
+     * Dużo wolniejsze niż przez przykład.
+     * 
+     * @param o
+     *            Nazwa przedmiotu
+     * @return
+     */
+    public Item getByName(String name)
+    {
+        for (Item item : listOfItems)
+            if(item.getName().equals(name))
+                return item;
+        for (Inventory inventory : listOfBag)
+        {
+            Item temp = inventory.getByName(name);
+            if(temp != null)
+                return temp;
+        }
+        return null;
     }
 
     /**
@@ -85,14 +145,23 @@ public class Inventory extends Item implements Iterable<Item>
      */
     public boolean add(Item e)
     {
-        if (listOfItems.add(e))
+        if(e.getInventory() != null)
+        {
+            if(listOfBag.add(e.getInventory()))
+            {
+                setWeight(getWeight() + e.getWeight());
+                setValue(Value.add(e.getValue(), getValue()));
+                return true;
+            }
+            return false;
+        }
+        else if(listOfItems.add(e))
         {
             setWeight(getWeight() + e.getWeight());
             setValue(Value.add(e.getValue(), getValue()));
             return true;
         }
-        else
-            return false;
+        return false;
     }
 
     @Override
@@ -107,4 +176,9 @@ public class Inventory extends Item implements Iterable<Item>
 
     }
 
+    @Override
+    public Inventory getInventory()
+    {
+        return this;
+    }
 }

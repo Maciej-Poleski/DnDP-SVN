@@ -30,6 +30,9 @@ import engine.card.hp.HitPoints;
 import engine.card.st.DnDSavingThrows;
 import engine.card.st.SavingThrow;
 import engine.card.st.SavingThrows;
+import engine.card.state.DnDStateManager;
+import engine.card.state.State;
+import engine.card.state.StateManager;
 import engine.item.BasicEquipmentManager;
 import engine.item.DnDEquipmentManager;
 import engine.item.Item;
@@ -41,17 +44,18 @@ import gui.card.CardPanel;
  * @author evil , bambucha
  */
 public class Character implements Abilities, Attack, Armor, Description, HitPoints, SavingThrows, BonusManager, CharacterFleatManager,
-        BasicEquipmentManager
+        StateManager, BasicEquipmentManager
 {
-    private Abilities                abilities;
-    private Armor                    armor;
-    private Description              description;
-    private Attack                   attack;
-    private BasicEquipmentManager    equipment;
-    private HitPoints                HP;
-    private SavingThrows             savingThrows;
-    private BonusManager             bonusManager;
-    private DnDCharacterFleatManager characterFleatManager;
+    private Abilities             abilities;
+    private Armor                 armor;
+    private Description           description;
+    private Attack                attack;
+    private BasicEquipmentManager equipment;
+    private HitPoints             HP;
+    private SavingThrows          savingThrows;
+    private BonusManager          bonusManager;
+    private CharacterFleatManager characterFleatManager;
+    private StateManager          stateManager;
 
     /**
      * Konstruktor postaci<br/>
@@ -71,6 +75,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         attack = new DnDAttack(this);
         equipment = new DnDEquipmentManager(this);
         characterFleatManager = new DnDCharacterFleatManager(this);
+        stateManager = new DnDStateManager(this);
     }
 
     @Override
@@ -514,15 +519,29 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
 
     // Koniec menadżera bonusów.
 
+    @Override
     public CharacterFleat getCharacterFleat(Fleat key)
     {
         return characterFleatManager.getCharacterFleat(key);
     }
 
+    @Override
     public Collection<CharacterFleat> getAllCharacterFleats()
     {
         return characterFleatManager.getAllCharacterFleats();
     }
 
     // Koniec delegacji menadżera atutów.
+
+    @Override
+    public void setState(State state)
+    {
+        stateManager.setState(state);
+    }
+
+    @Override
+    public void removeState(State state)
+    {
+        stateManager.removeState(state);
+    }
 }

@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 
 package engine.card.bonus;
@@ -14,74 +13,74 @@ import org.junit.Test;
 
 import engine.Character;
 import engine.card.abilities.Abiliti;
+import gui.card.CardPanel;
 
 /**
- *
+ * 
  * @author bambucha
  */
 public class BonusManagerTest
 {
-    Abiliti s = new Abiliti(new ChangeListener() {
+    static Abiliti         s = new Abiliti(new ChangeListener()
+                             {
 
-        @Override
-        public void stateChanged(ChangeEvent e){        }
-    });
-    Abiliti d = new Abiliti(new ChangeListener() {
+                                 @Override
+                                 public void stateChanged(ChangeEvent e)
+                                 {}
+                             });
+    static Abiliti         d = new Abiliti(new ChangeListener()
+                             {
 
-        @Override
-        public void stateChanged(ChangeEvent e){      }
-    });
-    Abiliti w = new Abiliti(new ChangeListener() {
+                                 @Override
+                                 public void stateChanged(ChangeEvent e)
+                                 {}
+                             });
+    static Abiliti         w = new Abiliti(new ChangeListener()
+                             {
 
-        @Override
-        public void stateChanged(ChangeEvent e){       }
-    });
-    
-    static Character a = new Character(null);
+                                 @Override
+                                 public void stateChanged(ChangeEvent e)
+                                 {}
+                             });
+
+    static Character       a = new Character(new CardPanel());
     static DnDBonusManager t = new DnDBonusManager(a);
 
     /**
      * Zwraca modyfilator jaki powinnien mieć atrybiut, przyz konkretynym bonusie.
-     * @param bonus Bonus
-     * @param t Atrubut
+     * 
+     * @param bonus
+     *            Bonus
+     * @param t
+     *            Atrubut
      * @return Modyfikator
      */
-    private Integer getModifier(Integer bonus,Abiliti t)
+    private Integer getModifier(Integer bonus, Abiliti t)
     {
-        return new Integer( ((bonus - t.getValue()) +10)/2);
+        return new Integer(((bonus - t.getValue()) + 10) / 2);
     }
 
     public BonusManagerTest()
-    {
-    }
+    {}
 
     @Test
-    public void testRegisterAndGetBonusBonus()
+    public void testRegisterAndGetBonus()
     {
-        Integer bonus = 2;
-        t.registerBonus("strenght", s);
-        t.registerBonus("dexterity", d);
-        t.registerBonus("wisdom", w);
-        t.getBonusHandler("strenght").addBonus(BonusType.Luck, bonus);
-        t.getBonusHandler("strenght").addBonus(BonusType.Competence, bonus);
-        t.getBonusHandler("dexterity").addBonus(BonusType.Luck, bonus);;
-        t.getBonusHandler("wisdom").addBonus(BonusType.Luck, bonus);;
-        assertEquals(getModifier(2*bonus, s),s.getModifier());
-        assertEquals(getModifier(bonus, d),d.getModifier());
-        assertEquals(getModifier(bonus, w),w.getModifier());
+        t.registerBonus("s", s);
+        t.getBonusHandler("s").addBonus(BonusType.Sacred, 2);
+        assertEquals(s.getModifier(), getModifier(2, s));
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testSecondRegisterException()
     {
-        t.registerBonus("strenght", s);
+        t.registerBonus("s", s);
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testGetBonsuException()
     {
-        Integer bonus = 2;
-        t.getBonusHandler("stredfht").addBonus(BonusType.Luck, bonus);
+        t.getBonusHandler("stredfht");
     }
 
 }

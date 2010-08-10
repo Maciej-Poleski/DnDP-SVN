@@ -1,8 +1,7 @@
 package engine.item;
 
 /**
- * Interface implemetowany przez wszytkie rzeczy ktorych moga używac postacie
- * Mocno rozwojowy
+ * Interface implemetowany przez wszytkie rzeczy ktorych moga używac postacie Mocno rozwojowy
  */
 public interface Useable
 {

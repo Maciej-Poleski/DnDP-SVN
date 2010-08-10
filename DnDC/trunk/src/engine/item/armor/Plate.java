@@ -15,13 +15,20 @@ public class Plate extends Armor
     /**
      * Kosntruktor budujący całą zbroje od zera.
      * 
-     * @param name Nazwa
-     * @param weight Waga
-     * @param value Wartość rynkowa
-     * @param benefits Premie przedmiotu
-     * @param armorPenalty Kara do testów
-     * @param arcaneSpellFail Niepowodzenie czarów
+     * @param name
+     *            Nazwa
+     * @param weight
+     *            Waga
+     * @param value
+     *            Wartość rynkowa
+     * @param benefits
+     *            Premie przedmiotu
+     * @param armorPenalty
+     *            Kara do testów
+     * @param arcaneSpellFail
+     *            Niepowodzenie czarów
      * @param maxDexBonus
+     *            Masksymalna premia ze zręczności do pancerza
      * @see engine.item.Item
      * @see engine.item.Armor
      */
@@ -42,20 +49,21 @@ public class Plate extends Armor
         return maxDexBonus;
     }
 
-
     @Override
     public void putOn()
     {
-        if (getManager().getArmor() != null)
+        if(getManager().getArmor() != null)
             getManager().getArmor().takeOff();
         getManager().applyItemBenefits(this);
         getManager().setArmor(this);
+        if(getParent() != null)
+            getParent().remove(this);
     }
 
     @Override
     public void takeOff()
     {
-        if (getManager().getArmor() != this)
+        if(getManager().getArmor() != this)
             return;
         getManager().store(this);
         getManager().abbandoItemBenefits(this);

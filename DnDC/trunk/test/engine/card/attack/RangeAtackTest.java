@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 
 package engine.card.attack;
@@ -14,13 +13,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- *
+ * 
  * @author bambucha
  */
 public class RangeAtackTest
 {
     static engine.Character main = new engine.Character(new CardPanel());
-    static RangeAttack dupa = new RangeAttack(main);
+    static RangeAttack      dupa = new RangeAttack(main);
 
     public RangeAtackTest()
     {
@@ -30,13 +29,11 @@ public class RangeAtackTest
 
     @BeforeClass
     public static void setUpClass() throws Exception
-    {
-    }
+    {}
 
     @AfterClass
     public static void tearDownClass() throws Exception
-    {
-    }
+    {}
 
     @Test
     public void testCountAttacksModifier()
@@ -52,10 +49,10 @@ public class RangeAtackTest
     {
         System.out.println("getAttacks");
         RangeAttack instance = dupa;
-        TotalBonusToAttack expResult = new TotalBonusToAttack(new Integer[]{1});
+        TotalBonusToAttack expResult = new TotalBonusToAttack(new Integer[] { 1 });
         TotalBonusToAttack result = instance.getAttacks();
         assertEquals(instance.atackModifier, new Integer(1));
-        for(Integer x:result.getMainHand())
+        for (Integer x : result.getMainHand())
             System.out.print(x + " ");
         assertArrayEquals(expResult.getMainHand(), result.getMainHand());
 

@@ -17,9 +17,10 @@ import javax.swing.SwingUtilities;
  * Najważniejsza klasa w programie.
  * 
  * @par TODO Na koniec przejrzeć i sprawdzić inicjalizację
+ *          Zrobić jak należy @code run() @endcode czyli shutdown hook uruchamiający closeConnection w handle
  * @author bambucha
  */
-public class Main
+public class Main extends Thread
 {
     MainWindow    window;
     FrontToServer handle;
@@ -62,11 +63,12 @@ public class Main
         });
 
     }
+    
 
     public static void main(String[] args) throws ClassNotFoundException,
             SQLException
     {
-        new Main();
+        Runtime.getRuntime().addShutdownHook(new Main());
     }
 
 }

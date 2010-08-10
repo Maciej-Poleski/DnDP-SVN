@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 
 package engine.card.bonus;
@@ -12,21 +11,19 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- *
+ * 
  * @author bambucha
  */
-public class MaximizedBonusTest {
-
+public class MaximizedBonusTest
+{
 
     @BeforeClass
     public static void setUpClass() throws Exception
-    {
-    }
+    {}
 
     @AfterClass
     public static void tearDownClass() throws Exception
-    {
-    }
+    {}
 
     @Test
     public void testAddBonus()
@@ -37,12 +34,12 @@ public class MaximizedBonusTest {
         Integer bonus3 = 1;
         MaximizedBonus instance = new MaximizedBonus();
         instance.addBonus(bonus1);
-        assertEquals(bonus1,instance.getBonus());
+        assertEquals(bonus1, instance.getBonus());
         instance.addBonus(bonus2);
         assertEquals(bonus2, instance.getBonus());
         instance.addBonus(bonus3);
         assertEquals(bonus2, instance.getBonus());
-        
+
     }
 
     @Test
@@ -65,7 +62,7 @@ public class MaximizedBonusTest {
         assertEquals(new Integer(0), instance.getBonus());
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testRemoveBonusException()
     {
         System.out.println("removeBonus");

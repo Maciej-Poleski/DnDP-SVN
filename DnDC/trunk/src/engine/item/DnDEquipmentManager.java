@@ -92,9 +92,9 @@ public class DnDEquipmentManager implements EquipmentManager
     public Integer getCurrentArmorPently()
     {
         int temp = 0;
-        if (armor != null)
+        if(armor != null)
             temp += armor.getArmorPenalty();
-        if (shield != null)
+        if(shield != null)
             temp += shield.getArmorPenalty();
         return temp;
     }
@@ -408,16 +408,16 @@ public class DnDEquipmentManager implements EquipmentManager
     @Override
     public void applyItemBenefits(Item item)
     {
-        for(Benefit b:item.getBenefits())
+        for (Benefit b : item.getBenefits())
             b.apply(owner);
     }
 
     @Override
     public void abbandoItemBenefits(Item item)
     {
-        for(Benefit b:item.getBenefits())
+        for (Benefit b : item.getBenefits())
             b.abandon(owner);
-        
+
     }
 
 }

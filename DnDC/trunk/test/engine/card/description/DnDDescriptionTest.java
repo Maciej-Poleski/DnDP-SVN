@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 
 package engine.card.description;
@@ -15,23 +14,22 @@ import org.junit.Test;
 import engine.PersonalityTypes;
 
 /**
- *
+ * 
  * @author bambucha
  */
-public class DnDDescriptionTest {
+public class DnDDescriptionTest
+{
 
-    public DnDDescriptionTest() {
-    }
+    public DnDDescriptionTest()
+    {}
 
     @BeforeClass
     public static void setUpClass() throws Exception
-    {
-    }
+    {}
 
     @AfterClass
     public static void tearDownClass() throws Exception
-    {
-    }
+    {}
 
     @Test
     public void testGetName()
@@ -73,7 +71,7 @@ public class DnDDescriptionTest {
         DnDDescription instance = new DnDDescription();
         PersonalityTypes result = instance.getPersonality();
         assertNotNull(result);
-       // assertEquals(expResult, result);
+        // assertEquals(expResult, result);
 
     }
 
@@ -187,11 +185,11 @@ public class DnDDescriptionTest {
         Integer age = 13;
         DnDDescription instance = new DnDDescription();
         instance.setAge(age);
-        assertEquals(age,instance.getAge());
+        assertEquals(age, instance.getAge());
 
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetAgeNullException()
     {
         System.out.println("setAge null");
@@ -207,11 +205,11 @@ public class DnDDescriptionTest {
         PersonalityTypes personality = PersonalityTypes.CZ;
         DnDDescription instance = new DnDDescription();
         instance.setPersonality(personality);
-        assertEquals(personality,instance.getPersonality() );
+        assertEquals(personality, instance.getPersonality());
 
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetPersonalityNullException()
     {
         System.out.println("setPersonality null");
@@ -227,10 +225,10 @@ public class DnDDescriptionTest {
         String eye = "";
         DnDDescription instance = new DnDDescription();
         instance.setEye(eye);
-        assertEquals(eye,instance.getEye());
+        assertEquals(eye, instance.getEye());
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetEyeNull()
     {
         System.out.println("setEye null");
@@ -249,7 +247,7 @@ public class DnDDescriptionTest {
         assertEquals(god, instance.getGod());
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetGodNull()
     {
         System.out.println("setGod null");
@@ -268,7 +266,7 @@ public class DnDDescriptionTest {
         assertEquals(hair, instance.getHair());
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetHairNull()
     {
         System.out.println("setHair null");
@@ -287,7 +285,7 @@ public class DnDDescriptionTest {
         assertEquals(height, instance.getHeight());
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetHeightNull()
     {
         System.out.println("setHeight null");
@@ -305,7 +303,7 @@ public class DnDDescriptionTest {
         instance.setName(name);
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetNameNull()
     {
         System.out.println("setName null");
@@ -313,7 +311,6 @@ public class DnDDescriptionTest {
         DnDDescription instance = new DnDDescription();
         instance.setName(name);
     }
-
 
     @Test
     public void testSetPlayer()
@@ -325,7 +322,7 @@ public class DnDDescriptionTest {
         assertEquals(player, instance.getPlayer());
     }
 
-    @Test (expected= NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetPlayerNull()
     {
         System.out.println("setPlayer null");
@@ -341,18 +338,18 @@ public class DnDDescriptionTest {
         Sex sex = Sex.FEMALE;
         DnDDescription instance = new DnDDescription();
         instance.setSex(sex);
-        assertEquals(sex,instance.getSex());
-        
+        assertEquals(sex, instance.getSex());
+
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetSexNull()
     {
         System.out.println("setSex null");
         Sex sex = null;
         DnDDescription instance = new DnDDescription();
         instance.setSex(sex);
-        
+
     }
 
     @Test
@@ -362,10 +359,10 @@ public class DnDDescriptionTest {
         Size size = Size.LARGE;
         DnDDescription instance = new DnDDescription();
         instance.setSize(size);
-        assertEquals(size,instance.getSize());
+        assertEquals(size, instance.getSize());
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetSizeNull()
     {
         System.out.println("setSize null");
@@ -373,7 +370,6 @@ public class DnDDescriptionTest {
         DnDDescription instance = new DnDDescription();
         instance.setSize(size);
     }
-
 
     @Test
     public void testSetSkin()
@@ -384,7 +380,7 @@ public class DnDDescriptionTest {
         instance.setSkin(skin);
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetSkinNull()
     {
         System.out.println("setSkin null");
@@ -400,11 +396,11 @@ public class DnDDescriptionTest {
         Integer weight = 3;
         DnDDescription instance = new DnDDescription();
         instance.setWeight(weight);
-        assertEquals(weight,instance.getWeight());
+        assertEquals(weight, instance.getWeight());
 
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetWeightNull()
     {
         System.out.println("setWeight null");
@@ -422,8 +418,8 @@ public class DnDDescriptionTest {
         instance.setRase(raceOfPlayer);
         assertEquals(raceOfPlayer, instance.getRase());
     }
-    
-    @Test (expected=NullPointerException.class)
+
+    @Test(expected = NullPointerException.class)
     public void testSetRaseNull()
     {
         System.out.println("setRase");

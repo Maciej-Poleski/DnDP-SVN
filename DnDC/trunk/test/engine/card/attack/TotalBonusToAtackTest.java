@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 
 package engine.card.attack;
@@ -12,39 +11,37 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- *
+ * 
  * @author bambucha
  */
 public class TotalBonusToAtackTest
 {
-    Integer[] main = new Integer[]{10,5,0};
-    Integer[] off = new Integer[]{2};
-    Integer[] fail = new Integer[]{-6,-4,-2};
-    Integer[] zero = new Integer[]{0};
-    Integer[] Null = null;
-    Integer[] OutOfRange = new Integer[]{1,12,3,4,5,1,2,4};
+    Integer[] main       = new Integer[] { 10, 5, 0 };
+    Integer[] off        = new Integer[] { 2 };
+    Integer[] fail       = new Integer[] { -6, -4, -2 };
+    Integer[] zero       = new Integer[] { 0 };
+    Integer[] Null       = null;
+    Integer[] OutOfRange = new Integer[] { 1, 12, 3, 4, 5, 1, 2, 4 };
 
-    public TotalBonusToAtackTest() {
-    }
+    public TotalBonusToAtackTest()
+    {}
 
     @BeforeClass
     public static void setUpClass() throws Exception
-    {
-    }
+    {}
 
     @AfterClass
     public static void tearDownClass() throws Exception
-    {
-    }
+    {}
 
-    @Test (expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testInitExceptrionSizeMain()
     {
         System.out.println("init for array out of range in mainheand");
         new TotalBonusToAttack(OutOfRange);
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testInitExceptrionNullMain()
     {
         System.out.println("init for null pointer in mainheand");

@@ -6,11 +6,9 @@ import java.util.Map;
 import engine.card.abilities.Abilities;
 
 /**
- * Zajmuje się obsługą, pomocników liczących premię. Przez tą klasę trzeba
- * przepychać wszytkie zmianny. Wzorzec projektowy singleton.
+ * Zajmuje się obsługą, pomocników liczących premię. Przez tą klasę trzeba przepychać wszytkie zmianny. Wzorzec projektowy singleton.
  * 
- * @par TODO Zastanowienie się nad potrzebą wprowadzenia przestrzeni nazw (z
- *      góry określonej jakiej), i wprowadznie takowej.
+ * @par TODO Zastanowienie się nad potrzebą wprowadzenia przestrzeni nazw (z góry określonej jakiej), i wprowadznie takowej.
  * @author bambucha
  */
 public class DnDBonusManager implements BonusManager
@@ -40,9 +38,8 @@ public class DnDBonusManager implements BonusManager
     @Override
     public void registerBonus(String name, Bonusable newBonus)
     {
-        if (bonusHandlerPool.containsKey(name))
-            throw new IllegalArgumentException(
-                    "Rejestracja drugi raz tego samego klucza");
+        if(bonusHandlerPool.get(name) != null)
+            throw new IllegalArgumentException("Rejestracja drugi raz tego samego klucza");
         bonusHandlerPool.put(name, new BonusHandler(newBonus, abilities));
 
     }
@@ -58,9 +55,8 @@ public class DnDBonusManager implements BonusManager
     public BonusHandler getBonusHandler(String name)
     {
         BonusHandler t = bonusHandlerPool.get(name);
-        if (t == null)
-            throw new IllegalArgumentException(
-                    "Nie zarejetrowano takiego bonusu");
+        if(t == null)
+            throw new IllegalArgumentException("Nie zarejetrowano takiego bonusu");
         else
             return t;
     }

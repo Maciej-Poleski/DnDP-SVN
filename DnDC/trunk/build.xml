@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project basedir="." default="default" name="DnDC build file">
+<project basedir="." default="compile-all" name="DnDC build file">
 
 	<target name="init">
 		<property name="src.dir" value="src" />
@@ -56,6 +56,8 @@
         </javac>
     </target>
 	
+	<target name="compile-all" depends="compile, compile-test" />
+	
     <target name="jar" depends="init, compile" >
         <mkdir dir="${dist.dir}" />
         <jar destfile="${dist.jar}">
@@ -97,7 +99,5 @@
 		   </exec>
 	</target>
 
-	
-	<target name="default" depends="compile" />
 	<target name="all" depends="clean, jar, javadoc, doxygen" />
 </project>

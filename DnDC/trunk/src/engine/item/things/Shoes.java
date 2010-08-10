@@ -27,6 +27,8 @@ public class Shoes extends Item
             getManager().getShoes().takeOff();
         getManager().applyItemBenefits(this);
         getManager().setShoes(this);
+        if(getParent() != null)
+            getParent().remove(this);
     }
 
     /* (non-Javadoc)

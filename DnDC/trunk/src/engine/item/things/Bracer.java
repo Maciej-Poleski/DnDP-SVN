@@ -27,6 +27,8 @@ public class Bracer extends Item
             getManager().getBracer().takeOff();
         getManager().applyItemBenefits(this);
         getManager().setBracer(this);
+        if(getParent() != null)
+            getParent().remove(this);
     }
 
     /* (non-Javadoc)

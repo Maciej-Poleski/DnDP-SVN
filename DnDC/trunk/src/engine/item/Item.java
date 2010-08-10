@@ -7,13 +7,13 @@ import engine.benefit.Benefit;
  * 
  * @author evil, bambucha
  */
-public abstract class Item implements Carryable, Wearable
+public abstract class Item implements Carryable, Wearable, Comparable<Item>
 {
     private final String     name;     // Na razie bez niczego
     private final Benefit[]  benefits; // Premie zapewniane przez postać.
     private Double           weight;   // Waga przedmiotu
     private Value            value;    // wartość przedmiotu
-    
+
     private Inventory        inventory; // Umiejscownie przedmiotu w ekwipunku
     private EquipmentManager manager;  // Menadżer przedmiotów postaci która wykorezystuje przedmiot.
 
@@ -26,9 +26,10 @@ public abstract class Item implements Carryable, Wearable
      *            Waga przedmiotu
      * @param value
      *            Wartość rynkowa przedmiotu
-     * @param benefits Tablica z premiami wynikającymi z używania przedmiotów.
+     * @param benefits
+     *            Tablica z premiami wynikającymi z używania przedmiotów.
      */
-    public Item(String name, Double weight, Value value,Benefit[] benefits)
+    public Item(String name, Double weight, Value value, Benefit[] benefits)
     {
         this.name = name;
         this.weight = weight;
@@ -41,7 +42,7 @@ public abstract class Item implements Carryable, Wearable
      * 
      * @return [ekwiputnek|null]
      */
-    public Inventory getInventory()
+    public Inventory getParent()
     {
         return inventory;
     }
@@ -51,9 +52,19 @@ public abstract class Item implements Carryable, Wearable
      * 
      * @param inventory
      */
-    public void setInventory(Inventory inventory)
+    public void setParent(Inventory inventory)
     {
         this.inventory = inventory;
+    }
+
+    /**
+     * Zwraca referencję do @code Inventory @endcode jeżeli jest to przedmiot tego typu.
+     * 
+     * @return referencja do invetory, lub @code null @endcode jeżeli to normalny przedmiot.
+     */
+    public Inventory getInventory()
+    {
+        return null;
     }
 
     /**
@@ -73,7 +84,7 @@ public abstract class Item implements Carryable, Wearable
      */
     public EquipmentManager getManager()
     {
-        if (manager == null && inventory != null)
+        if(manager == null && inventory != null)
             manager = inventory.getManager();
         return manager;
     }
@@ -109,7 +120,7 @@ public abstract class Item implements Carryable, Wearable
      */
     public void setWeight(Double weight)
     {
-        if (weight < 0)
+        if(weight < 0)
             throw new IllegalArgumentException("Ujemna waga(weight < 0)");
         this.weight = weight;
     }
@@ -131,11 +142,11 @@ public abstract class Item implements Carryable, Wearable
      */
     public void setValue(Value value)
     {
-        if (value == null)
+        if(value == null)
             throw new NullPointerException("Nie może być null");
         this.value = value;
     }
-    
+
     /**
      * Zwraca listę premi wynijącą z założenia przedmiotu
      */
@@ -167,6 +178,12 @@ public abstract class Item implements Carryable, Wearable
     public void pickUp(EquipmentManager picker)
     {
         manager = picker;
+    }
+
+    @Override
+    public int compareTo(Item o)
+    {
+        return this.name.compareTo(o.getName());
     }
 
 }

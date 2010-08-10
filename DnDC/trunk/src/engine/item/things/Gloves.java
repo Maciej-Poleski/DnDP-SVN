@@ -28,6 +28,8 @@ public class Gloves extends Item
             getManager().getGloves().takeOff();
         getManager().applyItemBenefits(this);
         getManager().setGloves(this);
+        if(getParent() != null)
+            getParent().remove(this);
 
     }
 

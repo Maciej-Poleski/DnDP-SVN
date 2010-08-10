@@ -1,11 +1,49 @@
 package engine.card.state;
 
+import engine.benefit.Benefit;
+
 /**
- * Enum z wszystkimi stanami
+ * Jeden stan możliwy postaci.
+ * 
+ * @par TODO
+ * @TODO Ztworzenie wiązań do grafu.
  * 
  * @author bambucha
  */
-public enum State
+public class State
 {
-    NIEPRZYGOTOWANE, FLANKOWANY, ZASKOCZONY;
+    private final String name;
+    private final Benefit[] benefits; // Skutki ustawienia stanu.
+    //private List<State> stats;
+    
+    /**
+     * @param name Nazwa stanu.
+     * @param benefits Premie/Kary stanu.
+     */
+    public State(String name, Benefit[] benefits)
+    {
+        super();
+        this.name = name;
+        this.benefits = benefits;
+    }
+
+    /**
+     * Zwraca nazwę stanu.
+     * @return Nazwa.
+     */
+    public String getName()
+    {
+        return name;
+    }
+
+    /**
+     * Zwraca listę premi/kar
+     * @return Lista kar/premi.
+     */
+    public Benefit[] getBenefits()
+    {
+        return benefits;
+    }
+    
+    
 }

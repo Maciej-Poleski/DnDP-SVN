@@ -1,12 +1,13 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 
 package engine.card.st;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import engine.card.bonus.BonusManager;
+import engine.card.bonus.DnDBonusManager;
 import gui.card.CardPanel;
 
 import org.junit.AfterClass;
@@ -14,28 +15,27 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- *
+ * 
  * @author bambucha
  */
 public class DnDSavingThrowsTest
 {
 
-    static CardPanel p = new CardPanel();
-    static engine.Character d = new engine.Character(p);
-    static DnDSavingThrows test = new DnDSavingThrows(d,p.getSavingThrowsPanel());
+    CardPanel        p    = new CardPanel();
+    engine.Character d    = new engine.Character(p);
+    BonusManager     s    = new DnDBonusManager(d);
+    DnDSavingThrows  test = new DnDSavingThrows(s, p.getSavingThrowsPanel());
 
-    public DnDSavingThrowsTest() {
-    }
+    public DnDSavingThrowsTest()
+    {}
 
     @BeforeClass
     public static void setUpClass() throws Exception
-    {
-    }
+    {}
 
     @AfterClass
     public static void tearDownClass() throws Exception
-    {
-    }
+    {}
 
     @Test
     public void testGetForttiude()
@@ -84,7 +84,7 @@ public class DnDSavingThrowsTest
         assertEquals(instance.getSpellResistance(), newValue);
     }
 
-    @Test(expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testNullExceptionSetSpellResistance()
     {
         System.out.println("setSpellResistance");

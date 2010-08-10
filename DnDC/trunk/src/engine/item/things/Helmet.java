@@ -27,6 +27,8 @@ public class Helmet extends Item
             getManager().getHelmet().takeOff();
         getManager().applyItemBenefits(this);
         getManager().setHelmet(this);
+        if(getParent() != null)
+            getParent().remove(this);
 
     }
 

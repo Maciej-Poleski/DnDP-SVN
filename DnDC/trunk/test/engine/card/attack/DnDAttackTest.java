@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 
 package engine.card.attack;
@@ -16,13 +15,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- *
+ * 
  * @author bambucha
  */
 public class DnDAttackTest
 {
-    static engine.Character t = new engine.Character(new CardPanel());
-    static DnDAttack dupa = new DnDAttack(t);
+    static engine.Character t    = new engine.Character(new CardPanel());
+    static DnDAttack        dupa = new DnDAttack(t);
 
     public DnDAttackTest()
     {
@@ -33,13 +32,11 @@ public class DnDAttackTest
 
     @BeforeClass
     public static void setUpClass() throws Exception
-    {
-    }
+    {}
 
     @AfterClass
     public static void tearDownClass() throws Exception
-    {
-    }
+    {}
 
     @Test
     public void testGetMeleeAttack()
@@ -47,7 +44,7 @@ public class DnDAttackTest
         System.out.println("getMeleeAttack");
         DnDAttack instance = dupa;
         BaseAttack result = instance.getMeleeAttack();
-        assertArrayEquals(new Integer[]{5},result.getAttacks().getMainHand());
+        assertArrayEquals(new Integer[] { 5 }, result.getAttacks().getMainHand());
 
     }
 
@@ -57,7 +54,7 @@ public class DnDAttackTest
         System.out.println("getRangeAttack");
         DnDAttack instance = dupa;
         BaseAttack result = instance.getRangeAttack();
-        assertArrayEquals(new Integer[]{2},result.getAttacks().getMainHand());
+        assertArrayEquals(new Integer[] { 2 }, result.getAttacks().getMainHand());
     }
 
     @Test
@@ -66,7 +63,7 @@ public class DnDAttackTest
         System.out.println("getGrappleAttack");
         DnDAttack instance = dupa;
         BaseAttack result = instance.getGrappleAttack();
-        assertArrayEquals(new Integer[]{10},result.getAttacks().getMainHand());
+        assertArrayEquals(new Integer[] { 10 }, result.getAttacks().getMainHand());
     }
 
     @Test
@@ -86,10 +83,10 @@ public class DnDAttackTest
         Integer newValue = 2;
         DnDAttack instance = dupa;
         instance.setInitiativeModifier(newValue);
-        assertTrue(newValue + t.getDexterity().getModifier() == instance.getInitiativeModifier() );
+        assertTrue(newValue + t.getDexterity().getModifier() == instance.getInitiativeModifier());
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetInitiativeModifierNull()
     {
         System.out.println("setInitiativeModifier null");
@@ -112,17 +109,17 @@ public class DnDAttackTest
     public void testSetSpeed()
     {
         System.out.println("setSpeed");
-        Double newValue = 6D ;
+        Double newValue = 6D;
         DnDAttack instance = dupa;
         instance.setSpeed(newValue);
         assertEquals(newValue, instance.getSpeed());
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetSpeedNull()
     {
         System.out.println("setSpeed");
-        Double newValue = null ;
+        Double newValue = null;
         DnDAttack instance = dupa;
         instance.setSpeed(newValue);
         assertEquals(newValue, instance.getSpeed());
@@ -133,7 +130,7 @@ public class DnDAttackTest
     {
         System.out.println("getBaseAttack");
         DnDAttack instance = dupa;
-        BaseBonusToAttack expResult = new BaseBonusToAttack(new Integer[]{0});
+        BaseBonusToAttack expResult = new BaseBonusToAttack(new Integer[] { 0 });
         BaseBonusToAttack result = instance.getBaseAttack();
         assertArrayEquals(expResult.getBonus(), result.getBonus());
 
@@ -143,13 +140,13 @@ public class DnDAttackTest
     public void testSetBaseAttack()
     {
         System.out.println("setBaseAttack");
-        BaseBonusToAttack baseAtack = new BaseBonusToAttack(new Integer[]{6,1});
+        BaseBonusToAttack baseAtack = new BaseBonusToAttack(new Integer[] { 6, 1 });
         DnDAttack instance = dupa;
         instance.setBaseAttack(baseAtack);
 
     }
 
-    @Test (expected=NullPointerException.class)
+    @Test(expected = NullPointerException.class)
     public void testSetBaseAttackNull()
     {
         System.out.println("setBaseAttack null");

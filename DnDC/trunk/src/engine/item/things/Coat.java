@@ -27,6 +27,8 @@ public class Coat extends Item
             getManager().getCoat().takeOff();
         getManager().applyItemBenefits(this);
         getManager().setCoat(this);
+        if(getParent() != null)
+            getParent().remove(this);
 
     }
 

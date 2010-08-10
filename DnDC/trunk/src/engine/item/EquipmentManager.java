@@ -253,20 +253,21 @@ public interface EquipmentManager extends BasicEquipmentManager
      *            Nowa durgorzędna broń.
      */
     public abstract void setSecondHand(Weapon secondHand);
-    
+
     /**
-     * Aplikuje na postaci wszytkie premię wynikające z noszenia przedmiotu.
-     * Używane w implemenctacjach item.putOn.
-     * @param item Przedmiot którego premię mają być na postaci ustawione.
+     * Aplikuje na postaci wszytkie premię wynikające z noszenia przedmiotu. Używane w implemenctacjach item.putOn.
+     * 
+     * @param item
+     *            Przedmiot którego premię mają być na postaci ustawione.
      */
     public abstract void applyItemBenefits(Item item);
-    
+
     /**
-     * Usuwa z postaci wszysztkie premię wynikające z przedmiotu.
-     * Używane w item.takeOff.
-     * @param item Przedmiot którego premię mają być usunięte z postaci.
+     * Usuwa z postaci wszysztkie premię wynikające z przedmiotu. Używane w item.takeOff.
+     * 
+     * @param item
+     *            Przedmiot którego premię mają być usunięte z postaci.
      */
     public abstract void abbandoItemBenefits(Item item);
-    
-    
+
 }

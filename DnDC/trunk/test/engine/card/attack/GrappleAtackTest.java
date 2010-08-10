@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 
 package engine.card.attack;
@@ -14,15 +13,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- *
+ * 
  * @author bambucha
  */
 public class GrappleAtackTest
 {
     static engine.Character main = new engine.Character(new CardPanel());
-    static GrappleAttack dupa = new GrappleAttack(main);
+    static GrappleAttack    dupa = new GrappleAttack(main);
 
-    public GrappleAtackTest() 
+    public GrappleAtackTest()
     {
         main.getStrenght().setValue(16);
         main.getDexterity().setValue(13);
@@ -30,13 +29,11 @@ public class GrappleAtackTest
 
     @BeforeClass
     public static void setUpClass() throws Exception
-    {
-    }
+    {}
 
     @AfterClass
     public static void tearDownClass() throws Exception
-    {
-    }
+    {}
 
     @Test
     public void testCountAttacksModifier()
@@ -52,7 +49,7 @@ public class GrappleAtackTest
     {
         System.out.println("getAttacks");
         BaseAttack instance = dupa;
-        TotalBonusToAttack expResult = new TotalBonusToAttack(new Integer[]{3});
+        TotalBonusToAttack expResult = new TotalBonusToAttack(new Integer[] { 3 });
         TotalBonusToAttack result = instance.getAttacks();
         assertEquals(instance.atackModifier, new Integer(3));
         assertArrayEquals(expResult.getMainHand(), result.getMainHand());

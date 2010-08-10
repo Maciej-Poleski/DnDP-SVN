@@ -28,6 +28,8 @@ public class Shirt extends Item
             getManager().getShirt().takeOff();
         getManager().applyItemBenefits(this);
         getManager().setShirt(this);
+        if(getParent() != null)
+            getParent().remove(this);
     }
 
     /*

@@ -1,34 +1,37 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in the editor.
  */
 
 package engine.card.armor;
 
 import static org.junit.Assert.assertEquals;
+import engine.benefit.Benefit;
+import engine.item.Value;
+import engine.item.armor.Plate;
 import gui.card.CardPanel;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- *
+ * 
  * @author bambucha
  */
 public class DnDArmorTest
 {
     static engine.Character main;
-    static DnDArmor t;
-    
+    static DnDArmor         t;
+
     public DnDArmorTest()
     {
-        
+
     }
 
     @BeforeClass
     public static void dupa()
     {
         main = new engine.Character(new CardPanel());
+        main.putOn(new Plate("xxx", 1.0, new Value(1, 2, 1, 1), new Benefit[0], 1, 1.0, 15));
         t = new DnDArmor(main);
     }
 
@@ -137,7 +140,7 @@ public class DnDArmorTest
     /**
      * Test of setArmorACBonus method, of class DnDArmor.
      */
-    @Test (expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testSetArmorACBonusException()
     {
         System.out.println("setArmorACBonusException");
@@ -164,7 +167,7 @@ public class DnDArmorTest
     /**
      * Test of setShieldACBonus method, of class DnDArmor.
      */
-    @Test (expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testSetShieldACBonusException()
     {
         System.out.println("setShieldACBonusException");
@@ -185,7 +188,7 @@ public class DnDArmorTest
         DnDArmor instance = t;
         instance.setDeflectionACBonus(newValue);
         assertEquals(newValue, instance.getDeflectionACBonus());
-        newValue=4;
+        newValue = 4;
         instance.setDeflectionACBonus(newValue);
         assertEquals(newValue, instance.getDeflectionACBonus());
     }
@@ -193,7 +196,7 @@ public class DnDArmorTest
     /**
      * Test of setDeflectionACBonus method, of class DnDArmor.
      */
-    @Test (expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testSetDeflectionACBonusException()
     {
         System.out.println("setDeflectionACBonusException");
@@ -201,8 +204,6 @@ public class DnDArmorTest
         DnDArmor instance = t;
         instance.setDeflectionACBonus(newValue);
     }
-
-
 
     /**
      * Test of setProficiencyACBonus method, of class DnDArmor.
@@ -224,7 +225,7 @@ public class DnDArmorTest
     /**
      * Test of setProficiencyACBonus method, of class DnDArmor.
      */
-    @Test (expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testSetProficiencyACBonusExcepttion()
     {
         System.out.println("setProficiencyACBonusException");

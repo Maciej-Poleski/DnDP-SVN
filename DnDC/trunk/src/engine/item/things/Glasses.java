@@ -29,6 +29,8 @@ public class Glasses extends Item
             getManager().getGlasses().takeOff();
         getManager().applyItemBenefits(this);
         getManager().setGlasses(this);
+        if(getParent() != null)
+            getParent().remove(this);
     }
 
     /*
