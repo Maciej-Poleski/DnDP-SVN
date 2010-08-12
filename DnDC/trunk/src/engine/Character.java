@@ -1,6 +1,7 @@
 package engine;
 
 import java.util.Collection;
+import java.util.Set;
 
 import engine.card.abilities.Abiliti;
 import engine.card.abilities.Abilities;
@@ -27,6 +28,9 @@ import engine.card.fleats.DnDCharacterFleatManager;
 import engine.card.fleats.Fleat;
 import engine.card.hp.DnDHitPoints;
 import engine.card.hp.HitPoints;
+import engine.card.skils.CharacterSkil;
+import engine.card.skils.DnDSkilManager;
+import engine.card.skils.SkilManager;
 import engine.card.st.DnDSavingThrows;
 import engine.card.st.SavingThrow;
 import engine.card.st.SavingThrows;
@@ -54,6 +58,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     private HitPoints             HP;
     private SavingThrows          savingThrows;
     private BonusManager          bonusManager;
+    private SkilManager           skilManager;
     private CharacterFleatManager characterFleatManager;
     private StateManager          stateManager;
 
@@ -74,6 +79,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         armor = new DnDArmor(this);
         attack = new DnDAttack(this);
         equipment = new DnDEquipmentManager(this);
+        skilManager = new DnDSkilManager(this, this);
         characterFleatManager = new DnDCharacterFleatManager(this);
         stateManager = new DnDStateManager(this);
     }
@@ -544,4 +550,23 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     {
         stateManager.removeState(state);
     }
+
+    // Koniec stanów postaci
+    
+    public Integer testSkil(String name)
+    {
+        return skilManager.testSkil(name);
+    }
+
+    public CharacterSkil getSkil(String name)
+    {
+        return skilManager.getSkil(name);
+    }
+
+    public Set<String> getSkilNameSet()
+    {
+        return skilManager.getSkilNameSet();
+    }
+    
+    
 }

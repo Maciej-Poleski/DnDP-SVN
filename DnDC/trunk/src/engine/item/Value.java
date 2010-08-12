@@ -37,6 +37,14 @@ public class Value implements Comparable<Value>
         this.silver = silver % 10 + (int)Math.floor(copper / 10);
         this.copper = copper % 10;
     }
+    
+    private Value(int abs)
+    {
+        this.copper = abs%10;
+        this.silver = (abs%100 - this.copper)/10;
+        this.gold = (abs%1000 - this.silver*10)/100;
+        this.platinum = abs/1000;
+    }
 
     /**
      * Zwraca wartość liczoną w sztukach miedzi.
@@ -71,28 +79,10 @@ public class Value implements Comparable<Value>
     public static Value subtract(Value a, Value b)
     {
         if(a.abs() < b.abs())
-            return subtract(b, a);
-        Value c = new Value(0, 0, 0, 0);
-        if(a.copper < b.copper)
-        {
-            --a.silver;
-            a.copper += 10;
-        }
-        c.copper = a.copper - b.copper;
-        if(a.silver < b.silver)
-        {
-            --a.gold;
-            a.silver += 10;
-        }
-        c.silver = a.silver - b.silver;
-        if(a.gold < b.gold)
-        {
-            --a.platinum;
-            a.gold += 10;
-        }
-        c.gold = a.gold - b.gold;
-        c.platinum = a.platinum - a.platinum;
-        return c;
+            return new Value(b.abs() - a.abs());
+        else
+            return new Value(a.abs() - b.abs());
+        
     }
 
     /**

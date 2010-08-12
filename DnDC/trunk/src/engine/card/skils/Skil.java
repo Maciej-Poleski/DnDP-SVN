@@ -9,7 +9,7 @@ import engine.card.abilities.AbilityType;
  * 
  * @par TODO Zastanowić się nad synergią, wielokrotnym testami, przeszkadzaniem
  *      i innymi.
- * @see engine.card.skils.SkilManager
+ * @see engine.card.skils.DnDSkilManager
  * @author bambucha
  */
 public class Skil

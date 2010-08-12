@@ -11,6 +11,4 @@ public class CharacterClassManager
 {
     private Character character;
     private List<CharacterClass> classList;
-    
-    
 }
