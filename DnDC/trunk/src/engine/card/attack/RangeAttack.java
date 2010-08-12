@@ -29,7 +29,7 @@ public class RangeAttack extends BaseAttack
     protected void countAttacksModifier()
     {
         atackModifier = main.getDexterity().getModifier()
-                + main.getSize().bonus;
+                + main.getSize().getBaseModifier();
     }
 
     @Override

@@ -93,7 +93,7 @@ public class DnDArmor implements Armor
     @Override
     public Integer getSizeACBonus()
     {
-        return main.getSize().bonus;
+        return main.getSize().getBaseModifier();
     }
 
     /**

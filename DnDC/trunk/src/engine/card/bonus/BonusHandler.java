@@ -3,19 +3,16 @@ package engine.card.bonus;
 import java.util.EnumMap;
 
 import engine.card.abilities.Abilities;
-import engine.card.abilities.AbilityType;
 
 /**
- * Zajmuje się całym pakietem wszytkich premi dla jednego atrybutu,
- * umiejętności.
+ * Zajmuje się całym pakietem wszytkich premi dla jednego atrybutu, umiejętności.
  * 
  * @author bambucha
  */
 public class BonusHandler
 {
     private Bonusable                 cared;
-    private EnumMap<BonusType, Bonus> bonusTypePool = new EnumMap<BonusType, Bonus>(
-                                                            BonusType.class);
+    private EnumMap<BonusType, Bonus> bonusTypePool = new EnumMap<BonusType, Bonus>(BonusType.class);
     private Abilities                 abilities;
 
     /**
@@ -45,36 +42,9 @@ public class BonusHandler
         int temp = 0;
         for (Bonus t : bonusTypePool.values())
             temp += t.getBonus();
-        return temp + getAbilitiModifier(cared.getAbilityName());
-    }
-
-    /**
-     * Funkcja zwraca modyfikatr od atrybutu do umijętności.
-     * 
-     * @param arg
-     *            Nazwa atrybutu
-     * @return Wartość modyfikatora
-     */
-    private int getAbilitiModifier(AbilityType arg)
-    {
-        switch (arg)
-        {
-            case STRENGHT:
-                return abilities.getStrenght().getModifier();
-            case DEXTERITY:
-                return abilities.getDexterity().getModifier();
-            case CONSTRUCTION:
-                return abilities.getConstitution().getModifier();
-            case INTELLIGENCE:
-                return abilities.getInteligence().getModifier();
-            case WISDOM:
-                return abilities.getWisdom().getModifier();
-            case CHARISMA:
-                return abilities.getCharisma().getModifier();
-            case NONE:
-            default:
-                return 0;
-        }
+        if(cared.getAbilityName().getAbiliti(abilities) != null)
+            return temp + cared.getAbilityName().getAbiliti(abilities).getModifier();
+        return temp;
     }
 
     /**

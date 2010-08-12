@@ -27,7 +27,7 @@ public class MeleeAttack extends BaseAttack
     @Override
     protected void countAttacksModifier()
     {
-        atackModifier = main.getStrenght().getModifier() + main.getSize().bonus;
+        atackModifier = main.getStrenght().getModifier() + main.getSize().getBaseModifier();
     }
 
     @Override
