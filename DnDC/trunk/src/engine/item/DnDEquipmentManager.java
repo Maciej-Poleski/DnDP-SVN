@@ -71,6 +71,7 @@ public class DnDEquipmentManager implements EquipmentManager
         this.firstRing = null;
         this.secondRing = null;
         this.shoes = null;
+        this.inventory = new Inventory("main", 0.0, new Value(0, 0, 0, 0), new Benefit[0]);
     }
 
     /*
@@ -91,12 +92,12 @@ public class DnDEquipmentManager implements EquipmentManager
     @Override
     public Integer getCurrentArmorPently()
     {
-        int temp = 0;
+        int armorPently = 0;
         if(armor != null)
-            temp += armor.getArmorPenalty();
+            armorPently += armor.getArmorPenalty();
         if(shield != null)
-            temp += shield.getArmorPenalty();
-        return temp;
+            armorPently += shield.getArmorPenalty();
+        return armorPently;
     }
 
     /*
@@ -106,6 +107,8 @@ public class DnDEquipmentManager implements EquipmentManager
     @Override
     public Integer getMaximumDexterityACBonus()
     {
+        if(armor == null)
+            return Integer.MAX_VALUE;
         return armor.getMaxDexBonus();
     }
 

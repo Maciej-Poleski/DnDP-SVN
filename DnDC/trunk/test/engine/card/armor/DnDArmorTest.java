@@ -6,6 +6,7 @@ package engine.card.armor;
 
 import static org.junit.Assert.assertEquals;
 import engine.benefit.Benefit;
+import engine.card.bonus.DnDBonusManager;
 import engine.item.Value;
 import engine.item.armor.Plate;
 import gui.card.CardPanel;
@@ -19,84 +20,26 @@ import org.junit.Test;
  */
 public class DnDArmorTest
 {
-    static engine.Character main;
-    static DnDArmor         t;
+    engine.Character main;
+    DnDBonusManager  bonusManager;
+    DnDArmor         t;
+
+    Plate            plate;
+    Plate            nd;
 
     public DnDArmorTest()
     {
-
+        main = new engine.Character(new CardPanel());
+        bonusManager = new DnDBonusManager(main);
+        t = new DnDArmor(main, main, bonusManager);
+        plate = new Plate("xxx", 1.0, new Value(1, 2, 1, 1), new Benefit[0], 1, 1.0, 1);
+        nd = new Plate("xxx", 1.0, new Value(1, 2, 1, 1), new Benefit[0], 1, 1.0, 3);
     }
 
     @BeforeClass
     public static void dupa()
     {
-        main = new engine.Character(new CardPanel());
-        main.putOn(new Plate("xxx", 1.0, new Value(1, 2, 1, 1), new Benefit[0], 1, 1.0, 15));
-        t = new DnDArmor(main);
-    }
 
-    /**
-     * Test of getArmorACBonus method, of class DnDArmor.
-     */
-    @Test
-    public void testGetArmorACBonus()
-    {
-        System.out.println("getArmorACBonus");
-        DnDArmor instance = t;
-        Integer expResult = 0;
-        Integer result = instance.getArmorACBonus();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getShieldACBonus method, of class DnDArmor.
-     */
-    @Test
-    public void testGetShieldACBonus()
-    {
-        System.out.println("getShieldACBonus");
-        DnDArmor instance = t;
-        Integer expResult = 0;
-        Integer result = instance.getShieldACBonus();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getDextirityACBonus method, of class DnDArmor.
-     */
-    @Test
-    public void testGetDextirityACBonus()
-    {
-        System.out.println("getDextirityACBonus");
-        DnDArmor instance = t;
-        Integer result = instance.getDextirityACBonus();
-        assertEquals(main.getDexterity().getModifier(), result);
-    }
-
-    /**
-     * Test of getSizeACBonus method, of class DnDArmor.
-     */
-    @Test
-    public void testGetSizeACBonus()
-    {
-        System.out.println("getSizeACBonus");
-        DnDArmor instance = t;
-        Integer expResult = 0;
-        Integer result = instance.getSizeACBonus();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getDeflectionACBonus method, of class DnDArmor.
-     */
-    @Test
-    public void testGetDeflectionACBonus()
-    {
-        System.out.println("getDeflectionACBonus");
-        DnDArmor instance = t;
-        Integer expResult = 0;
-        Integer result = instance.getDeflectionACBonus();
-        assertEquals(expResult, result);
     }
 
     /**
@@ -113,124 +56,52 @@ public class DnDArmorTest
     }
 
     /**
-     * Test of getProficiencyACBonus method, of class DnDArmor.
+     * Test of getAC method, of class DnDArmor.
      */
     @Test
-    public void testGetProficiencyACBonus()
+    public void testGetACDex()
     {
-        System.out.println("getProficiencyACBonus");
+        main.getDexterity().setValue(20);
+        System.out.println("getAC");
         DnDArmor instance = t;
-        Integer expResult = 0;
-        Integer result = instance.getProficiencyACBonus();
+        Integer expResult = 15;
+        Integer result = instance.getAC();
         assertEquals(expResult, result);
     }
 
     /**
-     * Test of setArmorACBonus method, of class DnDArmor.
+     * Test of getAC method, of class DnDArmor.
      */
     @Test
-    public void testSetArmorACBonus()
+    public void testGetACPlate()
     {
-        System.out.println("setArmorACBonus");
-        Integer newValue = 2;
+        System.out.println("getAC");
+        main.getDexterity().setValue(20);
+        main.putOn(plate);
         DnDArmor instance = t;
-        instance.setArmorACBonus(newValue);
+        Integer expResult = 11;
+        Integer result = instance.getAC();
+        assertEquals(expResult, result);
     }
 
     /**
-     * Test of setArmorACBonus method, of class DnDArmor.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetArmorACBonusException()
-    {
-        System.out.println("setArmorACBonusException");
-        Integer newValue = -2;
-        DnDArmor instance = t;
-        instance.setArmorACBonus(newValue);
-        assertEquals(newValue, instance.getArmorACBonus());
-    }
-
-    /**
-     * Test of setShieldACBonus method, of class DnDArmor.
+     * Test of getAC method, of class DnDArmor.
      */
     @Test
-    public void testSetShieldACBonus()
+    public void testGetACCPlate()
     {
-        System.out.println("setShieldACBonus");
-        Integer newValue = 2;
+        System.out.println("getAC");
+        main.getDexterity().setValue(20);
+        main.putOn(plate);
         DnDArmor instance = t;
-        instance.setShieldACBonus(newValue);
-        assertEquals(newValue, instance.getShieldACBonus());
+        Integer expResult = 11;
+        Integer result = instance.getAC();
+        assertEquals(expResult, result);
+        main.putOn(nd);
+        expResult = 13;
+        result = instance.getAC();
+        assertEquals(expResult, result);
 
     }
 
-    /**
-     * Test of setShieldACBonus method, of class DnDArmor.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetShieldACBonusException()
-    {
-        System.out.println("setShieldACBonusException");
-        Integer newValue = -2;
-        DnDArmor instance = t;
-        instance.setShieldACBonus(newValue);
-
-    }
-
-    /**
-     * Test of setDeflectionACBonus method, of class DnDArmor.
-     */
-    @Test
-    public void testSetDeflectionACBonus()
-    {
-        System.out.println("setDeflectionACBonus");
-        Integer newValue = 2;
-        DnDArmor instance = t;
-        instance.setDeflectionACBonus(newValue);
-        assertEquals(newValue, instance.getDeflectionACBonus());
-        newValue = 4;
-        instance.setDeflectionACBonus(newValue);
-        assertEquals(newValue, instance.getDeflectionACBonus());
-    }
-
-    /**
-     * Test of setDeflectionACBonus method, of class DnDArmor.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetDeflectionACBonusException()
-    {
-        System.out.println("setDeflectionACBonusException");
-        Integer newValue = -2;
-        DnDArmor instance = t;
-        instance.setDeflectionACBonus(newValue);
-    }
-
-    /**
-     * Test of setProficiencyACBonus method, of class DnDArmor.
-     */
-    @Test
-    public void testSetProficiencyACBonus()
-    {
-        System.out.println("setProficiencyACBonus");
-        Integer newValue = 2;
-        DnDArmor instance = t;
-        instance.setProficiencyACBonus(newValue);
-        assertEquals(newValue, instance.getProficiencyACBonus());
-        newValue = 4;
-        instance.setProficiencyACBonus(newValue);
-        assertEquals(newValue, instance.getProficiencyACBonus());
-
-    }
-
-    /**
-     * Test of setProficiencyACBonus method, of class DnDArmor.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testSetProficiencyACBonusExcepttion()
-    {
-        System.out.println("setProficiencyACBonusException");
-        Integer newValue = -2;
-        DnDArmor instance = t;
-        instance.setProficiencyACBonus(newValue);
-    }
 }

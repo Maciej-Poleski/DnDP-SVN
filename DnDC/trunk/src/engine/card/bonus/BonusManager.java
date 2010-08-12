@@ -19,7 +19,7 @@ public interface BonusManager
      *            Nazwa składnika
      * @return BonusHandlare zajmujący się nim.
      */
-    BonusHandler getBonusHandler(String name);
+    BaseBonusHandler getBonusHandler(String name);
 
     /**
      * Rejestruje w menadżerze, jedno pole.

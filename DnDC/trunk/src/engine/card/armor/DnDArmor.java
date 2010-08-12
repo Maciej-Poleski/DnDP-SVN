@@ -1,121 +1,41 @@
 package engine.card.armor;
 
-import engine.Character;
+import engine.card.abilities.Abilities;
+import engine.card.abilities.AbilityType;
+import engine.card.bonus.ArmorBonusHandler;
+import engine.card.bonus.BonusManager;
+import engine.card.bonus.Bonusable;
+import engine.item.BasicEquipmentManager;
 
 /**
  * Klasa licząca Klasę pancerza dla postaci.
  * 
  * @author bambucha
  */
-public class DnDArmor implements Armor
+public class DnDArmor implements Armor, Bonusable
 {
 
-    private final Integer BASE = 10;
-    private Integer       plate;      // ze zbroji
-    private Integer       shield;     // z tarczy
-    private Integer       natural;    // naturalny
-    private Integer       deflection; // z odbicia
-    private Integer       proficiency; // z biegłości
-    private Integer       dodge;      // unikowa
-    private Integer       AC;         // pełne AC
-    private Character     main;
+    private final Integer         BASE = 10;
+    private Abilities             abilities;
+    private BasicEquipmentManager equipmentManager;
+    private ArmorBonusHandler     bonusHandler;
 
     /**
-     * Tworzy pusztą część od KP.
-     * 
-     * @param main
+     * @param abilities
+     * @param equipmentManager
      */
-    public DnDArmor(Character main)
+    public DnDArmor(Abilities abilities, BasicEquipmentManager equipmentManager, BonusManager bonusManager)
     {
-        this.main = main;
-        this.plate = new Integer(0);
-        this.shield = new Integer(0);
-        this.natural = new Integer(0);
-        this.proficiency = new Integer(0);
-        this.deflection = new Integer(0);
-        this.dodge = new Integer(0);
-        this.countAC();
+        super();
+        this.abilities = abilities;
+        this.equipmentManager = equipmentManager;
+        bonusManager.registerBonus("armor", this);
+        bonusHandler = (ArmorBonusHandler)bonusManager.getBonusHandler("armor");
     }
 
-    /**
-     * Funkcja licząca całe KP, z uwzględnieniem wszystkich modyfikatorów.
-     */
-    private synchronized void countAC()
+    protected Integer getDexterityACBonus()
     {
-        this.AC = this.BASE;
-        this.AC += this.plate;
-        this.AC += this.shield;
-        this.AC += this.main.getDexterity().getModifier();
-        this.AC += this.natural;
-        this.AC += this.deflection;
-        this.AC += this.proficiency;
-        this.AC += this.dodge;
-    }
-
-    /**
-     * Zwraca premię do pancerza zbroi
-     * 
-     * @return premia do pancerza
-     */
-    @Override
-    public Integer getArmorACBonus()
-    {
-        return this.plate;
-    }
-
-    /**
-     * Zwraca premię do pancerza tarczy
-     * 
-     * @return premia do pancerza
-     */
-    @Override
-    public Integer getShieldACBonus()
-    {
-        return this.shield;
-    }
-
-    /**
-     * Zwraca premię do pancerza od zręczności
-     * 
-     * @return premia do pancerza
-     */
-    @Override
-    public Integer getDextirityACBonus()
-    {
-        return Math.min(this.main.getDexterity().getModifier(), main.getMaximumDexterityACBonus());
-    }
-
-    /**
-     * Zwraca premię do pancerza wynikającą z rozmiaru
-     * 
-     * @return premia do pancerza
-     */
-    @Override
-    public Integer getSizeACBonus()
-    {
-        return main.getSize().getBaseModifier();
-    }
-
-    /**
-     * Zwraca premię z odbicia do pancerza
-     * 
-     * @return premia do pancerza
-     */
-    @Override
-    public Integer getDeflectionACBonus()
-    {
-        return this.deflection;
-    }
-
-    /**
-     * Zwraca premię z biegłości do pancerza
-     * 
-     * @return premia do pancerza
-     */
-    @Override
-    public Integer getProficiencyACBonus()
-    {
-        return this.proficiency;
+        return Math.min(abilities.getDexterity().getModifier(), equipmentManager.getMaximumDexterityACBonus());
     }
 
     /**
@@ -126,64 +46,7 @@ public class DnDArmor implements Armor
     @Override
     public synchronized Integer getAC()
     {
-        this.countAC();
-        return this.AC;
-    }
-
-    /**
-     * Ustawia premię z zbroi do Klasy Pancerza
-     * 
-     * @param newValue
-     *            Nowa wartość premii
-     */
-    @Override
-    public void setArmorACBonus(Integer newValue)
-    {
-        if (newValue < 0)
-            throw new IllegalArgumentException("Nie może być ujemna");
-        this.plate = newValue;
-    }
-
-    /**
-     * Ustawia nową wartość premie od tarczy do Klasy Pancerza
-     * 
-     * @param newValue
-     *            Nowa wartość premii
-     */
-    @Override
-    public void setShieldACBonus(Integer newValue)
-    {
-        if (newValue < 0)
-            throw new IllegalArgumentException("Nie może być ujemna");
-        this.shield = newValue;
-    }
-
-    /**
-     * Ustawawia nową wartość premii z odbicia do Klasy Pancerza
-     * 
-     * @param newValue
-     *            Nowa wartość premii
-     */
-    @Override
-    public void setDeflectionACBonus(Integer newValue)
-    {
-        if (newValue < 0)
-            throw new IllegalArgumentException("Nie może być ujemna");
-        this.deflection = newValue;
-    }
-
-    /**
-     * Ustawia nową wartość premii z biegłości do Klasy Pancerza.
-     * 
-     * @param newValue
-     *            Nowa wartość premii
-     */
-    @Override
-    public void setProficiencyACBonus(Integer newValue)
-    {
-        if (newValue < 0)
-            throw new IllegalArgumentException("Nie może być ujemna");
-        this.proficiency = newValue;
+        return BASE + bonusHandler.getACBonus() + getDexterityACBonus();
     }
 
     /**
@@ -194,8 +57,7 @@ public class DnDArmor implements Armor
     @Override
     public Integer getFlatFootetAC()
     {
-        return this.plate + this.shield + this.natural + this.deflection
-                + this.proficiency;
+        return BASE + bonusHandler.getFlatFootetAC();
     }
 
     /**
@@ -206,32 +68,19 @@ public class DnDArmor implements Armor
     @Override
     public Integer getTouchAttaksAC()
     {
-        return this.getDextirityACBonus() + this.natural + this.dodge
-                + this.deflection + this.proficiency;
+        return BASE + bonusHandler.getTouchAttacksAC() + getDexterityACBonus();
     }
 
-    /**
-     * Zwraca warość premii unikowej do Klasy Pancerza
-     * 
-     * @return Wartość premii
-     */
     @Override
-    public Integer getDodgeACBonus()
+    public void setBonus(Integer bonus)
     {
-        return this.dodge;
+
     }
 
-    /**
-     * Ustawawia nową wartość premii unikowej do Klasy Pancerza
-     * 
-     * @param newValue
-     *            Nowa wartość premii
-     */
     @Override
-    public void setDodgeACBonus(Integer newValue)
+    public AbilityType getAbilityName()
     {
-        if (newValue < 0)
-            throw new IllegalArgumentException("Nie może być ujemna");
-        this.dodge = newValue;
+        return AbilityType.NONE;
     }
+
 }

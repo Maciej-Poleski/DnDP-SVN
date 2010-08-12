@@ -12,7 +12,7 @@ import engine.card.attack.Attack;
 import engine.card.attack.BaseAttack;
 import engine.card.attack.BaseBonusToAttack;
 import engine.card.attack.DnDAttack;
-import engine.card.bonus.BonusHandler;
+import engine.card.bonus.BaseBonusHandler;
 import engine.card.bonus.BonusManager;
 import engine.card.bonus.Bonusable;
 import engine.card.bonus.DnDBonusManager;
@@ -76,7 +76,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         description = new DnDDescription();
         HP = new DnDHitPoints(view.getHPPanel());
         savingThrows = new DnDSavingThrows(this, view.getSavingThrowsPanel());
-        armor = new DnDArmor(this);
+        armor = new DnDArmor(this,this,this);
         attack = new DnDAttack(this);
         equipment = new DnDEquipmentManager(this);
         skilManager = new DnDSkilManager(this, this);
@@ -122,41 +122,6 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
 
     // Konice atrybutów
 
-    @Override
-    public Integer getArmorACBonus()
-    {
-        return armor.getArmorACBonus();
-    }
-
-    @Override
-    public Integer getShieldACBonus()
-    {
-        return armor.getShieldACBonus();
-    }
-
-    @Override
-    public Integer getDextirityACBonus()
-    {
-        return armor.getDextirityACBonus();
-    }
-
-    @Override
-    public Integer getSizeACBonus()
-    {
-        return armor.getSizeACBonus();
-    }
-
-    @Override
-    public Integer getDeflectionACBonus()
-    {
-        return armor.getDeflectionACBonus();
-    }
-
-    @Override
-    public Integer getProficiencyACBonus()
-    {
-        return armor.getProficiencyACBonus();
-    }
 
     @Override
     public Integer getAC()
@@ -164,29 +129,6 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         return armor.getAC();
     }
 
-    @Override
-    public void setArmorACBonus(Integer newValue)
-    {
-        armor.setArmorACBonus(newValue);
-    }
-
-    @Override
-    public void setShieldACBonus(Integer newValue)
-    {
-        armor.setShieldACBonus(newValue);
-    }
-
-    @Override
-    public void setDeflectionACBonus(Integer newValue)
-    {
-        armor.setDeflectionACBonus(newValue);
-    }
-
-    @Override
-    public void setProficiencyACBonus(Integer newValue)
-    {
-        armor.setProficiencyACBonus(newValue);
-    }
 
     @Override
     public Integer getFlatFootetAC()
@@ -198,18 +140,6 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     public Integer getTouchAttaksAC()
     {
         return armor.getTouchAttaksAC();
-    }
-
-    @Override
-    public Integer getDodgeACBonus()
-    {
-        return armor.getDodgeACBonus();
-    }
-
-    @Override
-    public void setDodgeACBonus(Integer newValue)
-    {
-        armor.setDodgeACBonus(newValue);
     }
 
     // Konice Pancerza
@@ -518,7 +448,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public BonusHandler getBonusHandler(String name)
+    public BaseBonusHandler getBonusHandler(String name)
     {
         return bonusManager.getBonusHandler(name);
     }

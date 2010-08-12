@@ -27,7 +27,7 @@ public class BonusHandlerTest
                               public void stateChanged(ChangeEvent e)
                               {}
                           });
-    BonusHandler     test = new BonusHandler(t, x);
+    BaseBonusHandler     test = new BaseBonusHandler(t, x);
 
     public BonusHandlerTest()
     {

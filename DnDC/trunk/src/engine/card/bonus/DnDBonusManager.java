@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import engine.card.abilities.Abilities;
+import engine.card.armor.Armor;
 
 /**
  * Zajmuje się obsługą, pomocników liczących premię. Przez tą klasę trzeba przepychać wszytkie zmianny. Wzorzec projektowy singleton.
@@ -13,7 +14,7 @@ import engine.card.abilities.Abilities;
  */
 public class DnDBonusManager implements BonusManager
 {
-    private Map<String, BonusHandler> bonusHandlerPool = new HashMap<String, BonusHandler>();
+    private Map<String, BaseBonusHandler> bonusHandlerPool = new HashMap<String, BaseBonusHandler>();
     private Abilities                 abilities;
 
     /**
@@ -40,7 +41,10 @@ public class DnDBonusManager implements BonusManager
     {
         if(bonusHandlerPool.get(name) != null)
             throw new IllegalArgumentException("Rejestracja drugi raz tego samego klucza");
-        bonusHandlerPool.put(name, new BonusHandler(newBonus, abilities));
+        if(newBonus instanceof Armor)
+            bonusHandlerPool.put(name, new ArmorBonusHandler(newBonus, abilities));
+        else
+            bonusHandlerPool.put(name, new BaseBonusHandler(newBonus, abilities));
 
     }
 
@@ -52,9 +56,9 @@ public class DnDBonusManager implements BonusManager
      * @return BonusHandlare zajmujący się nim.
      */
     @Override
-    public BonusHandler getBonusHandler(String name)
+    public BaseBonusHandler getBonusHandler(String name)
     {
-        BonusHandler t = bonusHandlerPool.get(name);
+        BaseBonusHandler t = bonusHandlerPool.get(name);
         if(t == null)
             throw new IllegalArgumentException("Nie zarejetrowano takiego bonusu");
         else

@@ -9,18 +9,18 @@ import engine.card.abilities.Abilities;
  * 
  * @author bambucha
  */
-public class BonusHandler
+public class BaseBonusHandler
 {
-    private Bonusable                 cared;
-    private EnumMap<BonusType, Bonus> bonusTypePool = new EnumMap<BonusType, Bonus>(BonusType.class);
-    private Abilities                 abilities;
+    private Bonusable                   cared;
+    private Abilities                   abilities;
+    protected EnumMap<BonusType, Bonus> bonusTypePool = new EnumMap<BonusType, Bonus>(BonusType.class);
 
     /**
      * 
      * @param cared
      * @param abilities
      */
-    public BonusHandler(Bonusable cared, Abilities abilities)
+    public BaseBonusHandler(Bonusable cared, Abilities abilities)
     {
         this.abilities = abilities;
         this.cared = cared;
@@ -37,7 +37,12 @@ public class BonusHandler
         bonusTypePool.put(BonusType.Sacred, new MaximizedBonus());
     }
 
-    private Integer countBonus()
+    /**
+     * Zlicza wartość wszystkich bonusów.
+     * 
+     * @return
+     */
+    protected Integer countBonus()
     {
         int temp = 0;
         for (Bonus t : bonusTypePool.values())
@@ -50,28 +55,34 @@ public class BonusHandler
     /**
      * Dodaje bonus do pola i aktualizuje warość bonusu w polu.
      * 
-     * @param x
+     * @param bonusType
      *            Typ premmi
      * @param bonus
      *            Wartosć premi
      */
-    public void addBonus(BonusType x, Integer bonus)
+    public void addBonus(BonusType bonusType, Integer bonus)
     {
-        bonusTypePool.get(x).addBonus(bonus);
+        Bonus temp = bonusTypePool.get(bonusType);
+        if(bonus == null)
+            throw new IllegalArgumentException("To pole nie ma takiej premi");
+        temp.addBonus(bonus);
         cared.setBonus(countBonus());
     }
 
     /**
      * Usuwa premię z pola i katualizuje bonus.
      * 
-     * @param x
+     * @param bonusType
      *            Typ premii
      * @param bonus
      *            Wartość premii
      */
-    public void removeBonus(BonusType x, Integer bonus)
+    public void removeBonus(BonusType bonusType, Integer bonus)
     {
-        bonusTypePool.get(x).removeBonus(bonus);
+        Bonus temp = bonusTypePool.get(bonusType);
+        if(bonus == null)
+            throw new IllegalArgumentException("To pole nie ma takiej premi");
+        temp.removeBonus(bonus);
         cared.setBonus(countBonus());
     }
 }
