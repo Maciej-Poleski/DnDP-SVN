@@ -9,13 +9,12 @@ import com.db4o.ObjectSet;
 import client.FrontToDB;
 
 import engine.Dice;
+import engine.card.UnavailableTestException;
 import engine.card.bonus.BonusManager;
 import engine.item.BasicEquipmentManager;
 
 /**
  * Klasa opiekująca się umiejetnoscieami bohaterów
- * 
- * @par TODO Dodanie wyjątku informującą że test jest niemożliwy. Miejsca w kodzie oznaczone FIXME.<br/>
  * 
  * @author bambucha
  */
@@ -42,11 +41,12 @@ public class DnDSkilManager implements SkilManager
      * @param skilToTest
      *            Umiejętnośc do testowania
      * @return Wynikt testu
+     * @throws UnavailableTestException Gdy test jest niemożliwy do wykonania.
      */
-    private Integer testSkil(CharacterSkil skilToTest)
+    private Integer testSkil(CharacterSkil skilToTest) throws UnavailableTestException
     {
         if(skilToTest.getSkil().isTrain() && skilToTest.getRank() == 0)
-            throw new UnsupportedOperationException(); // FIXME
+            throw new UnavailableTestException();
         if(skilToTest.getSkil().isArmorInterrupt())
             return Dice.D20.throwTheDice() + skilToTest.getRank() + skilToTest.getBonus() - baseEquipmentManager.getCurrentArmorPently();
         return Dice.D20.throwTheDice() + skilToTest.getRank() + skilToTest.getBonus();
@@ -56,13 +56,13 @@ public class DnDSkilManager implements SkilManager
      * @see engine.card.skils.SkilManager#testSkil(java.lang.String)
      */
     @Override
-    public Integer testSkil(String name)
+    public Integer testSkil(String name) throws UnavailableTestException
     {
         CharacterSkil t = skilSet.get(name);
         if(t != null)
             return testSkil(t);
         else
-            throw new UnsupportedOperationException(); // FIXME
+            throw new UnavailableTestException();
     }
 
     /* (non-Javadoc)

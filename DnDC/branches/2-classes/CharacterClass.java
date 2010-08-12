@@ -8,17 +8,17 @@ package engine.card.classes;
  */
 public class CharacterClass
 {
-    private BasicClass care;
+    private BasicClass classes;
     private Integer level;
     
     /**
-     * @param care
+     * @param classes
      * @param level
      */
-    public CharacterClass(BasicClass care, Integer level)
+    public CharacterClass(BasicClass classes, Integer level)
     {
         super();
-        this.care = care;
+        this.classes = classes;
         this.level = level;
     }
 
@@ -32,8 +32,8 @@ public class CharacterClass
         this.level = level;
     }
 
-    public BasicClass getCare()
+    public BasicClass getClasses()
     {
-        return care;
+        return classes;
     }
 }

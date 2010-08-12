@@ -12,7 +12,7 @@ public class BasicClass
 {
     private final String          name;
     private final Benefit[][]     levelBenefitsList;
-    private final AttackBonusType bonusType;
+    private final AttackBonusLevel bonusType;
     private final boolean         highFortitudeBonus;
     private final boolean         highReflexeBonus;
     private final boolean         highWillBonus;
@@ -36,7 +36,7 @@ public class BasicClass
      * @param classList
      *            Lista
      */
-    public BasicClass(String name, Benefit[][] levelBenefitsList, AttackBonusType bonusType, boolean highFortitudeBonus,
+    public BasicClass(String name, Benefit[][] levelBenefitsList, AttackBonusLevel bonusType, boolean highFortitudeBonus,
             boolean highReflexeBonus, boolean highWillBonus, Skil[] classFleats)
     {
         super();
@@ -59,7 +59,7 @@ public class BasicClass
         return levelBenefitsList;
     }
 
-    public AttackBonusType getBonusType()
+    public AttackBonusLevel getBonusType()
     {
         return bonusType;
     }

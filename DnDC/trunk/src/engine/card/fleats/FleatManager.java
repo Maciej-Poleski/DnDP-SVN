@@ -4,10 +4,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import client.FrontToDB;
+
+import com.db4o.ObjectSet;
+
 /**
  * Globalny Menadżer Atutów.
- * 
- * @par TODO Inicjalizować z bazy danych.
  * 
  * @author evil, bambucha
  */
@@ -18,14 +20,14 @@ public final class FleatManager
     private Map<String, Fleat>  fleats;
 
     /**
-     * Konstruktor. MA czytać z bazy danych.
-     * 
-     * @par TODO Inicjalizować z bazy danych
+     * Konstruktor. Czyta z bazy danych wszystkie atuty.
      */
     private FleatManager()
     {
         fleats = new HashMap<String, Fleat>();
-        // TODO
+        ObjectSet<Fleat> query = FrontToDB.getInstance().getDB().query(Fleat.class);
+        for(Fleat fleat : query)
+            fleats.put(fleat.getName(), fleat);
     }
 
     /**

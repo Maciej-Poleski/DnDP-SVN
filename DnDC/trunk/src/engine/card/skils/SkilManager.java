@@ -2,6 +2,8 @@ package engine.card.skils;
 
 import java.util.Set;
 
+import engine.card.UnavailableTestException;
+
 public interface SkilManager
 {
 
@@ -10,8 +12,9 @@ public interface SkilManager
      * 
      * @param name
      * @return
+     * @throws UnavailableTestException Gdy test jest niemożluwy do przeprowadzenia
      */
-    public abstract Integer testSkil(String name);
+    public abstract Integer testSkil(String name) throws UnavailableTestException;
     
     /**
      * Zwraca umiejętność postaci na podstawie jej nazyw.

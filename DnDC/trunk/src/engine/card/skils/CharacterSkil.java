@@ -103,7 +103,7 @@ public class CharacterSkil implements Bonusable
      * Zwraca iformację czy umiejętność jest umiejętnością klasową postaci.
      * @return true, jeśli klasowa
      */
-    public Boolean getIsClasses()
+    public Boolean isClasses()
     {
         return isClasses;
     }
@@ -112,7 +112,7 @@ public class CharacterSkil implements Bonusable
      * Ustwia czy umiejętność jest klasowa dla postaci.
      * @param isClasses Status umiejętności.
      */
-    public void setIsClasses(Boolean isClasses)
+    public void setClasses(Boolean isClasses)
     {
         this.isClasses = isClasses;
     }

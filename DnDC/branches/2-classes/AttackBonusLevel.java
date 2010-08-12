@@ -5,7 +5,7 @@ package engine.card.classes;
  * 
  * @author bambucha
  */
-public enum AttackBonusType
+public enum AttackBonusLevel
 {
     HIGH,
     MEDIUM,

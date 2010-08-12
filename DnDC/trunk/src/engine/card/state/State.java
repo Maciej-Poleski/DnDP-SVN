@@ -5,8 +5,7 @@ import engine.benefit.Benefit;
 /**
  * Jeden stan możliwy postaci.
  * 
- * @par TODO
- * @TODO Ztworzenie wiązań do grafu.
+ * @par TODO Ztworzenie wiązań do grafu.
  * 
  * @author bambucha
  */

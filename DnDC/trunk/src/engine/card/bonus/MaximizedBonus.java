@@ -8,7 +8,6 @@ import java.util.TreeMap;
  * Typ premi maksymalizowanej. Oznacza to że jako bonus bierzę się maksymalną
  * wartośc wynikającą z danego atrybutu.
  * 
- * @par TODO Implementacja multiset'a na kopcu
  * @author bambucha
  */
 public class MaximizedBonus implements Bonus

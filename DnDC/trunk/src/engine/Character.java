@@ -3,6 +3,7 @@ package engine;
 import java.util.Collection;
 import java.util.Set;
 
+import engine.card.UnavailableTestException;
 import engine.card.abilities.Abiliti;
 import engine.card.abilities.Abilities;
 import engine.card.abilities.DnDAbilities;
@@ -483,7 +484,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
 
     // Koniec stanów postaci
     
-    public Integer testSkil(String name)
+    public Integer testSkil(String name) throws UnavailableTestException
     {
         return skilManager.testSkil(name);
     }

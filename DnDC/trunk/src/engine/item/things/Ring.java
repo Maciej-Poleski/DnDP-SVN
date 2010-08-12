@@ -7,8 +7,7 @@ import engine.item.Value;
 /**
  * Klasa na pierścienie.
  * 
- * @par TODO
- * Wymaga specyficznego putOn i takeOff. W szególności specyficzne problemy będa przy zamianie przedmiotów.
+ * @par TODO Wymaga specyficznego putOn i takeOff. W szególności specyficzne problemy będa przy zamianie przedmiotów.
  * 
  * @author bambucha
  */

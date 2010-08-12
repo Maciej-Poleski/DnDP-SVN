@@ -1,5 +1,10 @@
 package engine.card.description;
 
+import client.FrontToDB;
+
+import com.db4o.ObjectSet;
+import com.db4o.query.Predicate;
+
 import engine.PersonalityTypes;
 
 /**
@@ -22,12 +27,22 @@ public class God
     }
 
     /**
-     * @par TODO napisać wywołanie do bazy danych
-     * @param name
+     * @param name Nazwa bóstwa.
      */
-    public God(String name)
+    public static God getFromDB(final String name)
     {
+        ObjectSet<God> query = FrontToDB.getInstance().getDB().query(new Predicate<God>()
+        {
+            private static final long serialVersionUID = 1L;
 
+            @Override
+            public boolean match(God arg0)
+            {
+                return arg0.getName() == name;
+            }
+            
+        });
+        return query.get(0);
     }
 
     public String getName()
