@@ -2,20 +2,20 @@ package engine.card.classes;
 
 /**
  * Opis jednej klasy wybranje przez postać.
- *
+ * 
  * 
  * @author bambucha
  */
 public class CharacterClass
 {
-    private BasicClass classes;
-    private Integer level;
-    
+    private BaseClass classes;
+    private Integer   level;
+
     /**
      * @param classes
      * @param level
      */
-    public CharacterClass(BasicClass classes, Integer level)
+    public CharacterClass(BaseClass classes, Integer level)
     {
         super();
         this.classes = classes;
@@ -32,7 +32,7 @@ public class CharacterClass
         this.level = level;
     }
 
-    public BasicClass getClasses()
+    public BaseClass getClasses()
     {
         return classes;
     }

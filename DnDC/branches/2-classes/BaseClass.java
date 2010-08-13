@@ -1,6 +1,7 @@
 package engine.card.classes;
 
 import engine.benefit.Benefit;
+import engine.card.Checkable;
 import engine.card.skils.Skil;
 
 /**
@@ -8,15 +9,15 @@ import engine.card.skils.Skil;
  * 
  * @author bambucha
  */
-public class BasicClass
+public class BaseClass
 {
-    private final String          name;
-    private final Benefit[][]     levelBenefitsList;
+    private final String           name;
     private final AttackBonusLevel bonusType;
-    private final boolean         highFortitudeBonus;
-    private final boolean         highReflexeBonus;
-    private final boolean         highWillBonus;
-    private final Skil[]          classFleats;
+    private final boolean          highFortitudeBonus;
+    private final boolean          highReflexeBonus;
+    private final boolean          highWillBonus;
+    private final Skil[]           classFleats;
+    private final Benefit[][]      levelBenefitsList;
 
     /**
      * Standardowy konstruktor klasy postaci.
@@ -36,7 +37,7 @@ public class BasicClass
      * @param classList
      *            Lista
      */
-    public BasicClass(String name, Benefit[][] levelBenefitsList, AttackBonusLevel bonusType, boolean highFortitudeBonus,
+    public BaseClass(String name, Benefit[][] levelBenefitsList, AttackBonusLevel bonusType, boolean highFortitudeBonus,
             boolean highReflexeBonus, boolean highWillBonus, Skil[] classFleats)
     {
         super();
@@ -84,4 +85,13 @@ public class BasicClass
         return classFleats;
     }
 
+    public boolean isUseInMulticlass()
+    {
+        return true;
+    }
+
+    public Checkable[] getConditions()
+    {
+        return new Checkable[0];
+    }
 }

@@ -7,7 +7,5 @@ package engine.card.classes;
  */
 public enum AttackBonusLevel
 {
-    HIGH,
-    MEDIUM,
-    LOW;
+    HIGH, MEDIUM, LOW;
 }

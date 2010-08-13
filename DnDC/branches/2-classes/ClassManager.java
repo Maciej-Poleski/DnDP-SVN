@@ -2,33 +2,34 @@ package engine.card.classes;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import client.FrontToDB;
 
 import com.db4o.ObjectSet;
 
 /**
- * Klasa, singleton, przechowująca informacje o wszystkich klasach.
- * Możliwe że w przyuszłości, ilośc przechowywanych informacji będzie zredukowana do tylko nagłowków.
+ * Klasa, singleton, przechowująca informacje o wszystkich klasach. Możliwe że w przyuszłości, ilośc przechowywanych informacji będzie zredukowana do tylko
+ * nagłowków.
  * 
  * @author bambucha
  */
 public class ClassManager
 {
-    private static ClassManager instance;
-    private Map<String,BasicClass> classMap;
-    
+    private static ClassManager    instance;
+    private Map<String, BaseClass> classMap;
+
     protected ClassManager()
     {
-        classMap = new HashMap<String, BasicClass>();
-        ObjectSet<BasicClass> query = FrontToDB.getInstance().getDB().query(BasicClass.class);
-        for(BasicClass basicClass : query)
-            classMap.put(basicClass.getName(),basicClass);
+        classMap = new HashMap<String, BaseClass>();
+        ObjectSet<BaseClass> query = FrontToDB.getInstance().getDB().query(BaseClass.class);
+        for (BaseClass basicClass : query)
+            classMap.put(basicClass.getName(), basicClass);
     }
-    
+
     /**
-     * Zwraca instancję obiektu.
-     * Klasyczny wariant singletownowy.
+     * Zwraca instancję obiektu. Klasyczny wariant singletownowy.
+     * 
      * @return Obiekt Klasy
      */
     public static ClassManager getInstance()
@@ -37,9 +38,14 @@ public class ClassManager
             instance = new ClassManager();
         return instance;
     }
-    
-    public BasicClass getClass(String name)
+
+    public BaseClass getClass(String name)
     {
         return classMap.get(name);
+    }
+
+    public Set<String> getClassNames()
+    {
+        return classMap.keySet();
     }
 }
