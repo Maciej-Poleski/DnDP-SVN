@@ -1,8 +1,8 @@
 package engine.card.classes;
 
 import engine.benefit.Benefit;
-import engine.card.Checkable;
 import engine.card.skils.Skil;
+import engine.check.Checkable;
 
 /**
  * 

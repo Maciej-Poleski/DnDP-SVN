@@ -8,8 +8,8 @@ import java.util.TreeSet;
 
 import engine.Character;
 import engine.benefit.Benefit;
-import engine.card.Checkable;
 import engine.card.skils.Skil;
+import engine.check.Checkable;
 
 /**
  * Klasa menadżere klas postaci pojedynaczej postaci.
