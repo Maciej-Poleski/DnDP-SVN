@@ -6,7 +6,7 @@ import java.util.Map;
 
 import engine.Character;
 import engine.benefit.Benefit;
-import engine.card.Checkable;
+import engine.check.Checkable;
 
 /**
  * Klasa zajmująca się zarządzaniem atutami.

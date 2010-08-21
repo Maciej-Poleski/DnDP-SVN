@@ -31,6 +31,7 @@
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />
 		<delete dir="${junit.reports.dir}" />
+		<delete file="dnd.db" />
 	</target>
 	
 	<target name="compile" depends="init">
@@ -62,16 +63,21 @@
         <mkdir dir="${dist.dir}" />
         <jar destfile="${dist.jar}">
             <fileset dir="${build.src.dir}" />
+        	<fileset dir="${lib.dir}" excludes="**/dev**" />
+        	
             <zipfileset includes="**/*.class">
                 <fileset dir="${lib.dir}">
                     <exclude name="**/dev/*"/>
                 </fileset> 
                 <exclude name="**/EDU/**" />
             </zipfileset>
+            
+        	
             <manifest>
                 <attribute name="Manifest-Version" value="1.0" />
                 <attribute name="Ant-Version" value="${ant.version}" />
                 <attribute name="Main-Class" value="client.Main" />
+            	<!-- <attribute name="Class-Path" value="db4o-7.12.145.14409-all-java5.jar"/> -->
             </manifest>
         </jar>
     </target>

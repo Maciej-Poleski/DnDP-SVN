@@ -1,7 +1,7 @@
 package engine.card.fleats;
 
 import engine.benefit.Benefit;
-import engine.card.Checkable;
+import engine.check.Checkable;
 
 /**
  * Klasa opisująca atut w bazie danych.

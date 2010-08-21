@@ -1,7 +1,7 @@
 package engine.card.fleats;
 
 import engine.Character;
-import engine.card.Checkable;
+import engine.check.Checkable;
 
 /**
  * Klasa opisująca zależność między atutami.
