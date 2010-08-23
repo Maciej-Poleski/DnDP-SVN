@@ -64,22 +64,25 @@
         <jar destfile="${dist.jar}">
             <fileset dir="${build.src.dir}" />
         	<fileset dir="${lib.dir}" excludes="**/dev**" />
-        	
+        	<!--
             <zipfileset includes="**/*.class">
                 <fileset dir="${lib.dir}">
                     <exclude name="**/dev/*"/>
                 </fileset> 
                 <exclude name="**/EDU/**" />
             </zipfileset>
-            
+            -->
         	
             <manifest>
                 <attribute name="Manifest-Version" value="1.0" />
                 <attribute name="Ant-Version" value="${ant.version}" />
                 <attribute name="Main-Class" value="client.Main" />
-            	<!-- <attribute name="Class-Path" value="db4o-7.12.145.14409-all-java5.jar"/> -->
+            	<attribute name="Class-Path" value="db4o-7.12.145.14409-all-java5.jar"/>
             </manifest>
         </jar>
+    	<copy todir="${dist.dir}">
+    		<fileset dir="${lib.dir}" excludes="**/dev**"/>
+    	</copy>
     </target>
 	
 	<target name="run" depends="jar, init" >

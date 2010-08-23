@@ -5,14 +5,14 @@
 package engine.card.armor;
 
 import static org.junit.Assert.assertEquals;
+
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import engine.benefit.Benefit;
 import engine.card.bonus.DnDBonusManager;
 import engine.item.Value;
 import engine.item.armor.Plate;
-import gui.card.CardPanel;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 /**
  * 
@@ -29,7 +29,7 @@ public class DnDArmorTest
 
     public DnDArmorTest()
     {
-        main = new engine.Character(new CardPanel());
+        main = new engine.Character();
         bonusManager = new DnDBonusManager(main);
         t = new DnDArmor(main, main, bonusManager);
         plate = new Plate("xxx", 1.0, new Value(1, 2, 1, 1), new Benefit[0], 1, 1.0, 1);

@@ -16,7 +16,7 @@ import engine.card.abilities.AbilityType;
  */
 public class ReflexThrowTest
 {
-    static ReflexThrow test = new ReflexThrow(null);
+    static ReflexThrow test = new ReflexThrow();
 
     public ReflexThrowTest()
     {

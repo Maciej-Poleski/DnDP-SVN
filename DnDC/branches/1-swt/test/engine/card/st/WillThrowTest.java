@@ -17,7 +17,7 @@ import engine.card.abilities.AbilityType;
 public class WillThrowTest
 {
 
-    static WillThrow test = new WillThrow(null);
+    static WillThrow test = new WillThrow();
 
     public WillThrowTest()
     {}

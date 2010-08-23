@@ -6,12 +6,12 @@ package engine.card.abilities;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import engine.card.bonus.DnDBonusManager;
-import gui.card.AbilitiesPanel;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import engine.card.bonus.DnDBonusManager;
 
 /**
  * 
@@ -23,9 +23,7 @@ public class DnDAbilitiesTest
     public DnDAbilitiesTest()
     {}
 
-    AbilitiesPanel t    = new AbilitiesPanel();
-
-    DnDAbilities   dupa = new DnDAbilities(t, new DnDBonusManager(null));
+    DnDAbilities dupa = new DnDAbilities(new DnDBonusManager(null));
 
     @BeforeClass
     public static void setUpClass() throws Exception

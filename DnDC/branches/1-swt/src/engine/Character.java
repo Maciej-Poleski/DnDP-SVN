@@ -41,7 +41,6 @@ import engine.card.state.StateManager;
 import engine.item.BasicEquipmentManager;
 import engine.item.DnDEquipmentManager;
 import engine.item.Item;
-import gui.card.CardPanel;
 
 /**
  * Reprezentacja jednej postaci Wzorzec projektowy mediator + fasada
@@ -70,14 +69,14 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
      *            Widok karty postaci.
      * @par TODO kolejność inicjowania poszególnych rzeczy.
      */
-    public Character(CardPanel view)
+    public Character()
     {
         bonusManager = new DnDBonusManager(this);
-        abilities = new DnDAbilities(view.getAbilitiesPanel(), this);
+        abilities = new DnDAbilities(this);
         description = new DnDDescription();
-        HP = new DnDHitPoints(view.getHPPanel());
-        savingThrows = new DnDSavingThrows(this, view.getSavingThrowsPanel());
-        armor = new DnDArmor(this,this,this);
+        HP = new DnDHitPoints();
+        savingThrows = new DnDSavingThrows(this);
+        armor = new DnDArmor(this, this, this);
         attack = new DnDAttack(this);
         equipment = new DnDEquipmentManager(this);
         skilManager = new DnDSkilManager(this, this);
@@ -123,13 +122,11 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
 
     // Konice atrybutów
 
-
     @Override
     public Integer getAC()
     {
         return armor.getAC();
     }
-
 
     @Override
     public Integer getFlatFootetAC()
@@ -483,7 +480,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     // Koniec stanów postaci
-    
+
     public Integer testSkil(String name) throws UnavailableTestException
     {
         return skilManager.testSkil(name);
@@ -498,6 +495,5 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     {
         return skilManager.getSkilNameSet();
     }
-    
-    
+
 }

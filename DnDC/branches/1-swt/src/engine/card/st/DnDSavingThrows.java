@@ -1,7 +1,6 @@
 package engine.card.st;
 
 import engine.card.bonus.BonusManager;
-import gui.card.SavingThrowsPanel;
 
 /**
  * Klasa opiekująca sie rzutami obronnymi
@@ -23,13 +22,13 @@ public class DnDSavingThrows implements SavingThrows
      * @param view
      *            Widok rzutów.
      */
-    public DnDSavingThrows(BonusManager bonusManager, SavingThrowsPanel view)
+    public DnDSavingThrows(BonusManager bonusManager)
     {
-        forttiude = new FortitudeThrow(view.getFortitudeThrow());
+        forttiude = new FortitudeThrow();
         bonusManager.registerBonus("FortitudeThrow", forttiude);
-        reflex = new ReflexThrow(view.getReflexThrow());
+        reflex = new ReflexThrow();
         bonusManager.registerBonus("ReflexThrow", reflex);
-        will = new WillThrow(view.getWillThrow());
+        will = new WillThrow();
         bonusManager.registerBonus("WillThrow", will);
         spell = 0.0;
     }
@@ -61,7 +60,7 @@ public class DnDSavingThrows implements SavingThrows
     @Override
     public void setSpellResistance(Double newValue)
     {
-        if (newValue < 0)
+        if(newValue < 0)
             throw new IllegalArgumentException("Nie może być < 0");
         spell = newValue;
     }

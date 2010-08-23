@@ -1,7 +1,5 @@
 package engine.card.st;
 
-import javax.swing.event.ChangeListener;
-
 import engine.card.abilities.AbilityType;
 
 /**
@@ -19,9 +17,9 @@ public class WillThrow extends SavingThrow
      * @param view
      *            Widok rzutu obronnego.
      */
-    public WillThrow(ChangeListener view)
+    public WillThrow()
     {
-        super(view);
+        super();
     }
 
     @Override

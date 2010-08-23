@@ -11,13 +11,10 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.SwingUtilities;
-
 /**
  * Najważniejsza klasa w programie.
  * 
- * @par TODO Na koniec przejrzeć i sprawdzić inicjalizację
- *          Zrobić jak należy @code run() @endcode czyli shutdown hook uruchamiający closeConnection w handle
+ * @par TODO Na koniec przejrzeć i sprawdzić inicjalizację Zrobić jak należy @code run() @endcode czyli shutdown hook uruchamiający closeConnection w handle
  * @author bambucha
  */
 public class Main extends Thread
@@ -35,7 +32,7 @@ public class Main extends Thread
         }
         catch(IOException ex)
         {
-            Logger.getLogger("Main-start").log(Level.INFO,"Błąd czytania pliku, bądz plik nie istnieje", ex);
+            Logger.getLogger("Main-start").log(Level.INFO, "Błąd czytania pliku, bądz plik nie istnieje", ex);
             prop.clear();
             prop.setProperty("DB URL", "193.193.65.227");
             prop.setProperty("DB PORT", "31117");
@@ -51,22 +48,12 @@ public class Main extends Thread
             chatHeandler = new Chat(handle);
         }
 
-        SwingUtilities.invokeLater(new Runnable()
-        {
-
-            @Override
-            public void run()
-            {
-                window = new MainWindow(chatHeandler);
-                chatHeandler.setGui(window.getChat());
-            }
-        });
+        window = new MainWindow(chatHeandler);
+        window.start();
 
     }
-    
 
-    public static void main(String[] args) throws ClassNotFoundException,
-            SQLException
+    public static void main(String[] args) throws ClassNotFoundException, SQLException
     {
         Runtime.getRuntime().addShutdownHook(new Main());
     }

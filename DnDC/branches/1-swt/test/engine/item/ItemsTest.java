@@ -18,11 +18,10 @@ import engine.item.things.Helmet;
 import engine.item.things.Necklace;
 import engine.item.things.Ring;
 import engine.item.things.Shirt;
-import gui.card.CardPanel;
 
 public class ItemsTest
 {
-    static Character           character        = new Character(new CardPanel());
+    static Character           character        = new Character();
     static DnDEquipmentManager equipmentManager = new DnDEquipmentManager(character);
 
     static Value               value            = new Value(0, 1, 2, 0);

@@ -17,7 +17,7 @@ import engine.card.abilities.AbilityType;
 public class FortitudeThrowTest
 {
 
-    static FortitudeThrow test = new FortitudeThrow(null);
+    static FortitudeThrow test = new FortitudeThrow();
 
     public FortitudeThrowTest()
     {}

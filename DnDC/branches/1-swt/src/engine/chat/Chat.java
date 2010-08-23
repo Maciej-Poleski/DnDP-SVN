@@ -4,9 +4,7 @@ import gui.chat.ChatPanel;
 
 import java.io.IOException;
 
-import javax.swing.text.MutableAttributeSet;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
+import org.eclipse.swt.widgets.Display;
 
 import client.FrontToServer;
 import client.ParserHandler;
@@ -18,13 +16,13 @@ import client.ParserHandler;
  */
 public class Chat extends Thread
 {
+    private ChatPanel     gui;
+    private String        nick;
+    private FrontToServer handle;
 
-    private MutableAttributeSet timeFormat;
-    private MutableAttributeSet nickFormat;
-    private MutableAttributeSet messageFormat;
-    private ChatPanel           gui;
-    private String              nick;
-    private FrontToServer       handle;
+    private String        date;
+    private String        name;
+    private String        message;
 
     /**
      * Standarody konstruktor tworzy czas dla bezimiennego.
@@ -32,19 +30,13 @@ public class Chat extends Thread
     public Chat(FrontToServer handle)
     {
         this.nick = "No name ";
-        timeFormat = new SimpleAttributeSet();
-        StyleConstants.setItalic(timeFormat, true);
-        nickFormat = new SimpleAttributeSet();
-        StyleConstants.setBold(nickFormat, true);
-        messageFormat = new SimpleAttributeSet();
         this.handle = handle;
         handle.setContentHandlerForParser(new ParserHandler(this));
         handle.start();
     }
 
     /**
-     * Wyświetla tekst z odpowienim formatem 1 - format czasu 2 - format nick'u
-     * 3 - format wiadomości
+     * Wyświetla tekst z odpowienim formatem 1 - format czasu 2 - format nick'u 3 - format wiadomości
      * 
      * @param text
      *            teskt do wyświetlenia
@@ -56,15 +48,31 @@ public class Chat extends Thread
         switch (state)
         {
             case 1:
-                gui.showMessage(text, timeFormat);
+                this.date = text;
                 break;
             case 2:
-                gui.showMessage(text, nickFormat);
+                this.name = text;
                 break;
             case 3:
-                gui.showMessage(text, messageFormat);
+                this.message = text;
                 break;
         }
+        if(date != null && name != null && message != null)
+        {
+            gui.getDisplay().asyncExec(new Runnable()
+            {
+                
+                @Override
+                public void run()
+                {
+                    gui.showMessage(date, name, message);
+                }
+            });
+            date = null;
+            name = null;
+            message = null;
+        }
+
     }
 
     public void sendMessage(String message)
