@@ -5,6 +5,8 @@
 package engine.check;
 
 /**
+ * Interfejs sprawdzający...
+ * Jeżeli postać spełnia warunki 
  * 
  * @author evil, bambucha
  */

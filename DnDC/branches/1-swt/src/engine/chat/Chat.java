@@ -4,8 +4,6 @@ import gui.chat.ChatPanel;
 
 import java.io.IOException;
 
-import org.eclipse.swt.widgets.Display;
-
 import client.FrontToServer;
 import client.ParserHandler;
 

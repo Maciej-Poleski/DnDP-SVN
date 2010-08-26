@@ -1,5 +1,7 @@
 package engine.card.abilities;
 
+import java.util.Observable;
+
 import engine.card.bonus.Bonusable;
 
 /**
@@ -9,7 +11,7 @@ import engine.card.bonus.Bonusable;
  * @see engine.card.abilities.Abilities
  * @see engine.card.abilities.DnDAbilities
  */
-public class Abiliti implements Bonusable
+public class Abiliti extends Observable implements Bonusable
 {
     Integer value;
     Integer modifier;
@@ -60,15 +62,21 @@ public class Abiliti implements Bonusable
     {
         if(value < 0)
             throw new IllegalArgumentException("Ujmny atrybut");
+        if(this.value != value)
+            setChanged();
         this.value = value;
         this.modifier = (this.value + this.bonus - 10) / 2;
+        notifyObservers(this);
     }
 
     @Override
     public synchronized void setBonus(Integer bonus)
     {
+        if(this.bonus != bonus)
+            setChanged();
         this.bonus = bonus;
         this.modifier = (this.value + this.bonus - 10) / 2;
+        notifyObservers(this);
     }
 
     @Override

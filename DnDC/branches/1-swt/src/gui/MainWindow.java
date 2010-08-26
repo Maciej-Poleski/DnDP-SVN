@@ -1,12 +1,14 @@
 package gui;
 
 import engine.chat.Chat;
+import gui.card.AbilitiesView;
 import gui.chat.ChatPanel;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
@@ -33,6 +35,7 @@ public class MainWindow extends Thread
         data.left = new FormAttachment(0);
         data.right = new FormAttachment(100);
         chatPanel.setLayoutData(data);
+        
         shell.pack();
         shell.open();
     }
@@ -52,5 +55,28 @@ public class MainWindow extends Thread
     public ChatPanel getChat()
     {
         return chatPanel;
+    }
+    
+    public static void main(String args[])
+    {
+        Display display = new Display();
+        Shell shell = new Shell(display);
+        shell.setLayout(new FormLayout());
+        FormData data = new FormData();
+        data.top = new FormAttachment(0);
+        data.bottom = new FormAttachment(100);
+        data.left = new FormAttachment(0);
+        data.right = new FormAttachment(100);
+        
+        Composite comp = new AbilitiesView(shell, SWT.NONE);
+        comp.setLayoutData(data);
+        
+        shell.pack();
+        shell.open();
+        
+        while (!shell.isDisposed())
+            if(!display.readAndDispatch())
+                display.sleep();
+        display.dispose();
     }
 }

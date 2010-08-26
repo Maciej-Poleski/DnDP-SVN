@@ -4,7 +4,7 @@ import engine.Character;
 import engine.card.abilities.AbilityType;
 
 /**
- * Sprawdza czy atrybut ma wystarczającą wartośc.
+ * Sprawdza czy wskazany atrybut ma wystarczającą wartośc.
  * 
  * @author bambucha
  */

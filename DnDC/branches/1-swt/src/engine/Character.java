@@ -17,6 +17,9 @@ import engine.card.bonus.BaseBonusHandler;
 import engine.card.bonus.BonusManager;
 import engine.card.bonus.Bonusable;
 import engine.card.bonus.DnDBonusManager;
+import engine.card.classes.BaseClass;
+import engine.card.classes.CharacterClassManager;
+import engine.card.classes.DnDCharacterClassManager;
 import engine.card.description.Description;
 import engine.card.description.DnDDescription;
 import engine.card.description.God;
@@ -38,6 +41,7 @@ import engine.card.st.SavingThrows;
 import engine.card.state.DnDStateManager;
 import engine.card.state.State;
 import engine.card.state.StateManager;
+import engine.check.CheckFailException;
 import engine.item.BasicEquipmentManager;
 import engine.item.DnDEquipmentManager;
 import engine.item.Item;
@@ -48,7 +52,7 @@ import engine.item.Item;
  * @author evil , bambucha
  */
 public class Character implements Abilities, Attack, Armor, Description, HitPoints, SavingThrows, BonusManager, CharacterFleatManager,
-        StateManager, BasicEquipmentManager
+        StateManager, BasicEquipmentManager, CharacterClassManager
 {
     private Abilities             abilities;
     private Armor                 armor;
@@ -61,6 +65,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     private SkilManager           skilManager;
     private CharacterFleatManager characterFleatManager;
     private StateManager          stateManager;
+    private CharacterClassManager classManager;
 
     /**
      * Konstruktor postaci<br/>
@@ -82,6 +87,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         skilManager = new DnDSkilManager(this, this);
         characterFleatManager = new DnDCharacterFleatManager(this);
         stateManager = new DnDStateManager(this);
+        classManager = new DnDCharacterClassManager(this);
     }
 
     @Override
@@ -491,9 +497,54 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         return skilManager.getSkil(name);
     }
 
+    
     public Set<String> getSkilNameSet()
     {
         return skilManager.getSkilNameSet();
     }
 
+    //Koniec umiejętności
+
+    @Override
+    public Integer getLevel()
+    {
+        return classManager.getLevel();
+    }
+
+    @Override
+    public boolean isMultiClassCharacter()
+    {
+        return classManager.isMultiClassCharacter();
+    }
+
+    @Override
+    public Integer getExperiancePoint()
+    {
+        return classManager.getExperiancePoint();
+    }
+
+    @Override
+    public void setExperiancePoint(Integer experiancePoint)
+    {
+        classManager.setExperiancePoint(experiancePoint);
+    }
+
+    @Override
+    public boolean isPromoted()
+    {
+        return classManager.isPromoted();
+    }
+
+    @Override
+    public void promote(BaseClass classes) throws CheckFailException
+    {
+        classManager.promote(classes);
+    }
+
+    @Override
+    public Integer getClassLevel(BaseClass classes)
+    {
+        return classManager.getClassLevel(classes);
+    }
+    
 }

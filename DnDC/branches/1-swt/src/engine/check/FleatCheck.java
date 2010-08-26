@@ -5,7 +5,7 @@ import engine.card.fleats.CharacterFleat.State;
 import engine.card.fleats.Fleat;
 
 /**
- *
+ * Sprawdza czy postać posiada wymagany atut.
  * 
  * @author bambucha
  */
