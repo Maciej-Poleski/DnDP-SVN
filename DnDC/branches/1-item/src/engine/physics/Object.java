@@ -98,6 +98,12 @@ public abstract class Object {
 		return nodes.add(new Node(e));
 	}
 
+	/**
+	 * [PL] Dodaje krawędź między zadanymi punktami.
+	 * 
+	 * @param a
+	 * @param b
+	 */
 	public void addEdge(Point a, Point b) {
 		if (a == null || b == null)
 			throw new IllegalArgumentException("Point mustn't be null");
@@ -124,6 +130,33 @@ public abstract class Object {
 		// FIXME TODO Zaimplementować te funkcje SOLIDNIE.
 		throw new UnsupportedOperationException(
 				"Metoda engine.phisics.Object.addObject(Object,Point,Point) Nie została zaimplementowana.");
+	}
+
+	public final double getLength() {
+		if (nodes == null)
+			throw new IllegalStateException(
+					"Unable to get size of non-existent object");
+		if (nodes.size() < 2)
+			throw new IllegalStateException(
+					"Unable to get size of non-size object");
+		Point a, b;
+		a = b = nodes.get(0).getPoint();
+		for (Node node : nodes) {
+			if (Point.distanceBetween(a, b, Point.length) < Point
+					.distanceBetween(a, node.getPoint(), Point.length))
+				b = node.getPoint();
+		}
+		{
+			Point c = a;
+			a = b;
+			b = c;
+		}
+		for (Node node : nodes) {
+			if (Point.distanceBetween(a, b, Point.length) < Point
+					.distanceBetween(a, node.getPoint(), Point.length))
+				b = node.getPoint();
+		}
+		return Point.distanceBetween(a, b, Point.length);
 	}
 
 	/**
