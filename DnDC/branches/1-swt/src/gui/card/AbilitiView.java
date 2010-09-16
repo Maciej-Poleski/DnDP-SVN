@@ -32,7 +32,7 @@ public class AbilitiView extends Composite implements Observer
         this.valueLable = new Label(this, SWT.CENTER);
         this.modifierLabel = new Label(this, SWT.CENTER);
 
-        nameLabel.setLayoutData(new GridData(80, 25));
+        nameLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,true,true));
         valueLable.setLayoutData(new GridData(35, 25));
         modifierLabel.setLayoutData(new GridData(35, 25));
 

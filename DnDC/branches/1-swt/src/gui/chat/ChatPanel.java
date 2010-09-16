@@ -72,7 +72,7 @@ public class ChatPanel extends Composite
         sendButtonFormData.right = new FormAttachment(100);
         sendButtonFormData.bottom = new FormAttachment(100);
         sendButton.setLayoutData(sendButtonFormData);
-        sendButton.setText("Send");
+        sendButton.setText("Send"); //$NON-NLS-1$
 
         sendButton.addListener(SWT.Selection, new Listener()
         {
