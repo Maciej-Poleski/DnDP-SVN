@@ -4,7 +4,7 @@ import engine.Character;
 import engine.card.skils.Skil;
 
 /**
- *
+ * Sprawdza czy postać ma wystarczającą ilośc rank w danej umiejętności.
  * 
  * @author bambucha
  */

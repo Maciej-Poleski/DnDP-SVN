@@ -2,38 +2,42 @@
 
 <project basedir="." default="compile-all" name="DnDC build file">
 
+	<import file="lib/dev/one-jar-ant-task.xml" />
+
 	<target name="init">
 		<property name="src.dir" value="src" />
 		<property name="src.encoding" value="UTF-8" />
 		<property name="test.dir" value="test" />
 		<property name="test.encoding" value="UTF-8" />
-		
+
 		<property name="build.dir" value="build" />
 		<property name="build.src.dir" value="build/class" />
 		<property name="build.test.dir" value="build/tests/" />
-		
+
 		<property name="dist.dir" value="dist/" />
 		<property name="dist.javadoc.dir" value="dist/javadoc" />
 		<property name="dist.doxygen.dir" value="dist/doxygen" />
-		<property name="dist.jar" value="dist/DnDC.jar" />
-		
+		<property name="dist.jar" value="dist/DnDC" />
+
 		<property name="lib.dir" value="lib" />
-		
+
 		<property name="javadoc.dest.dir" value="${dist.javadoc.dir}" />
 		<property name="javadoc.docencoding" value="UTF-8" />
 		<property name="javadoc.author" value="true" />
 		<property name="javadoc.version" value="true" />
 		<property name="javadoc.use" value="true" />
 		<property name="javadoc.windowtitle" value="DnDC API" />
+		
+		<property name="OneJar.MainClass" value="gui.MainWindow" />
 	</target>
-	
-	<target name="clean" depends="init">
+
+	<target name="clean" depends="init" description="Czyści projekt">
 		<delete dir="${build.dir}" />
 		<delete dir="${dist.dir}" />
 		<delete dir="${junit.reports.dir}" />
 		<delete file="dnd.db" />
 	</target>
-	
+
 	<target name="compile" depends="init">
 		<mkdir dir="${build.src.dir}" />
 		<javac destdir="${build.src.dir}">
@@ -44,66 +48,88 @@
 			</classpath>
 		</javac>
 	</target>
-	
+
 	<target name="compile-test" depends="init">
-        <mkdir dir="${build.test.dir}" />
-        <javac destdir="${build.test.dir}">
-            <src path="${test.dir}" />
-            <classpath>
-                <fileset dir="${lib.dir}" />
-                <path path="${build.src.dir}" />
-            	<path path="${build.test.dir}" />
-            </classpath>
-        </javac>
-    </target>
-	
-	<target name="compile-all" depends="compile, compile-test" />
-	
-    <target name="jar" depends="init, compile" >
-        <mkdir dir="${dist.dir}" />
-        <jar destfile="${dist.jar}">
-            <fileset dir="${build.src.dir}" />
-        	<fileset dir="${lib.dir}" excludes="**/dev**" />
-        	
-            <zipfileset includes="**/*.class">
-                <fileset dir="${lib.dir}">
-                    <exclude name="**/dev/*"/>
-                </fileset> 
-                <exclude name="**/EDU/**" />
-            </zipfileset>
-            
-        	
-            <manifest>
-                <attribute name="Manifest-Version" value="1.0" />
-                <attribute name="Ant-Version" value="${ant.version}" />
-                <attribute name="Main-Class" value="client.Main" />
-            	<!-- <attribute name="Class-Path" value="db4o-7.12.145.14409-all-java5.jar"/> -->
-            </manifest>
-        </jar>
-    </target>
-	
-	<target name="run" depends="jar, init" >
-		<java fork="true" jar="dist/DnDC.jar" />
+		<mkdir dir="${build.test.dir}" />
+		<javac destdir="${build.test.dir}">
+			<src path="${test.dir}" />
+			<classpath>
+				<fileset dir="${lib.dir}" />
+				<path path="${build.src.dir}" />
+				<path path="${build.test.dir}" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="compile-all" depends="compile, compile-test" description="Kompiluje projekt oraz testy" />
+
+	<target name="pre-jar" depends="compile">
+		<mkdir dir="${dist.dir}" />
 	</target>
 	
-	
-	
+	<!--
+		do targetu trzeba doprowadzić dwie zmienne
+		system - OS na jakmi ma pracować aplikacja
+		plafrom - plaforma na której ma pracować aplikacja
+	-->
+
+	<target name="jar-build">
+		<one-jar destfile="${dist.jar}-${system}-${platform}.jar">
+			<main>
+				<fileset dir="${build.src.dir}" />
+			</main>
+			<lib>
+				<fileset dir="${lib.dir}">
+					<include name="**.jar" />
+					<exclude name="**/dev/**" />
+					<exclude name="**/platform/**" />
+				</fileset>
+				<fileset dir="lib/platform/${system}/${platform}" />
+			</lib>
+
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0" />
+				<attribute name="Ant-Version" value="${ant.version}" />
+				<attribute name="One-Jar-Main-Class" value="${OneJar.MainClass}" />
+			</manifest>
+		</one-jar>
+	</target>
+
+	<target name="jar-linux-64" depends="pre-jar">
+		<antcall target="jar-build">
+			<param name="system" value="linux" />
+			<param name="platform" value="64" />
+		</antcall>
+	</target>
+
+	<target name="jar-linux-32" depends="pre-jar">
+		<antcall target="jar-build">
+			<param name="system" value="linux" />
+			<param name="platform" value="32" />
+		</antcall>
+	</target>
+
+	<target name="jar-clean">
+		<delete dir="build" />
+	</target>
+
+	<target name="jar" depends="jar-linux-32,jar-linux-64,jar-clean" description="Buduje pliki z aplikacją na wszystkie platformy" />
+
 	<target name="javadoc" depends="init">
 		<mkdir dir="dist/javadoc" />
-		<javadoc Encoding="${src.encoding}" docencoding="${javadoc.docencoding}" destdir="${javadoc.dest.dir}" author="${javadoc.author}" version="${javadoc.version}" use="${javadoc.use}" windowtitle="${javadoc.windowtitle}" >
+		<javadoc Encoding="${src.encoding}" docencoding="${javadoc.docencoding}" destdir="${javadoc.dest.dir}" author="${javadoc.author}" version="${javadoc.version}" use="${javadoc.use}" windowtitle="${javadoc.windowtitle}">
 			<packageset dir="${src.dir}" />
-			<tag name="par" scope="all" description=""/>
-			<tag name="code" scope="all" description="&quot;code&quot;"/>
+			<tag name="par" scope="all" description="" />
+			<tag name="code" scope="all" description="&quot;code&quot;" />
 			<tag name="endcode" scope="all" description="&quot;/code&quot;" />
 		</javadoc>
 	</target>
-	
-	<target name="doxygen">
-		   <mkdir dir="dist/doxygen" />
-		   <exec dir="." executable="doxygen">
-		   	<arg value="doxygen.cfg"/>
-		   </exec>
-	</target>
 
-	<target name="all" depends="clean, jar, javadoc, doxygen" />
+	<target name="doxygen">
+		<mkdir dir="dist/doxygen" />
+		<exec dir="." executable="doxygen">
+			<arg value="doxygen.cfg" />
+		</exec>
+	</target>
+	<target name="all" depends="clean, jar, javadoc, doxygen" description="Czyści, buduje oraz tworzy dokumentację" />
 </project>

@@ -1,8 +1,5 @@
 package engine.card.st;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import engine.Dice;
 import engine.card.bonus.Bonusable;
 
@@ -14,22 +11,19 @@ import engine.card.bonus.Bonusable;
  */
 public abstract class SavingThrow implements Bonusable
 {
-    private Integer        base;
-    private Integer        bonus;
-    private ChangeListener view;
+    private Integer base;
+    private Integer bonus;
 
     /**
-     * Standardowy konstrukor, tworzy rzut z zerową premią i dodatkowymi
-     * modyfikatorami
+     * Standardowy konstrukor, tworzy rzut z zerową premią i dodatkowymi modyfikatorami
      * 
      * @param view
      *            Widok rzutu
      */
-    public SavingThrow(ChangeListener view)
+    public SavingThrow()
     {
         this.base = 0;
         this.bonus = 0;
-        this.view = view;
     }
 
     /**
@@ -72,10 +66,9 @@ public abstract class SavingThrow implements Bonusable
      */
     public void setBaseModifier(Integer base)
     {
-        if (base < 0)
+        if(base < 0)
             throw new IllegalArgumentException("Nie może być < 0");
         this.base = base;
-        view.stateChanged(new ChangeEvent(this));
     }
 
     /**
@@ -97,10 +90,9 @@ public abstract class SavingThrow implements Bonusable
     @Override
     public void setBonus(Integer bonus)
     {
-        if (bonus == null)
+        if(bonus == null)
             throw new NullPointerException("Nie może być null");
         this.bonus = bonus;
-        view.stateChanged(new ChangeEvent(this));
     }
 
 }

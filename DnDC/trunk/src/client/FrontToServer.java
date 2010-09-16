@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.xml.sax.ContentHandler;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
@@ -64,11 +65,8 @@ public class FrontToServer extends Thread
     {
         try
         {
-            while (input.ready())
-            {
-                String toPars = input.readLine();
-                parser.parse(toPars);
-            }
+                parser.parse(new InputSource(input));
+            
 
         }
         catch(IOException ex)

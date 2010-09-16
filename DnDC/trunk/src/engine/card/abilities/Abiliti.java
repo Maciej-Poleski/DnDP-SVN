@@ -1,38 +1,33 @@
 package engine.card.abilities;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import java.util.Observable;
 
 import engine.card.bonus.Bonusable;
 
 /**
- * Klasa atrybutu stworzona na potrzeby enkapsulację modyfikatora i wartości.
- * Implementuje Bonusable, by uwzględnić modyfikatory z usprawnienia.
+ * Klasa atrybutu stworzona na potrzeby enkapsulację modyfikatora i wartości. Implementuje Bonusable, by uwzględnić modyfikatory z usprawnienia.
  * 
  * @author bambucha
  * @see engine.card.abilities.Abilities
  * @see engine.card.abilities.DnDAbilities
  */
-public class Abiliti implements Bonusable
+public class Abiliti extends Observable implements Bonusable
 {
-    Integer        value;
-    Integer        modifier;
-    Integer        bonus;
-    ChangeListener view;
+    Integer value;
+    Integer modifier;
+    Integer bonus;
 
     /**
-     * Konstruktor budujący atrybut o wartości 10. Dodatkowy argument to
-     * interfejs widoku danego obiektu
+     * Konstruktor budujący atrybut o wartości 10. Dodatkowy argument to interfejs widoku danego obiektu
      * 
      * @param view
      *            Widok dla atrybutu
      */
-    public Abiliti(ChangeListener view)
+    public Abiliti()
     {
         this.value = 10;
         this.modifier = 0;
         this.bonus = 0;
-        this.view = view;
     }
 
     /**
@@ -65,20 +60,23 @@ public class Abiliti implements Bonusable
      */
     public synchronized void setValue(Integer value)
     {
-        if (value < 0)
+        if(value < 0)
             throw new IllegalArgumentException("Ujmny atrybut");
+        if(this.value != value)
+            setChanged();
         this.value = value;
         this.modifier = (this.value + this.bonus - 10) / 2;
-        view.stateChanged(new ChangeEvent(this));
-
+        notifyObservers(this);
     }
 
     @Override
     public synchronized void setBonus(Integer bonus)
     {
+        if(this.bonus != bonus)
+            setChanged();
         this.bonus = bonus;
         this.modifier = (this.value + this.bonus - 10) / 2;
-        view.stateChanged(new ChangeEvent(this));
+        notifyObservers(this);
     }
 
     @Override

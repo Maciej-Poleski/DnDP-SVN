@@ -6,14 +6,10 @@ package engine.card.bonus;
 
 import static org.junit.Assert.assertEquals;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import org.junit.Test;
 
 import engine.Character;
 import engine.card.abilities.Abiliti;
-import gui.card.CardPanel;
 
 /**
  * 
@@ -21,29 +17,11 @@ import gui.card.CardPanel;
  */
 public class BonusManagerTest
 {
-    static Abiliti         s = new Abiliti(new ChangeListener()
-                             {
+    static Abiliti         s = new Abiliti();
+    static Abiliti         d = new Abiliti();
+    static Abiliti         w = new Abiliti();
 
-                                 @Override
-                                 public void stateChanged(ChangeEvent e)
-                                 {}
-                             });
-    static Abiliti         d = new Abiliti(new ChangeListener()
-                             {
-
-                                 @Override
-                                 public void stateChanged(ChangeEvent e)
-                                 {}
-                             });
-    static Abiliti         w = new Abiliti(new ChangeListener()
-                             {
-
-                                 @Override
-                                 public void stateChanged(ChangeEvent e)
-                                 {}
-                             });
-
-    static Character       a = new Character(new CardPanel());
+    static Character       a = new Character();
     static DnDBonusManager t = new DnDBonusManager(a);
 
     /**

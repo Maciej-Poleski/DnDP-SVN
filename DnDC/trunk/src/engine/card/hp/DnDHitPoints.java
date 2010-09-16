@@ -1,8 +1,5 @@
 package engine.card.hp;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 /**
  * Klasa obsługująca punkty życia i inne zdażenia.
  * 
@@ -10,13 +7,12 @@ import javax.swing.event.ChangeListener;
  */
 public class DnDHitPoints implements HitPoints
 {
-    private Integer        maxHP;
-    private Integer        HP;
-    private ChangeListener view;
+    private Integer maxHP;
+    private Integer HP;
 
-    public DnDHitPoints(ChangeListener view)
+    public DnDHitPoints()
     {
-        this.view = view;
+
     }
 
     @Override
@@ -29,7 +25,6 @@ public class DnDHitPoints implements HitPoints
     public void setHP(Integer HP)
     {
         this.HP = HP;
-        view.stateChanged(new ChangeEvent(this));
     }
 
     @Override
@@ -41,9 +36,8 @@ public class DnDHitPoints implements HitPoints
     @Override
     public void setMaxHP(Integer maxHP)
     {
-        if (maxHP < 0)
+        if(maxHP < 0)
             throw new IllegalArgumentException("Max HP < 0");
         this.maxHP = maxHP;
-        view.stateChanged(new ChangeEvent(this));
     }
 }

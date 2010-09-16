@@ -1,157 +1,137 @@
 package gui.chat;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultStyledDocument;
-import javax.swing.text.StyledDocument;
-import javax.swing.text.rtf.RTFEditorKit;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StyleRange;
+import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Text;
 
 import engine.chat.Chat;
 
 /**
- * Panel z chatem. Przyjmuje informacje, nie zajmuje się jej obróbką.
+ * 
  * 
  * @author bambucha
  */
-public class ChatPanel extends JPanel implements KeyListener, ActionListener,
-        MouseListener
+public class ChatPanel extends Composite
 {
-
-    private static final long serialVersionUID = 1L;
-    private JTextField        fieldToTyped;
-    private JTextPane         conversation;
-    private JScrollPane       t;
-    private Chat              handle;
-    private StyledDocument    doc;
-    private RTFEditorKit      kit;
+    private final Button     sendButton;
+    private final Text       typeField;
+    private final StyledText chatArea;
+    private final Chat       chat;
 
     /**
-     * Buduje całość
      * 
-     * @param handle
-     *            Referencja do fasady od serwera
+     * @param parent
+     *            Obiekt nadrzędny
+     * @param style
+     *            Styl
      */
-    public ChatPanel(Chat handle)
+    public ChatPanel(final Composite parent, int style, Chat chat)
     {
-        super();
-        // this.setPreferredSize(new Dimension(300, 400));
-        this.handle = handle;
+        super(parent, style);
 
-        kit = new RTFEditorKit();
-        doc = new DefaultStyledDocument();
+        this.chat = chat;
 
-        this.setLayout(new BorderLayout());
-        conversation = new JTextPane();
+        FormLayout layout = new FormLayout();
+        layout.marginTop = 10;
+        layout.marginBottom = 10;
+        layout.marginLeft = 10;
+        layout.marginRight = 10;
+        this.setLayout(layout);
 
-        conversation.setStyledDocument(doc);
-        conversation.setEditorKit(kit);
-        conversation.addMouseListener(this);
+        final int margin = 10;
 
-        conversation.setPreferredSize(new Dimension(700, 300));
-        t = new JScrollPane(conversation);
-        this.add(t, BorderLayout.CENTER);
+        sendButton = new Button(this, SWT.PUSH);
+        typeField = new Text(this, SWT.LEFT);
+        chatArea = new StyledText(this, SWT.READ_ONLY | SWT.WRAP);
 
-        JPanel x = new JPanel();
-        x.setLayout(new BoxLayout(x, BoxLayout.X_AXIS));
-        fieldToTyped = new JTextField();
-        fieldToTyped.addKeyListener(this);
-        x.add(fieldToTyped);
+        final FormData chatAreaFormData = new FormData(290, 50);
+        chatAreaFormData.top = new FormAttachment(0, 0);
+        chatAreaFormData.left = new FormAttachment(0);
+        chatAreaFormData.right = new FormAttachment(100);
+        chatAreaFormData.bottom = new FormAttachment(typeField, -margin);
+        chatArea.setLayoutData(chatAreaFormData);
 
-        JButton tx = new JButton("Send");
-        tx.addActionListener(this);
-        x.add(tx);
-        this.add(x, BorderLayout.PAGE_END);
+        final FormData typeFieldFormData = new FormData(200, 25);
+        typeFieldFormData.right = new FormAttachment(sendButton, -5);
+        typeFieldFormData.left = new FormAttachment(0);
+        typeFieldFormData.bottom = new FormAttachment(100);
+        typeField.setLayoutData(typeFieldFormData);
 
-        conversation.setEditable(false);
-        conversation.setContentType("text/plain");
-        this.setVisible(true);
-    }
+        final FormData sendButtonFormData = new FormData(80, 25);
+        sendButtonFormData.top = new FormAttachment(chatArea, margin);
+        sendButtonFormData.right = new FormAttachment(100);
+        sendButtonFormData.bottom = new FormAttachment(100);
+        sendButton.setLayoutData(sendButtonFormData);
+        sendButton.setText("Send"); //$NON-NLS-1$
 
-    /**
-     * Wyświetla zadany tekst z uwzględnienim formatu
-     * 
-     * @param message
-     *            Tekst do wyświetlenia
-     * @param aset
-     *            Format wiadomość
-     */
-    public void showMessage(String message, AttributeSet aset)
-    {
-        try
+        sendButton.addListener(SWT.Selection, new Listener()
         {
-            doc.insertString(doc.getLength(), message, aset);
-            conversation.setDocument(doc);
-            conversation.setCaretPosition(conversation.getText().length());
-        }
-        catch(BadLocationException ex)
+            @Override
+            public void handleEvent(Event event)
+            {
+                sendMessage();
+            }
+        });
+
+        typeField.addKeyListener(new KeyListener()
         {
-            Logger.getLogger(ChatPanel.class.getName()).log(Level.SEVERE, null,
-                    ex);
-        }
 
+            @Override
+            public void keyReleased(KeyEvent e)
+            {}
+
+            @Override
+            public void keyPressed(KeyEvent e)
+            {
+                if(e.keyCode == SWT.CR)
+                    sendMessage();
+            }
+        });
+
+        this.setSize(500, 500);
+        this.pack();
     }
 
-    @Override
-    public void keyTyped(KeyEvent e)
-    {}
-
-    @Override
-    public void keyPressed(KeyEvent e)
+    private void sendMessage()
     {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER)
-        {
-            handle.sendMessage(fieldToTyped.getText());
-            fieldToTyped.setText("");
-        }
+        if(typeField.getText().length() > 0)
+            chat.sendMessage(typeField.getText());
     }
 
-    @Override
-    public void keyReleased(KeyEvent e)
-    {}
-
-    @Override
-    public void actionPerformed(ActionEvent e)
+    public void showMessage(String date, String name, String message)
     {
-        handle.sendMessage(fieldToTyped.getText());
-        fieldToTyped.setText("");
+        int begin = chatArea.getCharCount();
+        chatArea.append(date + ' ');
+        StyleRange dateStyle = new StyleRange();
+        dateStyle.fontStyle = SWT.ITALIC;
+        dateStyle.start = begin;
+        dateStyle.length = date.length();
+        chatArea.setStyleRange(dateStyle);
+
+        begin = chatArea.getCharCount();
+        chatArea.append(name + ' ');
+        StyleRange nickStyle = new StyleRange();
+        nickStyle.fontStyle = SWT.BOLD;
+        nickStyle.start = begin;
+        nickStyle.length = name.length();
+        chatArea.setStyleRange(nickStyle);
+
+        begin = chatArea.getCharCount();
+        chatArea.append(message + '\n');
+        StyleRange messageStyle = new StyleRange();
+        messageStyle.start = begin;
+        messageStyle.length = message.length();
+        chatArea.setStyleRange(messageStyle);
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e)
-    {
-        fieldToTyped.grabFocus();
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e)
-    {}
-
-    @Override
-    public void mouseReleased(MouseEvent e)
-    {}
-
-    @Override
-    public void mouseEntered(MouseEvent e)
-    {}
-
-    @Override
-    public void mouseExited(MouseEvent e)
-    {}
 }

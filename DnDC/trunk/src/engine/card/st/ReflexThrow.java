@@ -1,7 +1,5 @@
 package engine.card.st;
 
-import javax.swing.event.ChangeListener;
-
 import engine.card.abilities.AbilityType;
 
 /**
@@ -20,9 +18,9 @@ public class ReflexThrow extends SavingThrow
      * @param view
      *            Widok rzutu
      */
-    public ReflexThrow(ChangeListener view)
+    public ReflexThrow()
     {
-        super(view);
+        super();
     }
 
     @Override

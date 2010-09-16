@@ -1,7 +1,6 @@
 package engine.card.abilities;
 
 import engine.card.bonus.BonusManager;
-import gui.card.AbilitiesPanel;
 
 /**
  * Implementacja i obsługa atybutów.
@@ -18,19 +17,19 @@ public class DnDAbilities implements Abilities
     private Abiliti wisdom;
     private Abiliti charisma;
 
-    public DnDAbilities(AbilitiesPanel temp, BonusManager bonusManager)
+    public DnDAbilities(BonusManager bonusManager)
     {
-        this.strenght = new Abiliti(temp.getStrPanel());
+        this.strenght = new Abiliti();
         bonusManager.registerBonus("Strenght", strenght);
-        this.dexterity = new Abiliti(temp.getDexPanel());
+        this.dexterity = new Abiliti();
         bonusManager.registerBonus("Dexterity", dexterity);
-        this.construction = new Abiliti(temp.getConPanel());
+        this.construction = new Abiliti();
         bonusManager.registerBonus("Construction", construction);
-        this.intelligence = new Abiliti(temp.getIntPanel());
+        this.intelligence = new Abiliti();
         bonusManager.registerBonus("Intelligence", intelligence);
-        this.wisdom = new Abiliti(temp.getWisPanel());
+        this.wisdom = new Abiliti();
         bonusManager.registerBonus("Wisdom", wisdom);
-        this.charisma = new Abiliti(temp.getChaPanel());
+        this.charisma = new Abiliti();
         bonusManager.registerBonus("Charisma", charisma);
     }
 

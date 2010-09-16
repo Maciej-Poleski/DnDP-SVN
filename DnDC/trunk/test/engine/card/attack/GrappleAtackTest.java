@@ -6,7 +6,6 @@ package engine.card.attack;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import gui.card.CardPanel;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -18,7 +17,7 @@ import org.junit.Test;
  */
 public class GrappleAtackTest
 {
-    static engine.Character main = new engine.Character(new CardPanel());
+    static engine.Character main = new engine.Character();
     static GrappleAttack    dupa = new GrappleAttack(main);
 
     public GrappleAtackTest()

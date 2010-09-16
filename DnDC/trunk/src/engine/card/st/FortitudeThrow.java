@@ -1,7 +1,5 @@
 package engine.card.st;
 
-import javax.swing.event.ChangeListener;
-
 import engine.card.abilities.AbilityType;
 
 /**
@@ -21,9 +19,9 @@ public class FortitudeThrow extends SavingThrow
      *            Widok rzutu
      * @see engine.card.st.SavingThrow
      */
-    public FortitudeThrow(ChangeListener view)
+    public FortitudeThrow()
     {
-        super(view);
+        super();
     }
 
     @Override

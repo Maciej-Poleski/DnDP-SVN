@@ -6,13 +6,13 @@ package engine.card.st;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import engine.card.bonus.BonusManager;
-import engine.card.bonus.DnDBonusManager;
-import gui.card.CardPanel;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import engine.card.bonus.BonusManager;
+import engine.card.bonus.DnDBonusManager;
 
 /**
  * 
@@ -21,10 +21,9 @@ import org.junit.Test;
 public class DnDSavingThrowsTest
 {
 
-    CardPanel        p    = new CardPanel();
-    engine.Character d    = new engine.Character(p);
+    engine.Character d    = new engine.Character();
     BonusManager     s    = new DnDBonusManager(d);
-    DnDSavingThrows  test = new DnDSavingThrows(s, p.getSavingThrowsPanel());
+    DnDSavingThrows  test = new DnDSavingThrows(s);
 
     public DnDSavingThrowsTest()
     {}

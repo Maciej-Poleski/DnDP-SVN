@@ -6,9 +6,6 @@ package engine.card.abilities;
 
 import static org.junit.Assert.assertEquals;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import org.junit.Test;
 
 /**
@@ -26,15 +23,7 @@ public class AbilitiTest
     public void testGetModifier()
     {
         System.out.println("getModifier");
-        Abiliti instance = new Abiliti(new ChangeListener()
-        {
-
-            @Override
-            public void stateChanged(ChangeEvent e)
-            {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-        });
+        Abiliti instance = new Abiliti();
         Integer expResult = 0;
         Integer result = instance.getModifier();
         assertEquals(expResult, result);
@@ -44,15 +33,7 @@ public class AbilitiTest
     public void testGetValue()
     {
         System.out.println("getValue");
-        Abiliti instance = new Abiliti(new ChangeListener()
-        {
-
-            @Override
-            public void stateChanged(ChangeEvent e)
-            {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-        });
+        Abiliti instance = new Abiliti();
         Integer expResult = 10;
         Integer result = instance.getValue();
         assertEquals(expResult, result);
@@ -63,15 +44,7 @@ public class AbilitiTest
     {
         System.out.println("setValue");
         final Integer value = 12;
-        Abiliti instance = new Abiliti(new ChangeListener()
-        {
-
-            @Override
-            public void stateChanged(ChangeEvent e)
-            {
-                assertEquals(((Abiliti)e.getSource()).getValue(), value);
-            }
-        });
+        Abiliti instance = new Abiliti();
         instance.setValue(value);
         assertEquals(instance.getValue(), value);
     }
@@ -81,15 +54,7 @@ public class AbilitiTest
     {
         System.out.println("setValueException");
         Integer value = -12;
-        Abiliti instance = new Abiliti(new ChangeListener()
-        {
-
-            @Override
-            public void stateChanged(ChangeEvent e)
-            {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-        });
+        Abiliti instance = new Abiliti();
         instance.setValue(value);
         assertEquals(instance.getValue(), value);
     }
@@ -100,15 +65,7 @@ public class AbilitiTest
         System.out.println("setValue");
         final Integer value = 14;
         final Integer exp = 2;
-        Abiliti instance = new Abiliti(new ChangeListener()
-        {
-
-            @Override
-            public void stateChanged(ChangeEvent e)
-            {
-                assertEquals(((Abiliti)e.getSource()).getModifier(), exp);
-            }
-        });
+        Abiliti instance = new Abiliti();
         instance.setValue(value);
         assertEquals("Powinno być 2", (Object)instance.getModifier(), exp);
     }
@@ -117,15 +74,7 @@ public class AbilitiTest
     public void testSetBonus()
     {
         Integer value = 4;
-        Abiliti instance = new Abiliti(new ChangeListener()
-        {
-
-            @Override
-            public void stateChanged(ChangeEvent e)
-            {
-
-            }
-        });
+        Abiliti instance = new Abiliti();
         instance.setBonus(value);
         assertEquals((instance.getValue() - 10 + value) / 2, instance.getModifier().intValue());
     }

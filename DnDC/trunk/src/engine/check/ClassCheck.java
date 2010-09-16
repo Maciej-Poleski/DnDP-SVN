@@ -4,7 +4,7 @@ import engine.Character;
 import engine.card.classes.BaseClass;
 
 /**
- *
+ * Sprawdza czy klasa postaci jest na wystarczającym poziomie.
  * 
  * @author bambucha
  */
@@ -32,8 +32,7 @@ public class ClassCheck implements Checkable
     @Override
     public boolean check(Character character)
     {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Brak implementacji");
+        return character.getClassLevel(baseClass) >= level;
     }
 
 }
