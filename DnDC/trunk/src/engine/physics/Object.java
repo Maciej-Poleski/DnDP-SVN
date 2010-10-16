@@ -132,7 +132,7 @@ public abstract class Object {
 				"Metoda engine.phisics.Object.addObject(Object,Point,Point) Nie została zaimplementowana.");
 	}
 
-	public final double getLength() {
+	public final double getDistance(Measurable measure) {
 		if (nodes == null)
 			throw new IllegalStateException(
 					"Unable to get size of non-existent object");
@@ -142,8 +142,8 @@ public abstract class Object {
 		Point a, b;
 		a = b = nodes.get(0).getPoint();
 		for (Node node : nodes) {
-			if (Point.distanceBetween(a, b, Point.length) < Point
-					.distanceBetween(a, node.getPoint(), Point.length))
+			if (Point.distanceBetween(a, b, measure) < Point
+					.distanceBetween(a, node.getPoint(), measure))
 				b = node.getPoint();
 		}
 		{
@@ -152,11 +152,11 @@ public abstract class Object {
 			b = c;
 		}
 		for (Node node : nodes) {
-			if (Point.distanceBetween(a, b, Point.length) < Point
-					.distanceBetween(a, node.getPoint(), Point.length))
+			if (Point.distanceBetween(a, b, measure) < Point
+					.distanceBetween(a, node.getPoint(), measure))
 				b = node.getPoint();
 		}
-		return Point.distanceBetween(a, b, Point.length);
+		return Point.distanceBetween(a, b, measure);
 	}
 
 	/**
