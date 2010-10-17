@@ -14,10 +14,10 @@ import dndp.engine.card.abilities.AbilityType;
  */
 public class Skill
 {
-    private String      name;
-    private AbilityType abilitiModifier;
-    private Boolean     train;
-    private Boolean     armorInterrupt;
+    private final String      name;
+    private final AbilityType abilitiModifier;
+    private final Boolean     train;
+    private final Boolean     armorInterrupt;
 
     /**
      * Konstruktor do budowania umiejętności.

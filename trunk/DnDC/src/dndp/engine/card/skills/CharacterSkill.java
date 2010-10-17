@@ -35,6 +35,7 @@ public class CharacterSkill extends Observable implements Bonusable
     {
         this.skil = skil;
         this.rank = new Integer(0);
+        this.bonus = new Integer(0);
         this.isClasses = false;
         bonusManager.registerBonus(skil.getName(), this);
     }

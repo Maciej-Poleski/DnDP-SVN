@@ -53,7 +53,7 @@ import dndp.engine.item.Item;
  * @author evil , bambucha
  */
 public class Character implements Abilities, Attack, Armor, Description, HitPoints, SavingThrows, BonusManager, CharacterFleatManager,
-        StateManager, BasicEquipmentManager, CharacterClassManager
+        SkillManager, StateManager, BasicEquipmentManager, CharacterClassManager
 {
     private Abilities             abilities;
     private Armor                 armor;
