@@ -1,7 +1,7 @@
 package dndp.engine.check;
 
 import dndp.engine.Character;
-import dndp.engine.card.skils.Skil;
+import dndp.engine.card.skills.Skill;
 
 /**
  * Sprawdza czy postać ma wystarczającą ilośc rank w danej umiejętności.
@@ -10,14 +10,14 @@ import dndp.engine.card.skils.Skil;
  */
 public class SkilCheck implements Checkable
 {
-    private final Skil skil;
+    private final Skill skil;
     private final Integer rank;
     
     /**
      * @param skil
      * @param rank
      */
-    public SkilCheck(Skil skil, Integer rank)
+    public SkilCheck(Skill skil, Integer rank)
     {
         super();
         this.skil = skil;

@@ -1,7 +1,7 @@
 package dndp.engine.card.classes;
 
 import dndp.engine.benefit.Benefit;
-import dndp.engine.card.skils.Skil;
+import dndp.engine.card.skills.Skill;
 import dndp.engine.check.Checkable;
 
 /**
@@ -14,7 +14,7 @@ public class PrestigeClass extends BaseClass
     private final Checkable[] conditions;
 
     public PrestigeClass(String name, Benefit[][] levelBenefitsList, AttackBonusLevel bonusType, boolean highFortitudeBonus,
-            boolean highReflexeBonus, boolean highWillBonus, Skil[] classFleats, Checkable[] conditions)
+            boolean highReflexeBonus, boolean highWillBonus, Skill[] classFleats, Checkable[] conditions)
     {
         super(name, levelBenefitsList, bonusType, highFortitudeBonus, highReflexeBonus, highWillBonus, classFleats);
         this.conditions = conditions;

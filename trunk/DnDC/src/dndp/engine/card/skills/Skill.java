@@ -1,4 +1,4 @@
-package dndp.engine.card.skils;
+package dndp.engine.card.skills;
 
 import dndp.engine.card.abilities.AbilityType;
 
@@ -9,10 +9,10 @@ import dndp.engine.card.abilities.AbilityType;
  * 
  * @par TODO Zastanowić się nad synergią, wielokrotnym testami, przeszkadzaniem
  *      i innymi.
- * @see dndp.engine.card.skils.DnDSkilManager
+ * @see dndp.engine.card.skills.DnDSkilManager
  * @author bambucha
  */
-public class Skil
+public class Skill
 {
     private String      name;
     private AbilityType abilitiModifier;
@@ -31,7 +31,7 @@ public class Skil
      * @param armorInterrupt
      *            Czy używa się kar za zbroje.
      */
-    public Skil(String name, AbilityType abilitiModifier, Boolean train, Boolean armorInterrupt)
+    public Skill(String name, AbilityType abilitiModifier, Boolean train, Boolean armorInterrupt)
     {
         this.name = name;
         this.abilitiModifier = abilitiModifier;

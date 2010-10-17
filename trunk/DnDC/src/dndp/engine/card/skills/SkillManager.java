@@ -1,11 +1,11 @@
-package dndp.engine.card.skils;
+package dndp.engine.card.skills;
 
 import java.util.Set;
 
 import dndp.engine.card.UnavailableTestException;
 
 
-public interface SkilManager
+public interface SkillManager
 {
 
     /**
@@ -22,7 +22,7 @@ public interface SkilManager
      * @param name Nazwa umiejętności.
      * @return Umiejętność postaci.
      */
-    public abstract CharacterSkil getSkil(String name);
+    public abstract CharacterSkill getSkil(String name);
 
     /**
      * Zwraca set z nazwami umiejętności.

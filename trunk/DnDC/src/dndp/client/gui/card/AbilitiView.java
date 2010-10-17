@@ -13,7 +13,7 @@ import dndp.engine.card.abilities.Abiliti;
 
 
 /**
- * 
+ * Widok jednego atrybutu.
  * 
  * @author bambucha
  */

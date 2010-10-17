@@ -1,4 +1,6 @@
-package dndp.engine.card.skils;
+package dndp.engine.card.skills;
+
+import java.util.Observable;
 
 import dndp.engine.card.abilities.AbilityType;
 import dndp.engine.card.bonus.BonusManager;
@@ -14,9 +16,9 @@ import dndp.engine.card.bonus.Bonusable;
  * @f$ rank_{max} = lvl+3 @f$ gdzie lvl to suma poziomów klas postaci.
  * @author bambucha
  */
-public class CharacterSkil implements Bonusable
+public class CharacterSkill extends Observable implements Bonusable
 {
-    private Skil    skil;
+    private Skill    skil;
     private Boolean isClasses;
     private Integer rank;
     private Integer bonus;
@@ -29,7 +31,7 @@ public class CharacterSkil implements Bonusable
      * @param bonusManager
      *            Menadżer bonusów.
      */
-    public CharacterSkil(Skil skil, BonusManager bonusManager)
+    public CharacterSkill(Skill skil, BonusManager bonusManager)
     {
         this.skil = skil;
         this.rank = new Integer(0);
@@ -42,7 +44,7 @@ public class CharacterSkil implements Bonusable
      * 
      * @return Opis umiejętności
      */
-    public Skil getSkil()
+    public Skill getSkil()
     {
         return skil;
     }
@@ -67,6 +69,7 @@ public class CharacterSkil implements Bonusable
         if (rank < 0)
             throw new IllegalArgumentException("rank nie może być ujemne");
         this.rank = rank;
+        notifyObservers();
     }
 
     /**
@@ -91,6 +94,7 @@ public class CharacterSkil implements Bonusable
         if (bonus == null)
             throw new NullPointerException();
         this.bonus = bonus;
+        notifyObservers();
     }
 
     @Override
@@ -116,7 +120,4 @@ public class CharacterSkil implements Bonusable
     {
         this.isClasses = isClasses;
     }
-    
-    
-
 }

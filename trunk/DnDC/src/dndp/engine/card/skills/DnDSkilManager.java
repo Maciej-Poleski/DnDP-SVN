@@ -1,4 +1,4 @@
-package dndp.engine.card.skils;
+package dndp.engine.card.skills;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,10 +18,10 @@ import dndp.engine.item.BasicEquipmentManager;
  * 
  * @author bambucha
  */
-public class DnDSkilManager implements SkilManager
+public class DnDSkilManager implements SkillManager
 {
     private BasicEquipmentManager      baseEquipmentManager;
-    private Map<String, CharacterSkil> skilSet;
+    private Map<String, CharacterSkill> skilSet;
 
     // Przyśpieszenie zapytania po nazwie umiejętności. Dodanie klucza powinno
     // wyglądać put(CharacterSkil.getSkil.getName,CharacterSkill)
@@ -29,10 +29,10 @@ public class DnDSkilManager implements SkilManager
     public DnDSkilManager(BasicEquipmentManager main, BonusManager bonusManager)
     {
         this.baseEquipmentManager = main;
-        this.skilSet = new HashMap<String, CharacterSkil>();
-        ObjectSet<Skil> query = FrontToDB.getInstance().getDB().query(Skil.class);
-        for(Skil skil : query)
-            skilSet.put(skil.getName(), new CharacterSkil(skil, bonusManager));
+        this.skilSet = new HashMap<String, CharacterSkill>();
+        ObjectSet<Skill> query = FrontToDB.getInstance().getDB().query(Skill.class);
+        for(Skill skil : query)
+            skilSet.put(skil.getName(), new CharacterSkill(skil, bonusManager));
     }
 
     /**
@@ -43,7 +43,7 @@ public class DnDSkilManager implements SkilManager
      * @return Wynikt testu
      * @throws UnavailableTestException Gdy test jest niemożliwy do wykonania.
      */
-    private Integer testSkil(CharacterSkil skilToTest) throws UnavailableTestException
+    private Integer testSkil(CharacterSkill skilToTest) throws UnavailableTestException
     {
         if(skilToTest.getSkil().isTrain() && skilToTest.getRank() == 0)
             throw new UnavailableTestException();
@@ -58,7 +58,7 @@ public class DnDSkilManager implements SkilManager
     @Override
     public Integer testSkil(String name) throws UnavailableTestException
     {
-        CharacterSkil t = skilSet.get(name);
+        CharacterSkill t = skilSet.get(name);
         if(t != null)
             return testSkil(t);
         else
@@ -75,7 +75,7 @@ public class DnDSkilManager implements SkilManager
     }
 
     @Override
-    public CharacterSkil getSkil(String name)
+    public CharacterSkill getSkil(String name)
     {
         return skilSet.get(name);
     }

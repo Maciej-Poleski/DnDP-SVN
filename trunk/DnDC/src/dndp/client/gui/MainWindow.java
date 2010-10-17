@@ -12,6 +12,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+/**
+ * Głowne okno programu.
+ *
+ * @author bambucha
+ */
 public class MainWindow extends Thread
 {
     private Display display;

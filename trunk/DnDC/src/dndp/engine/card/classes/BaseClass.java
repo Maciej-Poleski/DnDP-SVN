@@ -1,7 +1,7 @@
 package dndp.engine.card.classes;
 
 import dndp.engine.benefit.Benefit;
-import dndp.engine.card.skils.Skil;
+import dndp.engine.card.skills.Skill;
 import dndp.engine.check.Checkable;
 
 /**
@@ -16,7 +16,7 @@ public class BaseClass
     private final boolean          highFortitudeBonus;
     private final boolean          highReflexeBonus;
     private final boolean          highWillBonus;
-    private final Skil[]           classFleats;
+    private final Skill[]           classFleats;
     private final Benefit[][]      levelBenefitsList;
 
     /**
@@ -38,7 +38,7 @@ public class BaseClass
      *            Lista
      */
     public BaseClass(String name, Benefit[][] levelBenefitsList, AttackBonusLevel bonusType, boolean highFortitudeBonus,
-            boolean highReflexeBonus, boolean highWillBonus, Skil[] classFleats)
+            boolean highReflexeBonus, boolean highWillBonus, Skill[] classFleats)
     {
         super();
         this.name = name;
@@ -80,7 +80,7 @@ public class BaseClass
         return highWillBonus;
     }
 
-    public Skil[] getClassFleats()
+    public Skill[] getClassFleats()
     {
         return classFleats;
     }

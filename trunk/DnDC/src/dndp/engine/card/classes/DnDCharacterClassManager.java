@@ -8,7 +8,7 @@ import java.util.TreeSet;
 
 import dndp.engine.Character;
 import dndp.engine.benefit.Benefit;
-import dndp.engine.card.skils.Skil;
+import dndp.engine.card.skills.Skill;
 import dndp.engine.check.CheckFailException;
 import dndp.engine.check.Checkable;
 
@@ -120,7 +120,7 @@ public class DnDCharacterClassManager extends Observable implements CharacterCla
                 if(!checkable.check(character))
                     throw new CheckFailException("Postać nie spełnia wymagań");
             toPromote = new CharacterClass(classes, 0);
-            for (Skil skil : toPromote.getClasses().getClassFleats())
+            for (Skill skil : toPromote.getClasses().getClassFleats())
                 character.getSkil(skil.getName()).setClasses(true);
             classList.add(toPromote);
         }

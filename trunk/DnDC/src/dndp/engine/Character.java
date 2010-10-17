@@ -32,9 +32,9 @@ import dndp.engine.card.fleats.DnDCharacterFleatManager;
 import dndp.engine.card.fleats.Fleat;
 import dndp.engine.card.hp.DnDHitPoints;
 import dndp.engine.card.hp.HitPoints;
-import dndp.engine.card.skils.CharacterSkil;
-import dndp.engine.card.skils.DnDSkilManager;
-import dndp.engine.card.skils.SkilManager;
+import dndp.engine.card.skills.CharacterSkill;
+import dndp.engine.card.skills.DnDSkilManager;
+import dndp.engine.card.skills.SkillManager;
 import dndp.engine.card.st.DnDSavingThrows;
 import dndp.engine.card.st.SavingThrow;
 import dndp.engine.card.st.SavingThrows;
@@ -63,7 +63,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     private HitPoints             HP;
     private SavingThrows          savingThrows;
     private BonusManager          bonusManager;
-    private SkilManager           skilManager;
+    private SkillManager           skilManager;
     private CharacterFleatManager characterFleatManager;
     private StateManager          stateManager;
     private CharacterClassManager classManager;
@@ -493,7 +493,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         return skilManager.testSkil(name);
     }
 
-    public CharacterSkil getSkil(String name)
+    public CharacterSkill getSkil(String name)
     {
         return skilManager.getSkil(name);
     }
